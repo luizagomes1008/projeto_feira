@@ -1,7 +1,28 @@
+/* https://www.shecodes.io/palettes/1602#palette */
+
 .marginup{
     margin-top: 20px;
 }
 
+body{
+	background-color: #352961;
+}
+
+.first-color { 
+	background: #352961; 
+}
+	
+.second-color { 
+	background: #774181; 
+}
+
+.third-color { 
+	background: #e6b2c6; 
+}
+
+.fourth-color { 
+	background: #f6e5e5; 
+}
 
 /* .first-color { 
 	background: #e0ffcd; 
