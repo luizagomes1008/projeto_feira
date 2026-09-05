@@ -1,11 +1,11 @@
-/* https://www.shecodes.io/palettes/1602#palette */
-
 .marginup{
     margin-top: 20px;
 }
-
-body{
-	background-color: #352961;
+.card-body{
+	background-color: #774181;
+	color: #e6b2c6;
+	border-style: double;
+	border-color: #e6b2c6;
 }
 
 .first-color { 
@@ -23,57 +23,152 @@ body{
 .fourth-color { 
 	background: #f6e5e5; 
 }
-
-/* .first-color { 
-	background: #e0ffcd; 
-}
-	
-.second-color { 
-	background: #fdffcd; 
-}
-
-.third-color { 
-	background: #ffebbb; 
-}
-
-.fourth-color { 
-	background: #ffcab0; 
-} */
-
-
-
-
-/* 
-.first-color { 
-	background: #f8b595; 
-}
-	
-.second-color { 
-	background: #f67280; 
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: var(--bs-link-color);
+    --bs-nav-link-hover-color: #e6b2c6;
+    --bs-nav-link-disabled-color: var(--bs-secondary-color);
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
 }
 
-.third-color { 
-	background: #c06c84; 
+.nav-link{
+	color: #f6e5e5;
+	padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
 }
 
-.fourth-color { 
-	background: #6c5b7c;   }
+/* Meninas, pedi pro chat um background criativo e numa pegada mais séria, eu achei legal, oq acham?
+daqui p baixo é o codigo no chat */
 
 
-
-
-
-    .first-color { 
-	background: #feffdf; 
-}
-	
-.second-color { 
-	background: #ffe79a; 
-}
-
-.third-color { 
-	background: #ffa952; 
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(119, 65, 129, 0.35), transparent 30%),
+        radial-gradient(circle at 85% 70%, rgba(119, 65, 129, 0.25), transparent 35%),
+        linear-gradient(135deg, #352961 0%, #241b43 50%, #352961 100%);
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
 }
 
-.fourth-color { 
-	background: #ef5a5a;  */
+/* Textura e pontos no fundo */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+
+    background-size: 35px 35px;
+    opacity: 0.25;
+
+    animation: movimentoPontos 18s linear infinite;
+}
+
+/* Brilho roxo que se movimenta */
+body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(119, 65, 129, 0.25),
+        transparent 70%
+    );
+
+    top: -200px;
+    left: -150px;
+
+    pointer-events: none;
+
+    animation: brilho 12s ease-in-out infinite alternate;
+}
+
+
+/* Movimento discreto dos pontos */
+@keyframes movimentoPontos {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 70px 70px;
+    }
+}
+
+
+/* Movimento do brilho */
+@keyframes brilho {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(250px, 180px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(500px, 50px) scale(0.9);
+    }
+}
+
+
+
+.background-lines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.background-lines::before,
+.background-lines::after {
+    content: "";
+    position: absolute;
+
+    width: 800px;
+    height: 800px;
+
+    border: 1px solid rgba(195, 0, 255, 0.25);
+    border-radius: 50%;
+
+    transform: rotate(-25deg);
+
+    animation: linhas 15s ease-in-out infinite alternate;
+}
+
+.background-lines::before {
+    top: -450px;
+    right: -250px;
+}
+
+.background-lines::after {
+    bottom: -500px;
+    left: -300px;
+    animation-delay: -5s;
+}
+
+@keyframes linhas {
+    from {
+        transform: rotate(-25deg) scale(1);
+    }
+
+    to {
+        transform: rotate(15deg) scale(1.2);
+    }
+}
+
+
