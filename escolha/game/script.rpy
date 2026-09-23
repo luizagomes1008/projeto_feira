@@ -106,6 +106,7 @@ label start:
     d"estou pronta"
     pause 5
     #saindo de casa
+    
     scene dmente
     pause 1.5
     scene kitnet
@@ -115,13 +116,16 @@ label start:
     show afeliz
     a"Bom dia querida! como está?"
     d"ah, oi Andreia, estou bem! E sua filha, está tudo bem?"
+    hide afeliz
     show apreocupada
     a "ela pegou uma gripe chata, tenho que passar na farmacia..."
     d"coitadinha, já já ela se recupera"
     a"ah vc sabe como ela é, vai se recuperar rapido"
+    hide apreocupada
     show aalternativa
     pause 1.0
     a"devo estar te atrasando né?! Não me dei conta..."
+    hide aalternativa
     show apreocupada
     d"relaxa andreia, estou no horário, mas é melhor indo"
     show afeliz
