@@ -145,9 +145,9 @@ label start:
     d "Elias, fui mandada embora hoje. Me dá até dia 15? Por favor?"
     e "Dia 15 então. Mas vai pra R$700 com juros. Dia 15 eu volto."
 
-#outro capitulo
-#escolhas parte da manhã
+##outro capitulo
 
+#escolhas parte da manhã
     menu: 
         "Levar currículos no centro (-R$12 busão, +2 confiança)":
             $dinheiro -= 12
