@@ -5,9 +5,45 @@
 
 
 
-image dmente = Transform("images/menteD.png", fit ="cover")
+image dmente = Transform("images/dmente.png", fit ="cover")
 image kitnet = Transform("images/kitnet.jpeg", fit ="cover")
 image lanchonete1 = Transform("images/lanchonete1.jpeg", fit ="cover")
+image onibusmanha:
+
+    Transform("images/onibusmanha1.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    Transform("images/onibusmanha2.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    Transform("images/onibusmanha3.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    Transform("images/onibusmanha4.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    Transform("images/onibusmanha5.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    Transform("images/onibusmanha6.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    Transform("images/onibusmanha7.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+    
+    Transform("images/onibusmanha8.png",
+        xysize=(config.screen_width, config.screen_height))
+    pause 0.15
+
+    repeat
+
 image quarto_fundo = Transform(
     "images/quarto.jpeg",
     xysize=(config.screen_width, config.screen_height)
@@ -22,28 +58,30 @@ image banheiro = Transform(
 )
 image m ="/images/segurandocelular.jpg"
 define h = Character("Helena")
-image Hpadrao = "/images/Hpadrao.jpeg"
-image Hrindo = "/images/Hrindo.jpeg"
-image hirritada = "/images/Hirritada.jpeg"
-image holhofechado = "/images/Holhofechado.jpeg"
+image h hpadrao = "/images/hpadrao.png" 
+transform h_chegando:
+    xalign 1.2
+    yalign 1.0
+    zoom 1.7
+    linear 1.5:
+        xalign 0.5
+image h rindo = "/images/hrindo.png" 
+image h  hirritada = "/images/hirritada.png" 
+image h holhofechado = "/images/holhofechado.png" 
 
-""" 
-image star: Transform( "images/estrela1.png", xysize=(config.screen_width, config.screen_height))
-    pause 0.1
-    Transform("images/estrela2.png",xysize=(config.screen_width, config.screen_height))
-    pause 0.1
-    Transform("images/estrela3.png", xysize=(config.screen_width, config.screen_height))
-    pause 0.1
-    repeat *****ver como identar esse gif
- """
+
 define d = Character("Diana")
 image dpadrao = "/images/Dpadrao.jpeg" #imagem enorme e fundo preto
 
 define a = Character("Andreia", color="#66ccff")
-image afeliz = "/images/afeliz.jpeg"
-image apadrao = "/images/apadrao.jpeg"
-image apreocupada = "/images/apreocupada.jpeg"
-image aalternativa = "/images/aalternativa.jpeg"
+transform andreia_chegando:
+    xalign 0.5
+    yalign 1.0
+    linear 1.5 zoom 1.7
+image a afeliz = "/images/afeliz.png" 
+image a apadrao = "/images/apadrao.png"
+image a apreocupada = "/images/apreocupada.png"
+image a aalternativa = "/images/aalternativa.png"
 
 define e = Character("Elias", color="#ff9933", what_italic=True)
 define g = Character("Gerente")
@@ -81,7 +119,7 @@ label start:
     d "mesmo que não seja muito..."
     pause 3.0
     d "sinto que a qualquer momento o alarme vai-" #ai aqui o despertador iterrompe ela, e ela acorda, precisa adicionar o audio
-    scene quarto_fundo 
+    scene quarto_fundo with Dissolve(1.5) #with fade
     pause 2.0
     d"que dor de cabeça"
     d"preciso me arrumar para o trabalho, ou se não vou me atrasar"
@@ -89,7 +127,7 @@ label start:
     d"da ultima vez que isso aconteceu não foi bom..."
     pause 2.0 # aqui adiciona um barulho de notificação
     d"quem será?..."
-    scene mesaquarto
+    scene mesaquarto 
     d" Eita, espero que esteja tudo bem" #no celular vai ter uma mensagem do patrão dizendo que precisa conversar com ela
   #  d"hm... cobrança do alugel, não posso me atrasar com isso..."
    # d "Nem venceu ainda e já tá me cobrando!
@@ -97,42 +135,48 @@ label start:
     pause 1.0
     d"é melhor eu ir logo..."
     pause 0.5
-    scene dmente
+    scene dmente with fade
     d"20 minutos depois "
-    scene banheiro
+    scene banheiro  with fade
     d"preciso lavar esse uniforme o quanto antes"
     pause 1.0
     show dpadrao #aqui eu vou desenhar ela se vendo no espelho com o uniforme, oq acham?
     d"estou pronta"
     pause 5
     #saindo de casa
-    scene dmente
-    pause 1.5
-    scene kitnet
+   # scene dmente with fade
+    #pause 1.5
+    scene kitnet with  fade
     pause 1
     a "Diana!"
+    show a afeliz with moveinleft
+    pause 1.5
     d"...???"
-    show afeliz
+    show a afeliz at andreia_chegando
     a"Bom dia querida! como está?"
     d"ah, oi Andreia, estou bem! E sua filha, está tudo bem?"
-    show apreocupada
+    show a apreocupada
     a "ela pegou uma gripe chata, tenho que passar na farmacia..."
     d"coitadinha, já já ela se recupera"
+    show a aalternativa
     a"ah vc sabe como ela é, vai se recuperar rapido"
-    show aalternativa
-    pause 1.0
+    pause 1.5
+    show a apreocupada
     a"devo estar te atrasando né?! Não me dei conta..."
-    show apreocupada
     d"relaxa andreia, estou no horário, mas é melhor indo"
-    show afeliz
+    show a afeliz
     a"bom trabalho querida, se cuida!"
-    scene dmente
+    scene dmente with fade
+    pause 2
+    scene onibusmanha with  Dissolve(1) 
     pause 5
+    scene dmente with fade
+    pause 2
 #no trabalho
-    scene lanchonete1
+    scene lanchonete1 with Dissolve(1)
     pause 1
     d"cheguei"
-    show Hirritada
+    show h hirritada at h_chegando
     h "diana!  por que não responde as mensagens que te mando?!"
     d"bom dia pra você também Helena"
 
@@ -173,7 +217,7 @@ label start:
         "Pedir ajuda pra Andreia parcelar":
             a "Deixa que eu falo com ele, filha. Você me paga depois me ajudando com a Lili."
 
-        "Descansar e organizar as ideias"
+        "Descansar e organizar as ideias":
 #capitulo 3
     a "Diana, amanhã vamos fazer 30 bolos de pote pra escola. Cada uma faz 10 e divide. Vem? Minha filha Lili vai amar ter você lá."
 
@@ -184,17 +228,20 @@ label start:
             d "Vou sim! Vai ser bom pra mim e pra Lili."
             #$confianca += 1
             #$rede += 1
+            jump andreia
 
 
         "Aceitar convite da Helena - Curso com bolsa":
             d "Vou sim! Vai ser bom pra mim e pra Helena."
             #$confianca += 1
             #$rede += 1
+            jump helena
 
         "Recusar os convites":
             d "Não vou. Preciso me organizar primeiro."
             #$confianca -= 1
-    return
+    
+         jump fim
 
 #variações, cap 4
 
