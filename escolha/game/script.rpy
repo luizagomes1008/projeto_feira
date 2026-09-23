@@ -3,25 +3,48 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define d = Character("Diana")
+
 
 image dmente = Transform("images/menteD.png", fit ="cover")
+image kitnet = Transform("images/kitnet.jpeg", fit ="cover")
+image lanchonete1 = Transform("images/lanchonete1.jpeg", fit ="cover")
 image quarto_fundo = Transform(
-    "images/quarto.png",
+    "images/quarto.jpeg",
     xysize=(config.screen_width, config.screen_height)
 )
 image mesaquarto = Transform(
     "images/mesaquarto.png",
     xysize=(config.screen_width, config.screen_height)
 )
-
+image banheiro = Transform(
+    "images/banheiro.jpeg",
+    xysize=(config.screen_width, config.screen_height)
+)
 image m ="/images/segurandocelular.jpg"
 define h = Character("Helena")
 image Hpadrao = "/images/Hpadrao.jpeg"
 image Hrindo = "/images/Hrindo.jpeg"
+image hirritada = "/images/Hirritada.jpeg"
+image holhofechado = "/images/Holhofechado.jpeg"
 
+""" 
+image star: Transform( "images/estrela1.png", xysize=(config.screen_width, config.screen_height))
+    pause 0.1
+    Transform("images/estrela2.png",xysize=(config.screen_width, config.screen_height))
+    pause 0.1
+    Transform("images/estrela3.png", xysize=(config.screen_width, config.screen_height))
+    pause 0.1
+    repeat *****ver como identar esse gif
+ """
+define d = Character("Diana")
+image dpadrao = "/images/Dpadrao.jpeg" #imagem enorme e fundo preto
 
 define a = Character("Andreia", color="#66ccff")
+image afeliz = "/images/afeliz.jpeg"
+image apadrao = "/images/apadrao.jpeg"
+image apreocupada = "/images/apreocupada.jpeg"
+image aalternativa = "/images/aalternativa.jpeg"
+
 define e = Character("Elias", color="#ff9933", what_italic=True)
 define g = Character("Gerente")
 default dinheiro = 80
@@ -33,6 +56,7 @@ default confianca = 0
 # The game starts here.
 
 label start:    
+    #scene star
     scene dmente
 
     # Show a background. This uses a placeholder by default, but you can
@@ -49,12 +73,12 @@ label start:
     d "Meu nome é Diana. Tenho 26 anos."
    
 
-    d "Tenho uma vida como qualquer outra pessoa teria nessa situação..."
+    d "Tenho uma vida como qualquer outra pessoa teria"
     d "Mas algumas escolhas podem mudar completamente o nosso caminho."
     pause 2.0
-    d "Há dois anos que trabalho nesse emprego... É o que me sustenta."
-    d "É de onde eu tiro o pão de cada dia, o copo d'água."
-    d "É também muito cansativo... Mas não posso reclamar."
+    d "desde que terminei o ensino médio minha vida tem sido difícil, até encontrar esse emprego "
+    d "É cansativo... Mas não posso reclamar, agora tenho uma renda fixa."
+    d "mesmo que não seja muito..."
     pause 3.0
     d "sinto que a qualquer momento o alarme vai-" #ai aqui o despertador iterrompe ela, e ela acorda, precisa adicionar o audio
     scene quarto_fundo 
@@ -66,11 +90,53 @@ label start:
     pause 2.0 # aqui adiciona um barulho de notificação
     d"quem será?..."
     scene mesaquarto
-    d"hm... cobrança do alugel, não posso me atrasar com isso..."
-    d "Nem venceu ainda e já tá me cobrando!"
+    d" Eita, espero que esteja tudo bem" #no celular vai ter uma mensagem do patrão dizendo que precisa conversar com ela
+  #  d"hm... cobrança do alugel, não posso me atrasar com isso..."
+   # d "Nem venceu ainda e já tá me cobrando!
     show m
     pause 1.0
+    d"é melhor eu ir logo..."
+    pause 0.5
+    scene dmente
+    d"20 minutos depois "
+    scene banheiro
+    d"preciso lavar esse uniforme o quanto antes"
+    pause 1.0
+    show dpadrao #aqui eu vou desenhar ela se vendo no espelho com o uniforme, oq acham?
+    d"estou pronta"
+    pause 5
+    #saindo de casa
+    scene dmente
+    pause 1.5
+    scene kitnet
+    pause 1
+    a "Diana!"
+    d"...???"
+    show afeliz
+    a"Bom dia querida! como está?"
+    d"ah, oi Andreia, estou bem! E sua filha, está tudo bem?"
+    show apreocupada
+    a "ela pegou uma gripe chata, tenho que passar na farmacia..."
+    d"coitadinha, já já ela se recupera"
+    a"ah vc sabe como ela é, vai se recuperar rapido"
+    show aalternativa
+    pause 1.0
+    a"devo estar te atrasando né?! Não me dei conta..."
+    show apreocupada
+    d"relaxa andreia, estou no horário, mas é melhor indo"
+    show afeliz
+    a"bom trabalho querida, se cuida!"
+    scene dmente
+    pause 5
 #no trabalho
+    scene lanchonete1
+    pause 1
+    d"cheguei"
+    show Hirritada
+    h "diana!  por que não responde as mensagens que te mando?!"
+    d"bom dia pra você também Helena"
+
+
     g "Diana, movimento caiu. Hoje é seu último dia. Passa no caixa."
 #no caixa
     d "R$80. Só isso. E o aluguel dia 15..."
