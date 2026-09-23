@@ -2,7 +2,7 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-
+#comentado
 
 
 image dmente = Transform("images/menteD.png", fit ="cover")
@@ -22,10 +22,10 @@ image banheiro = Transform(
 )
 image m ="/images/segurandocelular.jpg"
 define h = Character("Helena")
-image Hpadrao = "/images/Hpadrao.jpeg"
-image Hrindo = "/images/Hrindo.jpeg"
-image hirritada = "/images/Hirritada.jpeg"
-image holhofechado = "/images/Holhofechado.jpeg"
+image Hpadrao = "/images/Personagens/Hpadrao.png"
+image Hrindo = "/images/Personagens/Hrindo.png"
+image hirritada = "/images/Personagens/Hirritada.png"
+image holhofechado = "/images/Personagens/Holhofechado.png"
 
 """ 
 image star: Transform( "images/estrela1.png", xysize=(config.screen_width, config.screen_height))
@@ -37,13 +37,13 @@ image star: Transform( "images/estrela1.png", xysize=(config.screen_width, confi
     repeat *****ver como identar esse gif
  """
 define d = Character("Diana")
-image dpadrao = "/images/Dpadrao.jpeg" #imagem enorme e fundo preto
+image dpadrao = "/images/Personagens/Dpadrão.png" #imagem enorme e fundo preto
 
 define a = Character("Andreia", color="#66ccff")
-image afeliz = "/images/afeliz.jpeg"
-image apadrao = "/images/apadrao.jpeg"
-image apreocupada = "/images/apreocupada.jpeg"
-image aalternativa = "/images/aalternativa.jpeg"
+image afeliz = "/images/Personagens/Afeliz.png"
+image apadrao = "/images/Personagens/Apadrão.png"
+image apreocupada = "/images/Personagens/Apreocupada.png"
+image aalternativa = "/images/Personagens/Aalternativa.png"
 
 define e = Character("Elias", color="#ff9933", what_italic=True)
 define g = Character("Gerente")
@@ -168,12 +168,14 @@ label start:
     #diana no cll vê cobranca ("Diana, lembrando... dia 15, R$700.")
     d"Como se eu tivesse dinheiro pra isso... Mas se eu me atrasar, o Elias vai me cobrar mais ainda..."
     menu:
-        "Pagar mesmo que parcialmente"
+        "Pagar mesmo que parcialmente":
+            $dinheiro=0
 
         "Pedir ajuda pra Andreia parcelar":
             a "Deixa que eu falo com ele, filha. Você me paga depois me ajudando com a Lili."
 
         "Descansar e organizar as ideias"
+            d "Vou ficar em paz por enquanto... Depois vejo isso."
 #capitulo 3
     a "Diana, amanhã vamos fazer 30 bolos de pote pra escola. Cada uma faz 10 e divide. Vem? Minha filha Lili vai amar ter você lá."
 
