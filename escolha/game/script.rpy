@@ -24,8 +24,8 @@ image m ="/images/segurandocelular.jpg"
 define h = Character("Helena")
 image Hpadrao = "/images/Personagens/Hpadrao.png"
 image Hrindo = "/images/Personagens/Hrindo.png"
-image hirritada = "/images/Personagens/Hirritada.png"
-image holhofechado = "/images/Personagens/Holhofechado.png"
+image Hirritada = "/images/Personagens/Hirritada.png"
+image Holhofechado = "/images/Personagens/Holhofechado.png"
 
 """ 
 image star: Transform( "images/estrela1.png", xysize=(config.screen_width, config.screen_height))
