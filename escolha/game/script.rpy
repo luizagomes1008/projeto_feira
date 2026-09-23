@@ -174,7 +174,7 @@ label start:
         "Pedir ajuda pra Andreia parcelar":
             a "Deixa que eu falo com ele, filha. Você me paga depois me ajudando com a Lili."
 
-        "Descansar e organizar as ideias"
+        "Descansar e organizar as ideias":
             d "Vou ficar em paz por enquanto... Depois vejo isso."
 #capitulo 3
     a "Diana, amanhã vamos fazer 30 bolos de pote pra escola. Cada uma faz 10 e divide. Vem? Minha filha Lili vai amar ter você lá."
@@ -186,17 +186,19 @@ label start:
             d "Vou sim! Vai ser bom pra mim e pra Lili."
             #$confianca += 1
             #$rede += 1
+            jump andreia
 
 
         "Aceitar convite da Helena - Curso com bolsa":
             d "Vou sim! Vai ser bom pra mim e pra Helena."
             #$confianca += 1
             #$rede += 1
+            jump helena
 
         "Recusar os convites":
             d "Não vou. Preciso me organizar primeiro."
             #$confianca -= 1
-    return
+            jump fim
 
 #variações, cap 4
 
