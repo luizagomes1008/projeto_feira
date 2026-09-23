@@ -1,0 +1,590 @@
+/* ==========================================
+   MAPA - REDE DE APOIO
+   ========================================== */
+
+
+/* Área inteira do mapa */
+
+.secao-mapa {
+    width: 100%;
+    padding: 80px 6%;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   FILTROS
+   ========================================== */
+
+.filtros-mapa {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin: 30px auto;
+
+}
+
+
+/* Botão */
+
+.filtro {
+
+    border: 1px solid #e6b2c6;
+
+    background: #f6e5e5;
+
+    color: #352961;
+
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+}
+
+
+/* Quando passa o mouse */
+
+.filtro:hover {
+
+    background: #e6b2c6;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* Botão selecionado */
+
+.filtro.ativo {
+
+    background: #774181;
+
+    color: white;
+
+    border-color: #774181;
+
+    box-shadow:
+        0 5px 15px rgba(53, 41, 97, 0.20);
+
+}
+
+
+/* ==========================================
+   CONTAINER DO MAPA
+   ========================================== */
+
+.mapa-container {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    height: 550px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: white;
+
+    box-shadow:
+        0 15px 40px rgba(36, 27, 67, 0.20);
+
+}
+
+
+/* O mapa */
+
+#mapa {
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+/* ==========================================
+   MARCADORES
+   ========================================== */
+
+.marcador-mapa {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    background: #774181;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px rgba(53, 41, 97, 0.35);
+
+    transition: all 0.2s ease;
+
+}
+
+
+/* Marcador quando passa o mouse */
+
+.marcador-mapa:hover {
+
+    transform: scale(1.15);
+
+    background: #352961;
+
+}
+
+
+/* Ícone dentro do marcador */
+
+.marcador-mapa span {
+
+    line-height: 1;
+
+}
+
+
+/* ==========================================
+   POPUP
+   ========================================== */
+
+/* ==========================================
+   POPUP DO MAPA
+   ========================================== */
+
+.maplibregl-popup {
+
+    max-width: 320px !important;
+
+}
+
+
+/* Caixa branca do popup */
+
+.maplibregl-popup-content {
+
+    padding: 0 !important;
+
+    border-radius: 18px !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(36, 27, 67, 0.25);
+
+}
+
+
+/* Conteúdo */
+
+.popup-apoio {
+
+    width: 300px;
+
+    max-width: 100%;
+
+    max-height: 380px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+    font-family: Arial, sans-serif;
+
+    color: #352961;
+
+}
+
+
+/* Categoria */
+
+.popup-categoria {
+
+    display: inline-block;
+
+    background: #f6e5e5;
+
+    color: #774181;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* Nome */
+
+.popup-apoio h3 {
+
+    margin: 3px 0 14px;
+
+    color: #352961;
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    line-height: 1.2;
+
+}
+
+
+/* Informações */
+
+.popup-apoio p {
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin: 10px 0;
+
+}
+
+
+/* Botão Como chegar */
+
+.botao-rota {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 16px;
+
+    padding: 11px 14px;
+
+    background: #774181;
+
+    color: white !important;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    transition: 0.2s ease;
+
+}
+
+
+.botao-rota:hover {
+
+    background: #352961;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* Botão fechar */
+
+.maplibregl-popup-close-button {
+
+    right: 7px !important;
+
+    top: 5px !important;
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+
+    color: #352961;
+
+}
+
+
+.maplibregl-popup-close-button:hover {
+
+    background: #f6e5e5;
+
+}
+
+
+/* Botão de rota */
+
+.botao-rota {
+
+    display: block;
+
+    margin-top: 16px;
+
+    padding: 10px;
+
+    background: #774181;
+
+    color: white !important;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    transition: background 0.2s ease;
+
+}
+
+
+.botao-rota:hover {
+
+    background: #352961;
+
+}
+
+
+/* ==========================================
+   TEXTO ABAIXO DO MAPA
+   ========================================== */
+
+.texto-mapa {
+
+    max-width: 900px;
+
+    margin: 35px auto 0;
+
+    text-align: center;
+
+    color: #f6e5e5;
+
+}
+
+
+/* Título */
+
+.texto-mapa h3 {
+
+    font-family: Georgia, serif;
+
+    color: #e6b2c6;
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* Parágrafos */
+
+.texto-mapa p {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    margin: 8px 0;
+
+}
+
+
+/* Observação */
+
+.texto-mapa small {
+
+    display: block;
+
+    margin-top: 18px;
+
+    opacity: 0.7;
+
+    font-size: 11px;
+
+}
+
+
+/* ==========================================
+   CONTROLES DO MAPA
+   ========================================== */
+
+.maplibregl-ctrl-group {
+
+    border: none !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(36, 27, 67, 0.18) !important;
+
+}
+
+
+.maplibregl-ctrl-group button {
+
+    width: 38px !important;
+
+    height: 38px !important;
+
+}
+
+/* ==========================================
+   RESPONSIVO DO POPUP
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .maplibregl-popup {
+
+        max-width: calc(100vw - 30px) !important;
+
+    }
+
+
+    .maplibregl-popup-content {
+
+        border-radius: 16px !important;
+
+    }
+
+
+    .popup-apoio {
+
+        width: 260px;
+
+        max-width: calc(100vw - 60px);
+
+        max-height: 300px;
+
+        padding: 17px;
+
+    }
+
+
+    .popup-apoio h3 {
+
+        font-size: 18px;
+
+    }
+
+
+    .popup-apoio p {
+
+        font-size: 12px;
+
+    }
+
+
+    .botao-rota {
+
+        padding: 10px;
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* ==========================================
+   RESPONSIVO
+   ========================================== */
+
+@media (max-width: 700px) {
+
+    .secao-mapa {
+
+        padding: 50px 4%;
+
+    }
+
+
+    .mapa-container {
+
+        height: 450px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .filtros-mapa {
+
+        gap: 7px;
+
+    }
+
+
+    .filtro {
+
+        padding: 8px 13px;
+
+        font-size: 12px;
+
+    }
+
+
+    .popup-apoio {
+
+        width: 240px;
+
+    }
+
+}
