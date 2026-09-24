@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mapa.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- isso faz parte do bakcground-->
+    <div class="background-lines"></div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#alternativas">Alternativas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#entenda-problema"> Entenda o problema</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="entrevista.html"> Entrevista</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="auxilio.html"> Auxilios</a>
+        </li>
+
+        <a class=" nav-link btn-jogo" href="jogo.html">Jogar</a>
+    </ul>
+
+    <section class="secao-apoios" id="apoios">
+
+        <div class="cabecalho-secao">
+            <span class="numero-secao">04</span>
+            <div class="linha-titulo"></div>
+            <h2>Rede de apoio</h2>
+        </div>
+
+        <div class="grid-apoios">
+
+            <!-- ONG -->
+            <article class="card-apoio">
+
+                <div class="imagem-card">
+                    <img src="img/ong.jpg" alt="ONGs">
+
+                    <div class="nome-card">
+                        <h3>ONGs</h3>
+                    </div>
+                </div>
+
+                <button class="botao-modal" data-modal="modal-ong">
+                    Saiba mais
+                </button>
+
+            </article>
+
+
+            <!-- ASSISTÊNCIA -->
+            <article class="card-apoio">
+
+                <div class="imagem-card">
+                    <img src="img/assistencia.jpg" alt="Assistência Social">
+
+                    <div class="nome-card">
+                        <h3>Assistência Social</h3>
+                    </div>
+                </div>
+
+                <button class="botao-modal" data-modal="modal-assistencia">
+                    Saiba mais
+                </button>
+
+            </article>
+
+
+            <!-- SAÚDE -->
+            <article class="card-apoio">
+
+                <div class="imagem-card">
+                    <img src="img/saude.jpg" alt="Saúde">
+
+                    <div class="nome-card">
+                        <h3>Saúde</h3>
+                    </div>
+                </div>
+
+                <button class="botao-modal" data-modal="modal-saude">
+                    Saiba mais
+                </button>
+
+            </article>
+
+
+            <!-- JURÍDICO -->
+            <article class="card-apoio">
+
+                <div class="imagem-card">
+                    <img src="img/juridico.jpg" alt="Apoio Jurídico">
+
+                    <div class="nome-card">
+                        <h3>Jurídico</h3>
+                    </div>
+                </div>
+
+                <button class="botao-modal" data-modal="modal-juridico">
+                    Saiba mais
+                </button>
+
+            </article>
+
+
+            <!-- EMPREGO -->
+            <article class="card-apoio">
+
+                <div class="imagem-card">
+                    <img src="img/emprego.jpg" alt="Emprego e Capacitação">
+
+                    <div class="nome-card">
+                        <h3>Emprego e Capacitação</h3>
+                    </div>
+                </div>
+
+                <button class="botao-modal" data-modal="modal-emprego">
+                    Saiba mais
+                </button>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <section class="secao-mapa" id="rede-apoio">
+
+        <div class="cabecalho-secao">
+
+            <span class="numero-secao">03</span>
+
+            <div class="linha-titulo"></div>
+
+            <h2>Encontre apoio</h2>
+
+        </div>
+
+
+        <!-- FILTROS -->
+
+        <div class="filtros-mapa">
+
+            <button class="filtro ativo" data-categoria="todos">
+                Todos
+            </button>
+
+            <button class="filtro" data-categoria="ONG">
+                ONGs
+            </button>
+
+            <button class="filtro" data-categoria="Assistência Social">
+                Assistência
+            </button>
+
+            <button class="filtro" data-categoria="Saúde">
+                Saúde
+            </button>
+
+            <button class="filtro" data-categoria="Jurídico">
+                Jurídico
+            </button>
+
+            <button class="filtro" data-categoria="Emprego">
+                Emprego
+            </button>
+
+        </div>
+
+
+        <!-- MAPA -->
+
+        <div class="mapa-container">
+
+            <div id="mapa"></div>
+
+        </div>
+
+
+        <!-- TEXTO ABAIXO DO MAPA -->
+
+        <div class="texto-mapa">
+
+            <p>
+                Este mapa reúne organizações, serviços públicos e instituições
+                que oferecem atendimento, orientação e apoio para mulheres em
+                situação de vulnerabilidade.
+            </p>
+
+            <p>
+                Selecione uma categoria acima para encontrar o tipo de apoio
+                que procura.
+            </p>
+
+            <small>
+                As informações apresentadas devem ser confirmadas diretamente
+                com cada instituição antes do atendimento.
+            </small>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+     MODAL ONG
+========================================== -->
+
+    <div class="modal-apoio" id="modal-ong">
+
+        <div class="conteudo-modal">
+
+            <button class="fechar-modal">&times;</button>
+
+            <div class="modal-imagem">
+                <img src="img/ong.jpg" alt="ONGs">
+            </div>
+
+            <h2>ONGs</h2>
+
+            <p>
+                As Organizações Não Governamentais (ONGs) são organizações
+                que desenvolvem projetos e ações sociais para diferentes
+                públicos e necessidades.
+            </p>
+
+            <h3>Como podem ajudar?</h3>
+
+            <ul>
+                <li>Acolhimento e escuta;</li>
+                <li>Orientação e informação;</li>
+                <li>Encaminhamento para outros serviços;</li>
+                <li>Projetos sociais e comunitários.</li>
+            </ul>
+
+            <h3>Quando procurar?</h3>
+
+            <p>
+                Podem ser procuradas quando uma pessoa precisa de orientação,
+                acolhimento ou deseja conhecer projetos e serviços disponíveis.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="modal-apoio" id="modal-assistencia">
+
+        <div class="conteudo-modal">
+
+            <button class="fechar-modal">&times;</button>
+
+            <div class="modal-imagem">
+                <img src="img/assistencia.jpg" alt="Assistência Social">
+            </div>
+
+            <h2>Assistência Social</h2>
+
+            <p>
+                A assistência social oferece serviços para pessoas e famílias
+                que estejam passando por situações de vulnerabilidade ou risco
+                social.
+            </p>
+
+            <h3>Como pode ajudar?</h3>
+
+            <ul>
+                <li>Orientação social;</li>
+                <li>Acompanhamento e encaminhamento;</li>
+                <li>Orientação sobre benefícios e programas sociais;</li>
+                <li>Acesso a serviços públicos.</li>
+            </ul>
+
+            <h3>Onde procurar?</h3>
+
+            <p>
+                Alguns dos serviços da assistência social são realizados
+                por equipamentos como CRAS e CREAS.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="modal-apoio" id="modal-saude">
+
+        <div class="conteudo-modal">
+
+            <button class="fechar-modal">&times;</button>
+
+            <div class="modal-imagem">
+                <img src="img/saude.jpg" alt="Saúde">
+            </div>
+
+            <h2>Saúde</h2>
+
+            <p>
+                Os serviços de saúde oferecem atendimento, orientação,
+                acompanhamento e encaminhamento de acordo com as necessidades
+                de cada pessoa.
+            </p>
+
+            <h3>Como pode ajudar?</h3>
+
+            <ul>
+                <li>Atendimento de saúde;</li>
+                <li>Orientação e acompanhamento;</li>
+                <li>Encaminhamento para especialistas;</li>
+                <li>Atendimento relacionado à saúde da mulher.</li>
+            </ul>
+
+            <h3>Quando procurar?</h3>
+
+            <p>
+                Sempre que houver necessidade de atendimento ou orientação
+                relacionada à saúde.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="modal-apoio" id="modal-juridico">
+
+        <div class="conteudo-modal">
+
+            <button class="fechar-modal">&times;</button>
+
+            <div class="modal-imagem">
+                <img src="img/juridico.jpg" alt="Apoio Jurídico">
+            </div>
+
+            <h2>Apoio Jurídico</h2>
+
+            <p>
+                O apoio jurídico pode ajudar mulheres a compreender seus
+                direitos e conhecer os caminhos disponíveis para buscar
+                orientação ou assistência.
+            </p>
+
+            <h3>Como pode ajudar?</h3>
+
+            <ul>
+                <li>Orientação sobre direitos;</li>
+                <li>Informações sobre procedimentos jurídicos;</li>
+                <li>Encaminhamento para serviços especializados;</li>
+                <li>Orientação sobre acesso à assistência jurídica.</li>
+            </ul>
+
+            <h3>Quando procurar?</h3>
+
+            <p>
+                Quando houver dúvidas sobre direitos ou necessidade de
+                orientação relacionada a uma situação jurídica.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="modal-apoio" id="modal-emprego">
+
+        <div class="conteudo-modal">
+
+            <button class="fechar-modal">&times;</button>
+
+            <div class="modal-imagem">
+                <img src="img/emprego.jpg" alt="Emprego e Capacitação">
+            </div>
+
+            <h2>Emprego e Capacitação</h2>
+
+            <p>
+                Serviços de emprego e capacitação podem auxiliar na busca
+                por oportunidades profissionais e no desenvolvimento de
+                conhecimentos para o mercado de trabalho.
+            </p>
+
+            <h3>Como pode ajudar?</h3>
+
+            <ul>
+                <li>Busca por oportunidades de trabalho;</li>
+                <li>Cursos de capacitação;</li>
+                <li>Orientação profissional;</li>
+                <li>Informações sobre programas de emprego.</li>
+            </ul>
+
+            <h3>Por que é importante?</h3>
+
+            <p>
+                O acesso à qualificação e ao trabalho pode ampliar as
+                possibilidades de autonomia e geração de renda.
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+    <script src="mapa.js"></script>
+</body>
+
+<footer class="footer">
+
+    <div class="footer-conteudo">
+
+        <h3>Trabalho Seguro e igualdade</h3>
+
+        <p>
+            Projeto desenvolvido para a Feira Tecnológica,
+            com foco nos ODS 8 e 10.
+        </p>
+
+
+
+    </div>
+
+    <div class="footer-final">
+        <p>© 2026 — Projeto desenvolvido pelas estudantes.</p>
+    </div>
+
+</footer>
+
+</html>
