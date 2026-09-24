@@ -119,7 +119,7 @@ image celbloq ="/images/celularbloq.png"
 define h = Character("Helena")
 image h hpadrao = "/images/personagens/hpadrao.png" 
 image h hreceio ="images/personagens/hreceio.png"
-image h hpadraobocaaberta ="images/personagens/hpadraobocaabera.png"
+image h hpadraobocaaberta ="images/personagens/Hpreocupada.png"
 # Helena começa no centro
 transform h_centro:
     zoom 1.7
@@ -203,6 +203,7 @@ default dinheiro = 80
 default rede = 0
 default confianca = 0
 
+default empregoDia2 = False
 
 
 # The game starts here.
@@ -386,6 +387,11 @@ label start:
     d"amanhã eu penso melhor no que fazer, preciso descansar..."
     pause 1
     scene dmente with Dissolve(1) 
+
+
+#dia 2
+
+
     pause 2.5 #celular despertando
     scene quarto_fundo with Dissolve(1) 
     pause 1
@@ -553,49 +559,43 @@ label start:
     d "Ou posso tentar resolver alguma coisa."
     h "O que você está pensando?"
     menu:
-    "Quero começar a procurar um emprego":
-        $ confianca += 1
-        d "Talvez eu já devesse começar a entregar currículos."
-        d"hoje mesmo"
-        show hreceio
-        h "Se você quiser, eu vou com você."
-        d "Você faria isso?"
-        show halternativa
-        h "Claro que faria."
-        d "Obrigada, Helena. De verdade."
-        show h hrindo
-        h "conte comigo sempre amiga!"
-        scene dmente with Dissolve(1) 
-        pause 1
-        scene onibusmanha with Dissolve(1) 
-        pause 1
-        h"Eu sei de alguns lugares ótimos"
-        d"obrigada por me ajudar"
-        pause 3
+        "Quero começar a procurar um emprego":
+            $empregoDia2 = True
+            $ confianca += 1
+            d "Talvez eu já devesse começar a entregar currículos."
+            d"hoje mesmo"
+            show hreceio
+            h "Se você quiser, eu vou com você."
+            d "Você faria isso?"
+            show halternativa
+            h "Claro que faria."
+            d "Obrigada, Helena. De verdade."
+            show h hrindo
+            h "conte comigo sempre amiga!"
+            scene dmente with Dissolve(1) 
+            pause 1
+            scene onibusmanha with Dissolve(1) 
+            pause 1
+            h"Eu sei de alguns lugares ótimos"
+            d"obrigada por me ajudar"
+            pause 3
         
+     
+        "Prefiro descansar um pouco":
+            d "Acho que preciso de um tempo para colocar a cabeça no lugar."
+            h "E tudo bem."
+            d "Eu só queria esquecer tudo por algumas hours."
+            h "Então hoje você vai descansar. Amanhã a gente pensa no resto."
 
-         
-    "Prefiro descansar um pouco":
-        d "Acho que preciso de um tempo para colocar a cabeça no lugar."
-        h "E tudo bem."
-        d "Eu só queria esquecer tudo por algumas horas."
-        h "Então hoje você vai descansar. Amanhã a gente pensa no resto."
-    "Não sei o que quero fazer":
-        d "Sinceramente? Eu não faço ideia."
-        h "Você não precisa ter todas as respostas agora."
-        d "Tenho medo de escolher errado."
-        h "Às vezes, não escolher nada por enquanto também é uma escolha."
-        d "Você sempre sabe o que falar, né?"
-        h "Nem sempre. Só finjo que sei."
-        d "Boba."
-        h "Sua boba."
-
-
-
-
-
-
-
+        "Não sei o que quero fazer":
+            d "Sinceramente? Eu não faço ideia."
+            h "Você não precisa ter todas as respostas agora."
+            d "Tenho medo de escolher errado."
+            h "Às vezes, não escolher nada por enquanto também é uma escolha."
+            d "Você sempre sabe o que falar, né?"
+            h "Nem sempre. Só finjo que sei."
+            d "Boba."
+            h "Sua boba."
 
 
 
@@ -606,9 +606,61 @@ label start:
     d "Elias, fui mandada embora hoje. Me dá até dia 15? Por favor?"
     e "Dia 15 então. Mas vai pra R$700 com juros. Dia 15 eu volto."
 
-#outro capitulo
-# escolhas parte da manhã
+    scene dmente with Dissolve(1) 
 
+
+
+#Dia 3
+
+
+
+    pause 2.5 #celular despertando
+    scene quarto_fundo with Dissolve(1) 
+    pause 1
+    d"*bocejo*"
+    scene banheiro
+    scene cozinha
+    scene salam
+    d "Tá... vamos ver as contas"
+    d "Tenho [dinheiro] e preciso pagar R$700 do aluguel e comprar mais comida..."
+    d "Não vai ser o suficiente... \n Dia 15 já já está aí... "
+    d "Tenho que procurar uma forma de ganhar dinheiro... {p} Mas qual?"
+    if empregoDia2 == True:
+        d "Ontem já entreguei alguns currículos, enquanto não respondem, vou procurar outras opções."
+    else:
+        d "Posso atualizar o meu currículo e tentar umas vagas de emprego CLT."
+    d "Acho que a Helena conhece alguns lugares para eu fazer um bico..."
+    d "Também tem... {p} Naahhh..."
+    d "..."
+    d "Tá. Querendo ou não é uma opção..."
+    d "Se eu não me engano, minha vizinha me contou sobre o trabalho sexual, poderia ver com ela para conseguir a renda extra que preciso."
+    menu:
+        d "Opito por qual desses caminhos?"
+
+        
+        "entregar currículos" if empregoDia2 == False:
+                d "Vou atualizar meu currículo e entregar em algumas empresas."
+                $confianca += 1
+        "Procurar um bico":
+            d "Vou convorsar com a Helena"
+
+        "Se prostituir":
+            d "Vou conversar com a vizinha."
+
+
+# No 3 é obrigatório
+# Vou tentar por ele falando com a amiga e a H fala de bico e levar mais currículos
+# Aí faz a Diana lembrando da vizinha e q talvez prostituicao seja uma opção
+    menu:
+        "Trabalho {i}sério{/i}":
+            d "Vou procurar um emprego formal, é mais estabilidade."
+
+        "Bico":
+            d "Talvez eu devesse procurar um bico."
+
+        "Prostituição":
+            d "Talvez eu devesse procurar um trabalho sexual."
+    # escolhas parte da manhã
     menu:
         "Levar currículos no centro (-R$12 busão, +2 confiança)":
             $dinheiro -= 12
