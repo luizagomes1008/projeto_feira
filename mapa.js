@@ -17,6 +17,8 @@ const mapa = new maplibregl.Map({
 });
 
 
+let locais = [];
+
 // ==========================================
 // CONTROLES DO MAPA
 // ==========================================
@@ -26,77 +28,33 @@ mapa.addControl(
     'top-right'
 );
 
-
-// ==========================================
-// LOCAIS
-// ==========================================
-
-const locais = [
-
-    {
-        nome: "ONG Exemplo",
-        categoria: "ONG",
-        endereco: "Rua Exemplo, 100",
-        cidade: "São Paulo - SP",
-        telefone: "(11) 00000-0000",
-        servicos: "Apoio social, orientação e acolhimento.",
-        latitude: -23.5505,
-        longitude: -46.6333
-    },
-
-    {
-        nome: "Centro de Assistência Exemplo",
-        categoria: "Assistência Social",
-        endereco: "Rua Exemplo, 200",
-        cidade: "São Paulo - SP",
-        telefone: "(11) 00000-0000",
-        servicos: "Atendimento e orientação social.",
-        latitude: -23.5605,
-        longitude: -46.6433
-    },
-
-    {
-        nome: "Serviço de Saúde Exemplo",
-        categoria: "Saúde",
-        endereco: "Rua Exemplo, 300",
-        cidade: "São Paulo - SP",
-        telefone: "(11) 00000-0000",
-        servicos: "Atendimento e encaminhamento de saúde.",
-        latitude: -23.5705,
-        longitude: -46.6533
-    },
-
-    {
-        nome: "Atendimento Jurídico Exemplo",
-        categoria: "Jurídico",
-        endereco: "Rua Exemplo, 400",
-        cidade: "São Paulo - SP",
-        telefone: "(11) 00000-0000",
-        servicos: "Orientação e assistência jurídica.",
-        latitude: -23.5805,
-        longitude: -46.6633
-    },
-
-    {
-        nome: "Projeto de Capacitação Exemplo",
-        categoria: "Emprego",
-        endereco: "Rua Exemplo, 500",
-        cidade: "São Paulo - SP",
-        telefone: "(11) 00000-0000",
-        servicos: "Cursos e orientação profissional.",
-        latitude: -23.5905,
-        longitude: -46.6733
-    }
-
-];
-
-
 // ==========================================
 // MARCADORES
 // ==========================================
 
 let marcadores = [];
 
+async function carregarLocais() {
+
+    try {
+
+        const resposta = await fetch('buscar_apoios.php');
+
+        if (!resposta.ok) {
+            throw new Error('Erro ao buscar os apoios.');
+        }
+
+        locais = await resposta.json();
+
+        console.log('Locais carregados:', locais);
+
+    } catch (erro) {
+
+        console.error('Erro:', erro);
+
+    }
+
+}
 
 // ==========================================
 // ÍCONES DAS CATEGORIAS
@@ -145,7 +103,7 @@ function criarMarcador(local) {
         closeOnClick: true,
         maxWidth: '320px'
     })
-    .setHTML(`
+        .setHTML(`
 
         <div class="popup-apoio">
 
@@ -195,12 +153,12 @@ function criarMarcador(local) {
         element: elemento,
         anchor: 'bottom'
     })
-    .setLngLat([
-        local.longitude,
-        local.latitude
-    ])
-    .setPopup(popup)
-    .addTo(mapa);
+        .setLngLat([
+            local.longitude,
+            local.latitude
+        ])
+        .setPopup(popup)
+        .addTo(mapa);
 
 
     return marcador;
@@ -229,9 +187,17 @@ function mostrarLocais(categoria = "todos") {
             local.categoria === categoria
         ) {
 
-            const marcador = criarMarcador(local);
+            // Só cria marcador se tiver coordenadas
+            if (
+                local.latitude !== null &&
+                local.longitude !== null
+            ) {
 
-            marcadores.push(marcador);
+                const marcador = criarMarcador(local);
+
+                marcadores.push(marcador);
+
+            }
 
         }
 
@@ -277,8 +243,99 @@ botoes.forEach(botao => {
 // MAPA CARREGADO
 // ==========================================
 
-mapa.on('load', () => {
+mapa.on('load', async () => {
+
+    await carregarLocais();
 
     mostrarLocais();
+
+});
+
+// ==========================================
+// MODAIS DOS AUXÍLIOS
+// ==========================================
+
+const botoesModal = document.querySelectorAll('.botao-modal');
+
+const modais = document.querySelectorAll('.modal-apoio');
+
+
+// ==========================================
+// ABRIR MODAL
+// ==========================================
+
+botoesModal.forEach(botao => {
+
+    botao.addEventListener('click', () => {
+
+        const idModal = botao.dataset.modal;
+
+        const modal = document.getElementById(idModal);
+
+        modal.classList.add('aberta');
+
+        document.body.style.overflow = 'hidden';
+
+    });
+
+});
+
+
+// ==========================================
+// FECHAR NO X
+// ==========================================
+
+const botoesFechar = document.querySelectorAll('.fechar-modal');
+
+botoesFechar.forEach(botao => {
+
+    botao.addEventListener('click', () => {
+
+        const modal = botao.closest('.modal-apoio');
+
+        modal.classList.remove('aberta');
+
+        document.body.style.overflow = '';
+
+    });
+
+});
+
+
+// ==========================================
+// FECHAR CLICANDO FORA
+// ==========================================
+
+modais.forEach(modal => {
+
+    modal.addEventListener('click', (evento) => {
+
+        if (evento.target === modal) {
+
+            modal.classList.remove('aberta');
+
+            document.body.style.overflow = '';
+
+        }
+
+    });
+
+});
+
+
+// ==========================================
+// FECHAR COM ESC
+// ==========================================
+
+document.addEventListener('keydown', (evento) => {
+
+    if (evento.key === 'Escape') {
+
+        modais.forEach(modal => {
+            modal.classList.remove('aberta');
+        });
+
+        document.body.style.overflow = '';
+    }
 
 });
