@@ -187,35 +187,35 @@ label start:
     pause 2.0
     d "desde que terminei o ensino médio minha vida tem sido difícil, até encontrar esse emprego "
     d "É cansativo... Mas não posso reclamar, agora tenho uma renda fixa."
-    d "mesmo que não seja muito..."
+    d "Mesmo que não seja muito..."
     pause 3.0
-    d "sinto que a qualquer momento o alarme vai-" #ai aqui o despertador iterrompe ela, e ela acorda, precisa adicionar o audio
+    d "Sinto que a qualquer momento o alarme vai-" #ai aqui o despertador iterrompe ela, e ela acorda, precisa adicionar o audio
     scene quarto_fundo with Dissolve(1.5) #with fade
     pause 2.0
-    d"que dor de cabeça"
-    d"preciso me arrumar para o trabalho, ou se não vou me atrasar"
+    d"Que dor de cabeça"
+    d"Preciso me arrumar para o trabalho, ou se não vou me atrasar"
     pause 1.0
-    d"da ultima vez que isso aconteceu não foi bom..."
+    d"Da ultima vez que isso aconteceu não foi bom..."
     pause 2.0 # aqui adiciona um barulho de notificação
-    d"quem será?..."
+    d"Quem será?..."
     scene mesaquarto 
     
-    d"quem será agora?" #no celular vai ter uma mensagem do patrão dizendo que precisa conversar com ela
+    d"Quem será agora?" #no celular vai ter uma mensagem do patrão dizendo que precisa conversar com ela
   #  d"hm... cobrança do alugel, não posso me atrasar com isso..."
    # d "Nem venceu ainda e já tá me cobrando!
     show celbloq at celular_maior
     pause 1.0
     show celmensagem at celular_maior
     pause 1.0
-    d"espero que tudo esteja bem..."
+    d"Espero que tudo esteja bem..."
     pause 0.5
     scene dmente with fade
     pause 2
     scene banheiro  with fade
-    d"preciso lavar esse uniforme o quanto antes"
+    d"Preciso lavar esse uniforme o quanto antes"
     pause 1.0
     show dpadrao #aqui eu vou desenhar ela se vendo no espelho com o uniforme, oq acham?
-    d"estou pronta"
+    d"Estou pronta"
     pause 5
     #saindo de casa
    # scene dmente with fade
@@ -228,18 +228,18 @@ label start:
     d"...???"
     show a afeliz at andreia_chegando
     a"Bom dia querida! como está?"
-    d"ah, oi Andreia, estou bem! E sua filha, está tudo bem?"
+    d"Ah, oi Andreia, estou bem! E sua filha, está tudo bem?"
     show a apreocupada
-    a "ela pegou uma gripe chata, tenho que passar na farmacia..."
-    d"coitadinha, já já ela se recupera"
+    a "Ala pegou uma gripe chata, tenho que passar na farmacia..."
+    d"Coitadinha, já já ela se recupera"
     show a aalternativa
-    a"ah vc sabe como ela é, vai se recuperar rapido"
+    a"Ah vc sabe como ela é, vai se recuperar rapido"
     pause 1.5
     show a apreocupada
-    a"devo estar te atrasando né?! Não me dei conta..."
-    d"relaxa andreia, estou no horário, mas é melhor indo"
+    a"Devo estar te atrasando né?! Não me dei conta..."
+    d"Relaxa andreia, estou no horário, mas é melhor indo"
     show a afeliz
-    a"bom trabalho querida, se cuida!"
+    a"Bom trabalho querida, se cuida!"
     scene dmente with fade
     pause 2
     scene onibusmanha with  Dissolve(1) 
@@ -249,32 +249,32 @@ label start:
 #no trabalho
     scene lanchonete1 with Dissolve(1)
     pause 1
-    d"cheguei"
+    d"Cheguei"
     show h hirritada at h_chegando
-    h "diana!  por que não responde as mensagens que te mando?!"
-    d"bom dia pra você também Helena"
+    h "Diana!  por que não responde as mensagens que te mando?!"
+    d"Bom dia pra você também Helena"
     show h holhofechado 
-    h"hm, bom dia"
-    d"para de ser chata amiga!"
+    h"Hm, bom dia"
+    d"Para de ser chata amiga!"
     show h hirritada
     pause 1
     show h hrindo
-    h"chata é você!"
+    h"Chata é você!"
     pause 1
     show h hreceio
-    h"enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
-    d"eu sei, ele me mandou mensagem hoje de manhã..."
-    d"talvez eu consiga o meu tão sonhado aumento"
+    h"Enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
+    d"Eu sei, ele me mandou mensagem hoje de manhã..."
+    d"Talvez eu consiga o meu tão sonhado aumento"
     show h halternatica
-    h"é verdade! Vamos nos manter positivas!"
+    h"É verdade! Vamos nos manter positivas!"
     show h hpadraobocaaberta
-    h"é melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
-    d"é mesmo, você tem razão, vou para a área de serviço..."
+    h"É melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
+    d"É mesmo, você tem razão, vou para a área de serviço..."
     scene dmente with fade
     pause 1
     scene banheirolanchonete with fade
-    d"eu espero realmente que seja apenas o aumento..."
-    d"é melhor começar meu turno logo"
+    d"Eu espero realmente que seja apenas o aumento..."
+    d"É melhor começar meu turno logo"
     scene dmente with Dissolve(1) 
     pause 2
     scene lanchonete with Dissolve(1) 
@@ -291,30 +291,31 @@ label start:
     scene dmente with fade
     pause 1
     scene lanchoneten
-    d"terminei meu turno, estou tão cansada..."
-    g"diana!"
+    d"Terminei meu turno, estou tão cansada..."
+    g"Diana!"
     show e epadrao at g_chegando
-    d"ah! oi Julio"
-    d"você queria conversar comigo, não é?"
-    g"sim... bom..."
+    d"Ah! oi Julio"
+    d"Você queria conversar comigo, não é?"
+    g"Sim... bom..."
     pause 1.5
     g "Diana, movimento caiu. Estamos cortando gastos..."
-    d"como assim?..."
+    d"Como assim?..."
     g" Hoje foi seu último dia. Passa no caixa, obrigado."
     d"Julio espera! eu pos-"
     show e epadrao at g_saindo
-    d"ah não..."
+    d"Ah não..."
     scene dmente with fade
     pause 0.5
 #no caixa
     scene caixa with fade
-    d "R$80. Só isso... E o aluguel dia 15..."
+    d "R$80. Só isso... E o aluguel dia 5... "
+    d "Eita, já é hoje!"
     pause 1
-    d"eu vou dar um jeito... Já está tarde, melhor voltar para casa..."
+    d"Eu vou dar um jeito... Já está tarde, melhor voltar para casa..."
     scene dmente with Dissolve(1) 
     scene onibusnoite with fade
     pause 1
-    d"não acredito nisso... Não sei o que vou fazer..."
+    d"Não acredito nisso... Não sei o que vou fazer..."
     pause 5
     scene dmente with Dissolve(1) 
     scene kitnetn with fade
@@ -325,29 +326,29 @@ label start:
     d"Depois de um dia longo finalmente vou descansar." 
     d"Mas como vou descansar sabendo da minha atual situação..."
     pause 0.5
-    d"é melhor eu preparar algo para comer..."
+    d"É melhor eu preparar algo para comer..."
     scene cozinha
     pause 0.5
-    d"vejamos..."
+    d"Vejamos..."
     scene geladeira
     pause 1
-    d"hmmm..."
-    d"pizza serve"
+    d"Hhmmm..."
+    d"Pizza serve"
     scene cozinha
-    d"é melhor eu economizar mais do que antes"
-    d"estava indo bem naquele emprego... Que pena..."
+    d"É melhor eu economizar mais do que antes"
+    d"Estava indo bem naquele emprego... Que pena..."
     pause 1
     d"*bocejo*"
-    d"estou cansada, melhor ir dormir."
+    d"Estou cansada, melhor ir dormir."
     scene quarton
-    d"amanhã eu penso melhor no que fazer, preciso descansar..."
+    d"Amanhã eu penso melhor no que fazer, preciso descansar..."
     pause 1
     scene dmente with Dissolve(1) 
     pause 2.5 #celular despertando
     scene quarto_fundo with Dissolve(1) 
     pause 1
     d"*bocejo*"
-    d"quem está me ligando a essa hora da manhã?!"
+    d"Quem está me ligando a essa hora da manhã?!"
     show celhelena at celular_menor
     d"Helena... "
 
