@@ -2,6 +2,9 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+image cafedamanha = Transform("images/salam.png", fit = "cover")
+image salam = Transform("images/salam.png", fit = "cover")
+image banheirouniforme = Transform("images/banheirodianaemprego.jpeg", fit = "cover")
 image geladeira = Transform("images/geladeira.png", fit = "cover")
 image quarton = Transform("images/quarton.png", fit ="cover")
 image cozinha = Transform("images/cozinha.png", fit ="cover")
@@ -117,6 +120,44 @@ define h = Character("Helena")
 image h hpadrao = "/images/personagens/hpadrao.png" 
 image h hreceio ="images/personagens/hreceio.png"
 image h hpadraobocaaberta ="images/personagens/hpadraobocaabera.png"
+# Helena começa no centro
+transform h_centro:
+    zoom 1.7
+    xalign 0.5
+    yalign 1.0
+# Helena vai do centro para a esquerda
+transform h_vai_esquerda:
+    zoom 1.7
+    xalign 0.5
+    yalign 1.0
+
+    linear 0.8:
+        xalign 0.2
+# Helena volta da esquerda para o centro
+transform h_volta_centro:
+    zoom 1.7
+    xalign 0.2
+    yalign 1.0
+
+    linear 0.7:
+        xalign 0.5
+# Andreia entra pela direita e fica na direita
+transform a_entrando_direita:
+    zoom 1.7
+    xalign 1.2
+    yalign 1.0
+
+    linear 0.8:
+        xalign 0.8
+# Andreia sai da direita, atravessando para a esquerda
+transform a_saindo_esquerda:
+    zoom 1.7
+    xalign 0.8
+    yalign 1.0
+
+    linear 0.7:
+        xalign -1.2
+
 transform h_chegando:
     xalign 1.2
     yalign 1.0
@@ -140,6 +181,8 @@ image a afeliz = "/images/personagens/afeliz.png"
 image a apadrao = "/images/personagens/apadrao.png"
 image a apreocupada = "/images/personagens/apreocupada.png"
 image a aalternativa = "/images/personagens/aalternativa.png"
+image a airritada = "/images/personagens/airritada.png"
+
 
 define e = Character("Elias", color="#ff9933", what_italic=True)
 image e epadrao = "images/personagens/epadrao.png"
@@ -214,7 +257,7 @@ label start:
     scene banheiro  with fade
     d"preciso lavar esse uniforme o quanto antes"
     pause 1.0
-    show dpadrao #aqui eu vou desenhar ela se vendo no espelho com o uniforme, oq acham?
+    scene banheirouniforme with fade
     d"estou pronta"
     pause 5
     #saindo de casa
@@ -350,6 +393,212 @@ label start:
     d"quem está me ligando a essa hora da manhã?!"
     show celhelena at celular_menor
     d"Helena... "
+    h "Bom dia, amiga."
+    d "Bom dia..."
+    h "Você tá bem?"
+    d "Tô."
+    h "Diana..."
+    h "Eu te conheço. Você não tá bem."
+    pause 1
+    h"O Julio te despediu, não é? Descobri assim que cheguei em casa..."
+    d"Sim... Justo quando comecei a me sustentar com aquele emprego e acontece isso..."
+    h"Não fica assim Diana, abre aqui, vamos conversar!"
+    d"Vou me trocar e já abro, até já..."
+    hide celhelena
+    pause 1 
+    d"melhor ir logo"
+    scene banheiro with fade #aqui é ela se vendo no espelho do banheiro
+    d"..."
+    pause 2 
+    scene salam with fade
+    d"pode entrar amiga."    
+    show h hreceio at h_chegando
+    h"Licença..."
+    h"Oi Di... como está?"
+    d"Estou bem... eu acho?"
+    h"Quer conversar sobre? Você sabe que pode contar comigo sempre, não é?"
+    d"eu..."
+    pause 1
+    menu:
+        "Quero. Eu preciso desabafar. (+2 confiança)":
+            $confianca += 2
+            d "Eu tô com medo, Helena."
+            show h hpadraobocaaberta
+            d "Eu não sei se vou conseguir pagar o aluguel."
+            h "Você não precisa resolver tudo hoje."
+            h"um passo de cada vez, lembra?"
+
+        "Não quero falar disso agora. (-2 confiança)":
+            d "Eu só quero esquecer isso por enquanto."
+            h "Tudo bem..."
+            $confianca -= 2
+
+        "Não é tão grave assim. (neutro)":
+            d "Eu vou dar um jeito."
+            h "Eu sei que vai. Mas você não precisa fingir que tá tudo bem comigo."
+    show h hrindo 
+    h"Você vai se recuperar rápido Diana, sei disso"
+    d"Obrigada amiga, eu espero..."
+    h"vem, vamos tomar café juntas na padaria do seu Zé!"
+    d"não posso mais gastar Helena..."
+    show h halternatica
+    h"E você não vai gastar, da próxima você que paga hein!"
+    h"Vamos!"
+    show h hrindo
+    d"Ok... Obrigada amiga"
+
+    scene dmente with fade
+    pause 2
+    scene onibusmanha with  Dissolve(1) 
+    pause 4
+    scene cafedamanha with Dissolve(1) 
+    #cena dela com a helena feliz na sua frente
+    h"Fazia bastante tempo que não comemos aqui não é?"
+    d"é verdade... Está diferente"
+    h"costumávamos tomar o capuccino daqui depois das aulas, lembra?"
+    d"com certeza, era tão gostoso"
+    #cena helena feliz alternativa
+    h"bom, então já sei o que pedir para nós"
+    h"o que acha de uma porção de pão de queijo para acompanhar?"
+    d"parece realmente muito bom..."
+    #cena helena piscadela
+    h"ok, vou pedir!"
+    #cena dela sozinha
+    d"Estava com saudades de sair com Helena"
+    d"Ela me faz muito bem..."
+    scene dmente with fade
+    pause 1
+    #cena delas com a comida na mesa
+    h"prontinho, isso parece estar muito bom!"
+    d"realmente, me lembra os tempos da escola."
+    h "Você lembra quando a gente se conheceu?"
+    d "Infelizmente."
+    h "Nossa, vai começar..."
+    d "Você derrubou café em mim."
+    h "Foi sem querer!"
+    d "Você falou que eu que estava no caminho."
+    h "E estava mesmo."
+    d "Helena!"
+    scene dmente with fade
+    pause 1
+    #cena delas sem comida na mesa
+    d"Estava muito bom."
+    h"gostinho de nostalgia..."   
+    h"vamos indo, eu te acompanho"
+    d"Ok, o ônibus passa daqui 5 minutos"
+    h"Bora!"
+    scene dmente with fade
+    pause 2
+    scene onibusmanha with  Dissolve(1) 
+    pause 4
+    scene kitnet with Dissolve(1)
+    show h hpadraobocaaberta at h_centro
+    h"chegamos!"
+    a"Helena! oiii!!"
+    show h hrindo at h_vai_esquerda
+    h"Dona Andreia! Oiê!"
+    show a afeliz at a_entrando_direita
+    h"Como você está? Nunca mais te vi!"
+    a"Estou bem, e você Diana?"
+    show a apadrao
+    a"Uai, pensei que você estaria trabalhando nesse horário"
+    show h hreceio
+    d"então... Acontece que fui..."
+    d"despedida"
+    show a apreocupada
+    a"Meu Deus! Sinto muito Diana!"
+    a"Mas com certeza você vai achar oportunidades melhores"
+    d"assim eu espero..."
+    pause 1
+    show h hpadraobocaaberta
+    h "aquela ali não sua filha Dona Andreia?"
+    show a apadrao
+    a"Ah meu Deus, ela vai cair se continuar assim"
+    show a airritada
+    a"com licença meninas..."
+    show a afeliz at a_saindo_esquerda
+    pause 1
+    hide a
+    show h hpadrao at h_volta_centro
+    d"vamos entrar amiga."
+    show h hpadraobocaaberta at h_centro
+    h"vamos sim"
+    scene dmente with fade
+    pause 1
+    scene salam with fade
+    show h hpadrao at h_chegando
+    d"foi divertido, obrigada."
+    show h hrindo 
+    h"Que isso Diana, não precisa agradecer!"
+    show h halternativa
+    d"Eu te pago assim que possível Helena"
+    show h hirritada
+    h"Para com isso garota! Relaxa"
+    show h halternativa
+    h"Só de passar esse tempo contigo já me paga, deixa de besteira"
+    show h hrindo
+    pause 1
+    d"Eu não sei o que fazer amiga..."
+    show h hpadraobocaaberta
+    h "Você não precisa decidir tudo agora."
+    d "Mas eu não posso ficar parada para sempre."
+    h "Eu sei. Só acho que você merece respirar um pouco antes."
+    d "Respirar..."
+    h "É. Você acabou de perder o emprego."
+    d "Parece que tudo aconteceu tão rápido..."
+    h "Então vamos fazer uma coisa de cada vez."
+    d "E por onde eu começo?"
+    h "Você pode começar descansando."
+    show hreceio
+    d "Ou posso tentar resolver alguma coisa."
+    h "O que você está pensando?"
+    menu:
+    "Quero começar a procurar um emprego":
+        $ confianca += 1
+        d "Talvez eu já devesse começar a entregar currículos."
+        d"hoje mesmo"
+        show hreceio
+        h "Se você quiser, eu vou com você."
+        d "Você faria isso?"
+        show halternativa
+        h "Claro que faria."
+        d "Obrigada, Helena. De verdade."
+        show h hrindo
+        h "conte comigo sempre amiga!"
+        scene dmente with Dissolve(1) 
+        pause 1
+        scene onibusmanha with Dissolve(1) 
+        pause 1
+        h"Eu sei de alguns lugares ótimos"
+        d"obrigada por me ajudar"
+        pause 3
+        
+
+         
+    "Prefiro descansar um pouco":
+        d "Acho que preciso de um tempo para colocar a cabeça no lugar."
+        h "E tudo bem."
+        d "Eu só queria esquecer tudo por algumas horas."
+        h "Então hoje você vai descansar. Amanhã a gente pensa no resto."
+    "Não sei o que quero fazer":
+        d "Sinceramente? Eu não faço ideia."
+        h "Você não precisa ter todas as respostas agora."
+        d "Tenho medo de escolher errado."
+        h "Às vezes, não escolher nada por enquanto também é uma escolha."
+        d "Você sempre sabe o que falar, né?"
+        h "Nem sempre. Só finjo que sei."
+        d "Boba."
+        h "Sua boba."
+
+
+
+
+
+
+
+
+
+
 
 
 #surge elias
