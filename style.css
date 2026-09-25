@@ -42,6 +42,14 @@ p.card-text{
     animation: linha 1.5s ease;
 }
 
+.entrevista{
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    padding-left: 15%;
+   
+}
+
 @keyframes entrada {
 
     from {
