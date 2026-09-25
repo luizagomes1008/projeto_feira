@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiz: Qual seu próximo passo?</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* :root{
+    --bg:#fdf6f0; --card:#ffffff; --ink:#2b2b2b; --sub:#6b6b6b;
+    --accent:#a8324a; --accent-light:#f4dde2; --line:#eee2da;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  } */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1b1516; --card:#241d1e; --ink:#f3ece9; --sub:#b8aca8;
+      --accent:#e0708a; --accent-light:#3a2226; --line:#3a2c2c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1b1516; --card:#241d1e; --ink:#f3ece9; --sub:#b8aca8;
+    --accent:#e0708a; --accent-light:#3a2226; --line:#3a2c2c;
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;}
+  body{
+    height:100%; 
+    margin:0;
+    display:flex; 
+    justify-content:center; 
+    padding:32px 16px;
+    padding-bottom: 0;
+  }
+  .wrap{width:100%;
+     max-width:560px;
+    padding-top: 50px;}
+
+  h1{font-size:1.5rem; 
+    margin:0 0 4px;}
+
+  .lead{color:var(--sub);
+     font-size:.95rem;
+     margin:0 0 24px;}
+
+  .progress{height:6px;
+    background:var(--line); 
+    border-radius:99px; 
+    overflow:hidden; 
+    margin-bottom:24px;}
+
+  .progress-bar{height:100%; 
+    background:var(--accent); 
+    width:0%; 
+    transition:width .3s;}
+
+  .card{
+    background:var(--card); 
+    border:1px solid var(--line); 
+    border-radius:14px;
+    padding:24px; 
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+  }
+  .qnum{color:var(--accent); font-size:.8rem; letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px;}
+
+  .qtext{font-size:1.15rem; line-height:1.4; margin-bottom:18px;}
+
+  .opt{
+    display:block; width:100%; text-align:left; padding:13px 16px; margin-bottom:10px;
+    border:1px solid var(--line); border-radius:10px; background:transparent; color:var(--ink);
+    font-family:inherit; font-size:.95rem; cursor:pointer; transition:all .15s;
+  }
+  .opt:hover{border-color:var(--accent); background:var(--accent-light);}
+
+  .nav-quiz{display:flex; 
+    padding-top: 50px;
+    justify-content:space-between; 
+    margin-top:18px;} */
+
+  .back{
+    background:none; border:none; color:var(--sub); font-family:inherit;
+    font-size:.9rem; cursor:pointer; padding:8px;
+  }
+  .back:disabled{opacity:.3; cursor:default;}
+  .result h2{color:var(--accent); font-size:1.4rem; margin:0 0 6px;}
+  .result .why{color:var(--sub); font-size:.9rem; margin-bottom:18px; line-height:1.5;}
+  .also{
+    margin-top:18px; padding-top:18px; border-top:1px solid var(--line);
+    font-size:.9rem; color:var(--sub);
+  }
+  .also b{color:var(--ink);}
+  .restart{
+    margin-top:20px; background:var(--accent); color:#fff; border:none;
+    padding:12px 20px; border-radius:10px; font-family:inherit; font-size:.9rem; cursor:pointer;
+  }
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- isso faz parte do bakcground-->
+    <div class="background-lines"></div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.html#entenda-problema"> Entenda o problema</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.html#alternativas">Alternativas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="entrevista.html"> Entrevista</a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link" href="auxilio.html"> Auxilios</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="quiz.html">Quiz</a>
+        </li>
+
+        <a class=" nav-link btn-jogo" href="jogo.html">Jogar</a>
+    </ul>
+
+<div class="wrap">
+  <h1>Qual é o seu próximo passo?</h1>
+  <p class="lead">Responda com sinceridade — não existe resposta certa, só a que combina com sua vida agora.</p>
+  <div class="progress"><div class="progress-bar" id="bar"></div></div>
+  <div class="card" id="card"></div>
+</div>
+
+<script>
+// ---------- Dados: perguntas, opções e pontos por categoria ----------
+// Categorias: TEC, CURSO, SEBRAE, FAC, CRAS, FREELA, EMPREGO
+const QUESTIONS = [
+  {
+    text: "Quantos anos você tem?",
+    options: [
+      { label: "14 a 17 anos", pts: { TEC:3, CURSO:3, FAC:1, CRAS:1 } },
+      { label: "18 a 24 anos", pts: { FAC:3, TEC:3, EMPREGO:2, CURSO:2 } },
+      { label: "25 a 39 anos", pts: { EMPREGO:3, SEBRAE:2, FAC:2, FREELA:2 } },
+      { label: "40 a 59 anos", pts: { SEBRAE:3, EMPREGO:2, CRAS:2, FREELA:2 } },
+      { label: "60 anos ou mais", pts: { CRAS:3, FREELA:2, SEBRAE:2 } },
+    ]
+  },
+  {
+    text: "Você tem quanto tempo livre por dia?",
+    options: [
+      { label: "O dia todo", pts: { TEC:3, FAC:3, CURSO:2 } },
+      { label: "Só meio período tenho ocupações, de resto estou livre", pts: { CURSO:3, TEC:2, FREELA:2, EMPREGO:2 } },
+      { label: "Por um período inteiro não tenho disponibilidade", pts: { CURSO:3, FREELA:3, EMPREGO:2 } },
+      { label: "Não tenho tempo livre", pts: { FREELA:3, CRAS:3, EMPREGO:1 } },
+    ]
+  },
+  {
+    text: "Você tem muitas ocupações em casa?",
+    options: [
+      { label: "Sim, eu que cuido de tudo", pts: { CRAS:3, FREELA:3, CURSO:2 } },
+      { label: "Algumas tarefas", pts: { CURSO:2, TEC:2, FREELA:2 } },
+      { label: "Em geral, não", pts: { TEC:3, FAC:3, EMPREGO:2 } },
+    ]
+  },
+  {
+    text: "Você se interessa em estudar mais para ter algum cargo melhor?",
+    options: [
+      { label: "Sim!", pts: { FAC:4, TEC:3 } },
+      { label: "Sim, mas não muito…", pts: { TEC:2, CURSO:2 } },
+      { label: "Sendo rápido (menos de um semestre), sim", pts: { CURSO:4, TEC:1 } },
+      { label: "Não, não quero/gosto de estudar", pts: { EMPREGO:3, FREELA:3, SEBRAE:2 } },
+    ]
+  },
+  {
+    text: "Você já trabalhou?",
+    options: [
+      { label: "Não", pts: { CRAS:2, CURSO:2, TEC:2 } },
+      { label: "Já fui voluntária, apenas", pts: { CURSO:2, TEC:2 } },
+      { label: "Só como jovem aprendiz", pts: { TEC:2, EMPREGO:2 } },
+      { label: "Já fiz estágio", pts: { EMPREGO:3, FAC:2 } },
+      { label: "Sim, mas não era carteira assinada", pts: { FREELA:3, SEBRAE:2, EMPREGO:2 } },
+      { label: "Sim, CLT", pts: { EMPREGO:3, FAC:2 } },
+    ]
+  },
+  {
+    text: "Tem algum trabalho que te interessa e você gostaria de seguir?",
+    options: [
+      { label: "Não conheço nenhum…", pts: { CRAS:3, CURSO:3 },
+        tip: "Isso é mais comum do que parece, e tem jeito: existem vários quizzes gratuitos de 'qual área combina comigo', inclusive de empresas consolidadas, que ajudam a mapear isso. Além disso, cursos curtos ou até vídeos na internet já costumam bastar pra entender melhor um universo profissional antes de se aprofundar nele — não precisa começar direto por um curso longo ou caro só para 'testar' uma área." },
+      { label: "Sim, mas não tenho estudo para isso", pts: { TEC:3, CURSO:3, FAC:2 } },
+      { label: "Sim, sou qualificada e estou tentando um emprego na área", pts: { EMPREGO:4 } },
+      { label: "Sim, na área que estou, mas quero um cargo mais alto", pts: { FAC:3, TEC:2, EMPREGO:2 } },
+    ]
+  },
+  {
+    text: "Você já tem certificado de algum curso? (considere o mais avançado que tiver)",
+    options: [
+      { label: "Não", pts: { CURSO:3, TEC:2 } },
+      { label: "Sim, de um curso simples", pts: { TEC:2, EMPREGO:2 } },
+      { label: "Sim, de um curso técnico", pts: { EMPREGO:3, FAC:2, FREELA:2 } },
+      { label: "Sim, de um curso superior", pts: { EMPREGO:3, SEBRAE:2, FAC:1 } },
+      { label: "Sim, de superior e pós", pts: { EMPREGO:4, SEBRAE:3 } },
+    ]
+  },
+  {
+    text: "Você tem fácil acesso à internet?",
+    options: [
+      { label: "Não", pts: { CRAS:3, TEC:2 } },
+      { label: "Uma bem ruim, mas sim", pts: { CURSO:2, TEC:2 } },
+      { label: "Só pelo celular", pts: { CURSO:2, FREELA:1 } },
+      { label: "Pelo celular e computador/notebook", pts: { CURSO:3, FREELA:3, FAC:2, SEBRAE:2 } },
+    ]
+  },
+  {
+    text: "Você tem alguma condição financeira?",
+    options: [
+      { label: "Não, pobreza total", pts: { CRAS:5 } },
+      { label: "Só para o básico", pts: { CRAS:3, TEC:2, CURSO:2 } },
+      { label: "Menos de um salário mínimo por pessoa em casa, mas até que sim", pts: { TEC:2, CURSO:2, EMPREGO:2 } },
+      { label: "Não o suficiente para esbanjar, mas sim", pts: { FAC:2, SEBRAE:2, EMPREGO:2 } },
+      { label: "Dinheiro não é um problema", pts: { FAC:3, SEBRAE:3 } },
+    ]
+  },
+];
+
+const OUTCOMES = {
+  TEC: {
+    name: "Curso Técnico",
+    why: "Você tem um perfil que combina com uma formação técnica: dá acesso rápido a um mercado melhor, muitas vezes é gratuita (rede pública) e não exige o mesmo tempo que uma faculdade."
+  },
+  CURSO: {
+    name: "Curso rápido (online ou ONG)",
+    why: "Seu momento pede algo flexível e de curto prazo — cursos online ou oferecidos por ONGs cabem na sua rotina e já entregam uma qualificação inicial sem grande compromisso de tempo."
+  },
+  SEBRAE: {
+    name: "SEBRAE DELAS (empreendedorismo)",
+    why: "Você já tem alguma base (experiência, estudo ou estabilidade financeira) e um perfil mais independente. Vale explorar o empreendedorismo com suporte gratuito do SEBRAE DELAS."
+  },
+  FAC: {
+    name: "Faculdade (vestibulinho ou pagar)",
+    why: "Você tem disponibilidade, interesse genuíno em estudar e busca um cargo mais alto no longo prazo — uma graduação (pública via vestibulinho, ou paga) é o caminho que mais te leva pra onde quer chegar."
+  },
+  CRAS: {
+    name: "CRAS (Assistência Social)",
+    why: "Antes de pensar em qualificação profissional, pode valer buscar o CRAS mais próximo: é porta de entrada gratuita para suporte, orientação e programas que podem estabilizar sua situação primeiro."
+  },
+  FREELA: {
+    name: "Freelancer",
+    why: "Sua rotina exige flexibilidade — freelas permitem trabalhar nos seus horários, sem abrir mão da renda, usando o que você já sabe fazer."
+  },
+  EMPREGO: {
+    name: "Ir atrás de um emprego",
+    why: "Você já tem experiência e/ou qualificação suficiente para buscar diretamente uma vaga — não precisa de mais um passo intermediário, o próximo passo é a candidatura mesmo."
+  }
+};
+
+// ---------- Estado ----------
+let current = 0;
+const answers = new Array(QUESTIONS.length).fill(null);
+
+function render(){
+  const card = document.getElementById('card');
+  document.getElementById('bar').style.width = (current/QUESTIONS.length*100)+'%';
+
+  if(current >= QUESTIONS.length){
+    renderResult(card);
+    return;
+  }
+
+  const q = QUESTIONS[current];
+  card.innerHTML = `
+    <div class="qnum">Pergunta ${current+1} de ${QUESTIONS.length}</div>
+    <div class="qtext">${q.text}</div>
+    ${q.options.map((o,i)=>`<button class="opt" data-i="${i}">${o.label}</button>`).join('')}
+    <div class="nav-quiz"><button class="back" id="backBtn" ${current===0?'disabled':''}>&larr; Voltar</button><span></span></div>
+  `;
+  card.querySelectorAll('.opt').forEach(btn=>{
+    btn.onclick = ()=>{
+      const idx = parseInt(btn.dataset.i);
+      answers[current] = idx;
+      const chosen = q.options[idx];
+      if(chosen.tip){
+        renderTip(chosen.tip);
+      } else {
+        current++;
+        render();
+      }
+    };
+  });
+  document.getElementById('backBtn').onclick = ()=>{ if(current>0){ current--; render(); } };
+}
+
+function renderTip(tipText){
+  const card = document.getElementById('card');
+  card.innerHTML = `
+    <div class="qnum">Antes de continuar</div>
+    <div class="qtext" style="font-size:1rem; line-height:1.55;">${tipText}</div>
+    <button class="opt" id="tipContinue" style="text-align:center; border-color:var(--accent); color:var(--accent); font-weight:bold;">Entendi, continuar</button>
+  `;
+  document.getElementById('tipContinue').onclick = ()=>{
+    current++;
+    render();
+  };
+}
+
+function computeScores(){
+  const scores = { TEC:0, CURSO:0, SEBRAE:0, FAC:0, CRAS:0, FREELA:0, EMPREGO:0 };
+  answers.forEach((ansIdx, qi)=>{
+    if(ansIdx===null) return;
+    const pts = QUESTIONS[qi].options[ansIdx].pts;
+    for(const k in pts) scores[k]+=pts[k];
+  });
+  return scores;
+}
+
+function renderResult(card){
+  document.getElementById('bar').style.width = '100%';
+  const scores = computeScores();
+  const ranked = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const [topKey, topScore] = ranked[0];
+  const [secondKey, secondScore] = ranked[1];
+  const top = OUTCOMES[topKey];
+
+  let secondHtml = '';
+  // mostra segundo caminho se estiver relativamente próximo do primeiro
+  if(secondScore > 0 && secondScore >= topScore*0.7){
+    secondHtml = `<div class="also">Também pode valer considerar: <b>${OUTCOMES[secondKey].name}</b> — os dois caminhos combinam bem com o seu momento.</div>`;
+  }
+
+  card.innerHTML = `
+    <div class="result">
+      <div class="qnum">Seu resultado</div>
+      <h2>${top.name}</h2>
+      <div class="why">${top.why}</div>
+      ${secondHtml}
+      <button class="restart" id="restartBtn">Refazer o quiz</button>
+    </div>
+  `;
+  document.getElementById('restartBtn').onclick = ()=>{
+    current = 0;
+    answers.fill(null);
+    render();
+  };
+}
+
+render();
+</script>
+</body>
+</html>
