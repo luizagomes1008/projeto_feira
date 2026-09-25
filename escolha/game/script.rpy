@@ -4,7 +4,7 @@
 # name of the character.
 image cafedamanha = Transform("images/salam.png", fit = "cover")
 image salam = Transform("images/salam.png", fit = "cover")
-image banheirouniforme = Transform("images/banheirodianaemprego.jpeg", fit = "cover")
+image banheirouniforme = Transform("images/banheirodianaemprego.png", fit = "cover")
 image geladeira = Transform("images/geladeira.png", fit = "cover")
 image quarton = Transform("images/quarton.png", fit ="cover")
 image cozinha = Transform("images/cozinha.png", fit ="cover")
@@ -116,10 +116,12 @@ transform celular_menor:
     xalign 0.5
     yalign 0.5
 image celbloq ="/images/celularbloq.png"
+
+
 define h = Character("Helena", color="#eb53ed")
 image h hpadrao = "/images/personagens/hpadrao.png" 
 image h hreceio ="images/personagens/hreceio.png"
-image h hpadraobocaaberta ="images/personagens/Hpreocupada.png"
+image h hpadraobocaaberta ="images/personagens/Hdesconfiada.png"
 # Helena começa no centro
 transform h_centro:
     zoom 1.7
@@ -130,7 +132,6 @@ transform h_vai_esquerda:
     zoom 1.7
     xalign 0.5
     yalign 1.0
-
     linear 0.8:
         xalign 0.2
 # Helena volta da esquerda para o centro
@@ -143,7 +144,7 @@ transform h_volta_centro:
         xalign 0.5
 # Andreia entra pela direita e fica na direita
 transform a_entrando_direita:
-    zoom 1.7
+    zoom 1.9
     xalign 1.2
     yalign 1.0
 
@@ -151,7 +152,7 @@ transform a_entrando_direita:
         xalign 0.8
 # Andreia sai da direita, atravessando para a esquerda
 transform a_saindo_esquerda:
-    zoom 1.7
+    zoom 1.9
     xalign 0.8
     yalign 1.0
 
@@ -176,7 +177,7 @@ define a = Character("Andreia", color="#66ccff")
 transform andreia_chegando:
     xalign 0.5
     yalign 1.0
-    linear 1.5 zoom 1.7
+    linear 1.5 zoom 1.9
 image a afeliz = "/images/personagens/afeliz.png" 
 image a apadrao = "/images/personagens/apadrao.png"
 image a apreocupada = "/images/personagens/apreocupada.png"
@@ -186,17 +187,23 @@ image a airritada = "/images/personagens/airritada.png"
 
 define e = Character("Elias", color="#ff9933", what_italic=True)
 image e epadrao = "images/personagens/epadrao.png"
+
+
 define g = Character("Gerente Julio", color="#e6df27")
+image g golhoaberto = "images/personagens/polhoaberto.png"
+image g golhofechado = "images/personagens/polhofechado.png"
+image g gpadrao = "images/personagens/ppadrao.png"
+
 transform g_chegando:
     xalign 1.2
     yalign 1.0
-    zoom 1.7
+    zoom 1.5
     linear 1:
         xalign 0.5
 transform g_saindo:
     xalign 0.5
     yalign 1.0
-    zoom 1.7
+    zoom 1.5
     linear 1.5:
         xalign -1.2
 default dinheiro = 80
@@ -256,11 +263,11 @@ label start:
     scene dmente with fade
     pause 2
     scene banheiro  with fade
+    pause 1.3
+    scene banheirouniforme with Dissolve(1)
     d"preciso lavar esse uniforme o quanto antes"
-    pause 1.0
-    scene banheirouniforme with fade
     d"estou pronta"
-    pause 5
+    pause 2
     #saindo de casa
    # scene dmente with fade
     #pause 1.5
@@ -337,16 +344,18 @@ label start:
     scene lanchoneten
     d"terminei meu turno, estou tão cansada..."
     g"diana!"
-    show e epadrao at g_chegando
+    show g gpadrao at g_chegando
     d"ah! oi Julio"
     d"você queria conversar comigo, não é?"
+    show g golhofechado 
     g"sim... bom..."
     pause 1.5
     g "Diana, movimento caiu. Estamos cortando gastos..."
+    show g golhoaberto
     d"como assim?..."
     g" Hoje foi seu último dia. Passa no caixa, obrigado."
     d"Julio espera! eu pos-"
-    show e epadrao at g_saindo
+    show g gpadrao at g_saindo
     d"ah não..."
     scene dmente with fade
     pause 0.5
