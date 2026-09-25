@@ -1,50 +1,49 @@
-2026-09-25 11:43:31 UTC
-Windows-10-10.0.19043-SP0
+2026-09-25 19:37:11 UTC
+Windows-10-10.0.19045-SP0
 Ren'Py 8.5.3.26051504
 
-Early init took 70 ms
-Loading error handling took 31 ms
-Loading script took 146 ms
-Loading save slot metadata took 38 ms
-Loading persistent took 1 ms
-Running init code took 65 ms
-Loading analysis data took 10 ms
+Early init took 80 ms
+Loading error handling took 37 ms
+Loading script took 319 ms
+Loading save slot metadata took 64 ms
+Loading persistent took 0 ms
+Running init code took 67 ms
+Loading analysis data took 9 ms
 Analyze and compile ATL took 4 ms
-Reloading save slot metadata took 14 ms
-Dump and make backups took 64 ms
+Reloading save slot metadata took 15 ms
+Backing up script files to 'C:\\Users\\Alessandra\\AppData\\Roaming/RenPy/backups\\escolha':
+Dump and make backups took 105 ms
 Cleaning cache took 0 ms
 Making clean stores took 0 ms
-Initial gc took 54 ms
+Initial gc took 48 ms
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 4 ms
+nvdrs: Disabled thread optimizations.
+Creating interface object took 340 ms
 Init translation took 0 ms
-Cleaning stores took 0 ms
-Load screen analysis took 28 ms
-Analyze screens took 2 ms
-Save screen analysis took 0 ms
+Cleaning stores took 1 ms
+Load screen analysis took 0 ms
+Analyze screens took 13 ms
+Save screen analysis took 42 ms
 Save pyanalysis took 0 ms
 Save bytecode took 0 ms
 Running _start took 1 ms
-Audio and video init failed. Proceeding anyway.
-Traceback (most recent call last):
-  File "C:\Users\LAB4\Downloads\renpy-8.5.3-sdk\renpy\audio\audio.py", line 1121, in init
-    renpysound.init(
-  File "renpy/audio/renpysound.pyx", line 467, in renpy.audio.renpysound.init
-  File "renpy/audio/renpysound.pyx", line 112, in renpy.audio.renpysound.check_error
-Exception: WASAPI can't find requested audio endpoint: Elemento não encontrado.
-Interface start took 289 ms
+Interface start took 314 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1920, 1080)
 swap interval: 1 frames
 Windowed mode.
-Vendor: 'ATI Technologies Inc.'
-Renderer: 'AMD Radeon(TM) Vega 11 Graphics'
-Version: '4.6.13596 Compatibility Profile Context 20.10.26.21 27.20.11026.21004'
+Vendor: 'NVIDIA Corporation'
+Renderer: 'NVIDIA GeForce GTX 750 Ti/PCIe/SSE2'
+Version: '4.6.0 NVIDIA 560.94'
 Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1080, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
-Screen sizes: virtual=(1920, 1080) physical=(1920, 1017) drawable=(1920, 1017)
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
 Maximum texture size: 4096x4096
 Screen sizes: virtual=(1920, 1080) physical=(1920, 1017) drawable=(1920, 1017)
 Maximum texture size: 4096x4096
+Resize event: <Event(65533-VIDEORESIZE h=1017, mod=0, size=(1920, 1017), w=1920)>
+Cleaning stores took 1 ms
+Load screen analysis took 28 ms
+Analyze screens took 0 ms
+Running _start took 2 ms

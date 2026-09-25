@@ -116,7 +116,7 @@ transform celular_menor:
     xalign 0.5
     yalign 0.5
 image celbloq ="/images/celularbloq.png"
-define h = Character("Helena")
+define h = Character("Helena", color="#eb53ed")
 image h hpadrao = "/images/personagens/hpadrao.png" 
 image h hreceio ="images/personagens/hreceio.png"
 image h hpadraobocaaberta ="images/personagens/Hpreocupada.png"
@@ -186,7 +186,7 @@ image a airritada = "/images/personagens/airritada.png"
 
 define e = Character("Elias", color="#ff9933", what_italic=True)
 image e epadrao = "images/personagens/epadrao.png"
-define g = Character("Gerente Julio")
+define g = Character("Gerente Julio", color="#e6df27")
 transform g_chegando:
     xalign 1.2
     yalign 1.0
@@ -536,11 +536,11 @@ label start:
     d"foi divertido, obrigada."
     show h hrindo 
     h"Que isso Diana, não precisa agradecer!"
-    show h halternativa
+    show h halternatica
     d"Eu te pago assim que possível Helena"
     show h hirritada
     h"Para com isso garota! Relaxa"
-    show h halternativa
+    show h halternatica
     h"Só de passar esse tempo contigo já me paga, deixa de besteira"
     show h hrindo
     pause 1
@@ -555,7 +555,7 @@ label start:
     h "Então vamos fazer uma coisa de cada vez."
     d "E por onde eu começo?"
     h "Você pode começar descansando."
-    show hreceio
+    show h hreceio
     d "Ou posso tentar resolver alguma coisa."
     h "O que você está pensando?"
     menu:
@@ -564,10 +564,10 @@ label start:
             $ confianca += 1
             d "Talvez eu já devesse começar a entregar currículos."
             d"hoje mesmo"
-            show hreceio
+            show h hreceio
             h "Se você quiser, eu vou com você."
             d "Você faria isso?"
-            show halternativa
+            show h halternatica
             h "Claro que faria."
             d "Obrigada, Helena. De verdade."
             show h hrindo
