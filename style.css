@@ -45,10 +45,11 @@ p.card-text{
 .entrevista{
     justify-content: center;
     align-items: center;
-    margin-top: 10%;
-    padding-left: 15%;
-   
+    padding-left: 23%;
+    padding-top: 5%;
+    width: 100%;
 }
+
 
 @keyframes entrada {
 
