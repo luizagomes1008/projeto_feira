@@ -21,16 +21,18 @@
             <a class="nav-link" aria-current="page" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.html#entenda-problema"> Entenda o problema</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.html#alternativas">Alternativas</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="entrevista.html"> Entrevista</a>
         </li>
-         <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="auxilio.html"> Auxilios</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#rede-apoio"> Rede Apoio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#alternativas">Possíveis soluções
+
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="quiz.html">Quiz</a>
@@ -39,115 +41,13 @@
         <a class=" nav-link btn-jogo" href="jogo.html">Jogar</a>
     </ul>
 
-    <section class="secao-apoios" id="apoios">
-
-        <div class="cabecalho-secao">
-            <span class="numero-secao">04</span>
-            <div class="linha-titulo"></div>
-            <h2>Rede de apoio</h2>
-        </div>
-
-        <div class="grid-apoios">
-
-            <!-- ONG -->
-            <article class="card-apoio">
-
-                <div class="imagem-card">
-                    <img src="img/ong.jpg" alt="ONGs">
-
-                    <div class="nome-card">
-                        <h3>ONGs</h3>
-                    </div>
-                </div>
-
-                <button class="botao-modal" data-modal="modal-ong">
-                    Saiba mais
-                </button>
-
-            </article>
 
 
-            <!-- ASSISTÊNCIA -->
-            <article class="card-apoio">
-
-                <div class="imagem-card">
-                    <img src="img/assistencia.jpg" alt="Assistência Social">
-
-                    <div class="nome-card">
-                        <h3>Assistência Social</h3>
-                    </div>
-                </div>
-
-                <button class="botao-modal" data-modal="modal-assistencia">
-                    Saiba mais
-                </button>
-
-            </article>
-
-
-            <!-- SAÚDE -->
-            <article class="card-apoio">
-
-                <div class="imagem-card">
-                    <img src="img/saude.jpg" alt="Saúde">
-
-                    <div class="nome-card">
-                        <h3>Saúde</h3>
-                    </div>
-                </div>
-
-                <button class="botao-modal" data-modal="modal-saude">
-                    Saiba mais
-                </button>
-
-            </article>
-
-
-            <!-- JURÍDICO -->
-            <article class="card-apoio">
-
-                <div class="imagem-card">
-                    <img src="img/juridico.jpg" alt="Apoio Jurídico">
-
-                    <div class="nome-card">
-                        <h3>Jurídico</h3>
-                    </div>
-                </div>
-
-                <button class="botao-modal" data-modal="modal-juridico">
-                    Saiba mais
-                </button>
-
-            </article>
-
-
-            <!-- EMPREGO -->
-            <article class="card-apoio">
-
-                <div class="imagem-card">
-                    <img src="img/emprego.jpg" alt="Emprego e Capacitação">
-
-                    <div class="nome-card">
-                        <h3>Emprego e Capacitação</h3>
-                    </div>
-                </div>
-
-                <button class="botao-modal" data-modal="modal-emprego">
-                    Saiba mais
-                </button>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <section class="secao-mapa" id="rede-apoio">
+    <section  class="secao-mapa" id="rede-apoio">
 
         <div class="cabecalho-secao">
 
-            <span class="numero-secao">03</span>
+            <span class="numero-secao">02</span>
 
             <div class="linha-titulo"></div>
 
@@ -218,7 +118,209 @@
 
         </div>
 
+        <!-- ATENDIMENTOS ONLINE -->
+        <section class="apoios-online">
+
+            <div class="cabecalho-online">
+                <span class="numero-secao">+</span>
+                <div>
+                    <h3>Atendimentos online</h3>
+                    <p>
+                        Alguns serviços oferecem orientação, capacitação e apoio
+                        pela internet, sem necessidade de localização física.
+                    </p>
+                </div>
+            </div>
+
+            <div id="lista-online" class="lista-online"></div>
+
+        </section>
+
     </section>
+
+    <!-- =========================
+         ALTERNATIVAS
+    ========================== -->
+    <section class="secao-apoios" id="alternativas">
+
+        <div class="cabecalho-secao">
+            <span class="numero-secao">03</span>
+            <div class="linha-titulo"></div>
+            <h2>Mas o problema não termina nos números.</h2>
+        </div>
+
+        <div class="texto-alternativas">
+            <p>
+                Enfrentar a vulnerabilidade também significa ampliar as possibilidades.
+                Educação, qualificação profissional, acesso ao emprego e proteção social
+                podem ajudar a criar caminhos para uma vida com mais autonomia e segurança.
+            </p>
+            <p>
+                Conheça algumas alternativas que podem ampliar essas possibilidades:
+            </p>
+        </div>
+
+        <div class="grid-apoios">
+
+            <article class="card-apoio">
+                <div class="imagem-card">
+                    <img src="img/mec.PNG" alt="Educação e qualificação">
+                    <div class="nome-card">
+                        <h3>Educação e qualificação</h3>
+                    </div>
+                </div>
+                <button class="botao-modal" data-modal="modal-educacao">Saiba mais</button>
+            </article>
+
+            <article class="card-apoio">
+                <div class="imagem-card">
+                    <img src="img/mit.PNG" alt="Acesso ao trabalho">
+                    <div class="nome-card">
+                        <h3>Acesso ao trabalho</h3>
+                    </div>
+                </div>
+                <button class="botao-modal" data-modal="modal-trabalho">Saiba mais</button>
+            </article>
+
+            <article class="card-apoio">
+                <div class="imagem-card">
+                    <img src="img/mds.PNG" alt="Assistência social">
+                    <div class="nome-card">
+                        <h3>Assistência social</h3>
+                    </div>
+                </div>
+                <button class="botao-modal" data-modal="modal-assistencia-alternativas">Saiba mais</button>
+            </article>
+
+            <article class="card-apoio">
+                <div class="imagem-card">
+                    <img src="img/mulher.PNG" alt="Proteção e enfrentamento à violência">
+                    <div class="nome-card">
+                        <h3>Proteção e enfrentamento à violência</h3>
+                    </div>
+                </div>
+                <button class="botao-modal" data-modal="modal-protecao">Saiba mais</button>
+            </article>
+
+        </div>
+
+        <section class="frase-impacto">
+            <p>
+                A solução não é perguntar apenas por que elas chegaram até aqui.
+                É perguntar quais oportunidades podemos oferecer para que existam
+                outros caminhos.
+            </p>
+        </section>
+
+    </section>
+
+    <!-- MODAIS DAS ALTERNATIVAS -->
+
+    <div class="modal-apoio" id="modal-educacao">
+        <div class="conteudo-modal">
+            <button class="fechar-modal">&times;</button>
+            <div class="modal-imagem">
+                <img src="img/Captura de tela 2026-09-13 164637.png" alt="Ministério da Educação">
+            </div>
+            <h2>Ministério da Educação — MEC</h2>
+            <p>
+                O Ministério da Educação atua na formulação e implementação
+                de políticas educacionais, incluindo a Educação Profissional
+                e Tecnológica. Essa modalidade busca preparar estudantes e
+                trabalhadores para diferentes áreas do mundo do trabalho,
+                por meio de cursos técnicos, de qualificação profissional
+                e de formação tecnológica.
+            </p>
+            <p>
+                A qualificação pode ser uma ferramenta importante para
+                mulheres que buscam ampliar suas oportunidades profissionais,
+                desenvolver novas competências e conquistar maior autonomia
+                financeira.
+            </p>
+            <a href="https://www.gov.br/mec/pt-br" target="_blank" rel="noopener noreferrer" class="botao-online">Saiba
+                mais →</a>
+        </div>
+    </div>
+
+    <div class="modal-apoio" id="modal-trabalho">
+        <div class="conteudo-modal">
+            <button class="fechar-modal">&times;</button>
+            <div class="modal-imagem">
+                <img src="img/Captura de tela 2026-09-13 171110.png" alt="Ministério do Trabalho e Emprego">
+            </div>
+            <h2>Ministério do Trabalho e Emprego — MTE</h2>
+            <p>
+                O Ministério do Trabalho e Emprego desenvolve políticas
+                voltadas ao mundo do trabalho, incluindo ações de qualificação
+                profissional. Segundo o próprio Ministério, a qualificação
+                busca aumentar as possibilidades de obtenção de emprego e
+                trabalho decente, além de contribuir para a geração de
+                oportunidades de trabalho e renda e para a redução da
+                vulnerabilidade social.
+            </p>
+            <p>
+                Buscar informações sobre qualificação, emprego e direitos
+                trabalhistas pode ser um passo importante para mulheres que
+                desejam ampliar suas possibilidades profissionais e conquistar
+                maior independência econômica.
+            </p>
+            <a href="https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/qualificacao-profissional"
+                target="_blank" rel="noopener noreferrer" class="botao-online">Saiba mais →</a>
+        </div>
+    </div>
+
+    <div class="modal-apoio" id="modal-assistencia-alternativas">
+        <div class="conteudo-modal">
+            <button class="fechar-modal">&times;</button>
+            <div class="modal-imagem">
+                <img src="img/Captura de tela 2026-09-13 170823.png"
+                    alt="Ministério do Desenvolvimento e Assistência Social">
+            </div>
+            <h2>Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome — MDS</h2>
+            <p>
+                O Ministério do Desenvolvimento e Assistência Social coordena
+                políticas de assistência social e programas destinados à
+                população em situação de vulnerabilidade. Entre esses
+                mecanismos está o Cadastro Único, utilizado para identificar
+                e caracterizar famílias de baixa renda e possibilitar sua
+                inclusão em diferentes programas sociais, de acordo com os
+                critérios de cada programa.
+            </p>
+            <p>
+                A assistência social pode, portanto, ser uma importante porta
+                de entrada para que mulheres e suas famílias conheçam seus
+                direitos e tenham acesso à rede de proteção social.
+            </p>
+            <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico" target="_blank"
+                rel="noopener noreferrer" class="botao-online">Saiba mais →</a>
+        </div>
+    </div>
+
+    <div class="modal-apoio" id="modal-protecao">
+        <div class="conteudo-modal">
+            <button class="fechar-modal">&times;</button>
+            <div class="modal-imagem">
+                <img src="img/Captura de tela 2026-09-13 170320.png" alt="Ligue 180">
+            </div>
+            <h2>Ministério das Mulheres — Ligue 180</h2>
+            <p>
+                O Ligue 180 — Central de Atendimento à Mulher é um serviço
+                gratuito que oferece orientação sobre direitos das mulheres,
+                informações sobre a rede de atendimento e registro e
+                encaminhamento de denúncias. O serviço funciona 24 horas
+                por dia, todos os dias da semana.
+            </p>
+            <p>
+                Por meio do Ligue 180, a mulher pode receber informações
+                sobre serviços especializados, como delegacias, Defensorias
+                Públicas, Centros de Referência e Casas da Mulher Brasileira.
+                O canal também pode ser utilizado por pessoas que tenham
+                conhecimento de uma situação de violência.
+            </p>
+            <a href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer"
+                class="botao-online">Saiba mais →</a>
+        </div>
+    </div>
 
     <!-- ==========================================
      MODAL ONG
@@ -414,8 +516,11 @@
 
     </div>
 
+
     <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
     <script src="mapa.js"></script>
+
 </body>
 
 <footer class="footer">
