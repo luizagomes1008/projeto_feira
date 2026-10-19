@@ -169,6 +169,11 @@ image h hrindo = "/images/personagens/hrindo.png"
 image h  hirritada = "/images/personagens/hirritada.png" 
 image h holhofechado = "/images/personagens/holhofechado.png" 
 image h halternatica ="images/personagens/halternativa.png"
+image h hirritadau ="images/Personagens/HirritadaUniforme.png"
+image h halternativau ="images/Personagens/HalternativaUniforme.png"
+image h holhofechadou ="images/Personagens/HolhofechadoUniforme.png"
+image h hreceiou ="images/Personagens/HreceioUnifome.png"
+image h hrindou ="images/Personagens/HrindoUniforme.png"
 
 define d = Character("Diana")
 image dpadrao = "/images/Dpadrao.jpeg" 
@@ -301,24 +306,24 @@ label start:
     scene lanchonete1 with Dissolve(1)
     pause 1
     d"cheguei"
-    show h hirritada at h_chegando
+    show h hirritadau at h_chegando
     h "diana!  por que não responde as mensagens que te mando?!"
     d"bom dia pra você também Helena"
-    show h holhofechado 
+    show h holhofechadou 
     h"hm, bom dia"
     d"para de ser chata amiga!"
-    show h hirritada
+    show h hirritadau
     pause 1
-    show h hrindo
+    show h hrindou
     h"chata é você!"
     pause 1
-    show h hreceio
+    show h hreceiou
     h"enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
     d"eu sei, ele me mandou mensagem hoje de manhã..."
     d"talvez eu consiga o meu tão sonhado aumento"
-    show h halternatica
+    show h halternativau
     h"é verdade! Vamos nos manter positivas!"
-    show h hpadraobocaaberta
+    show h hrindou
     h"é melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
     d"é mesmo, você tem razão, vou para a área de serviço..."
     scene dmente with fade
