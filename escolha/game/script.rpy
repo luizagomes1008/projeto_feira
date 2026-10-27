@@ -21,6 +21,10 @@ image lanchonete2 = Transform("images/lanchonete2.png", fit ="cover")
 image lanchonete3 = Transform("images/lanchonete3.png", fit ="cover")
 image lanchonete4 = Transform("images/lanchonete4.png", fit ="cover")
 
+define audio.tema_principal = "musicas/musicareflexiva.mp3"
+define audio.musica_animada = "musicas/lofi.mp3"
+define audio.musica_triste = "musicas/musicatriste.mp3"
+
 
 image onibusnoite:
 
@@ -236,6 +240,8 @@ label start:
 
     pause 2.0
     d "Meu nome é Diana. Tenho 26 anos."
+
+    play music tema_principal fadein 2.0
    
 
     d "Tenho uma vida como qualquer outra pessoa teria"
@@ -272,10 +278,13 @@ label start:
     scene banheirouniforme with Dissolve(1)
     d"preciso lavar esse uniforme o quanto antes"
     d"estou pronta"
+    stop music fadeout 2.0
     pause 2
     #saindo de casa
    # scene dmente with fade
     #pause 1.5
+    
+    play music musica_animada fadein 2.0
     scene kitnet with  fade
     pause 1
     a "Diana!"
@@ -296,6 +305,7 @@ label start:
     d"relaxa andreia, estou no horário, mas é melhor indo"
     show a afeliz
     a"bom trabalho querida, se cuida!"
+    stop music fadeout 2.0
     scene dmente with fade
     pause 2
     scene onibusmanha with  Dissolve(1) 
@@ -304,6 +314,7 @@ label start:
     pause 2
 #no trabalho
     scene lanchonete1 with Dissolve(1)
+    play music tema_principal fadein 1.0
     pause 1
     d"cheguei"
     show h hirritadau at h_chegando
@@ -326,6 +337,7 @@ label start:
     show h hrindou
     h"é melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
     d"é mesmo, você tem razão, vou para a área de serviço..."
+    stop music fadeout 1.0
     scene dmente with fade
     pause 1
     scene banheirolanchonete with fade
@@ -355,6 +367,7 @@ label start:
     show g golhofechado 
     g"sim... bom..."
     pause 1.5
+    play music musica_triste fadein 1.0
     g "Diana, movimento caiu. Estamos cortando gastos..."
     show g golhoaberto
     d"como assim?..."
@@ -400,6 +413,7 @@ label start:
     scene quarton
     d"amanhã eu penso melhor no que fazer, preciso descansar..."
     pause 1
+    stop music fadeout 2.0
     scene dmente with Dissolve(1) 
 
 
