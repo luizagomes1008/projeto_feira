@@ -2,6 +2,17 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+image barhelenasorrindo = Transform("images/barHsorrindo.jpg")
+image barhelena = Transform("images/barHpadrao.jpg")
+image barhelenanervosa = Transform("images/barHrindo.jpg")
+image barhelenapiscando = Transform("images/barHpiscando.jpg")
+image barhelenapedindo = Transform("images/barHpedido.jpg")
+image barhelenasorrindol = Transform("images/barlanchesHsorrindo.jpg")
+image barhelenal = Transform("images/barlanchesHpadrao.jpg")
+image barhelenanervosal = Transform("images/barlanchesHrindo.jpg")
+image barhelenapiscandol = Transform("images/barlanchesHpiscando.jpg")
+
+
 image cafedamanha = Transform("images/salam.png", fit = "cover")
 image salam = Transform("images/salam.png", fit = "cover")
 image banheirouniforme = Transform("images/banheirodianaemprego.png", fit = "cover")
@@ -337,7 +348,7 @@ label start:
     show h hrindou
     h"é melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
     d"é mesmo, você tem razão, vou para a área de serviço..."
-    stop music fadeout 1.0
+    
     scene dmente with fade
     pause 1
     scene banheirolanchonete with fade
@@ -358,6 +369,7 @@ label start:
     pause 2
     scene dmente with fade
     pause 1
+    stop music fadeout 1.0
     scene lanchoneten
     d"terminei meu turno, estou tão cansada..."
     g"diana!"
@@ -426,6 +438,7 @@ label start:
     d"*bocejo*"
     d"quem está me ligando a essa hora da manhã?!"
     show celhelena at celular_menor
+    play music musica_triste fadein 1.0
     d"Helena... "
     h "Bom dia, amiga."
     d "Bom dia..."
@@ -454,7 +467,7 @@ label start:
     d"eu..."
     pause 1
     menu:
-        "Quero. Eu preciso desabafar. (+2 confiança)":
+        "Quero. Eu preciso desabafar.":
             $confianca += 2
             d "Eu tô com medo, Helena."
             show h hpadraobocaaberta
@@ -462,15 +475,17 @@ label start:
             h "Você não precisa resolver tudo hoje."
             h"um passo de cada vez, lembra?"
 
-        "Não quero falar disso agora. (-2 confiança)":
+        "Não quero falar disso agora. ":
             d "Eu só quero esquecer isso por enquanto."
             h "Tudo bem..."
             $confianca -= 2
 
-        "Não é tão grave assim. (neutro)":
+        "Não é tão grave assim.":
             d "Eu vou dar um jeito."
             h "Eu sei que vai. Mas você não precisa fingir que tá tudo bem comigo."
     show h hrindo 
+    stop music fadeout 1.0
+    play music musica_animada fadein 1.0
     h"Você vai se recuperar rápido Diana, sei disso"
     d"Obrigada amiga, eu espero..."
     h"vem, vamos tomar café juntas na padaria do seu Zé!"
@@ -485,28 +500,34 @@ label start:
     pause 2
     scene onibusmanha with  Dissolve(1) 
     pause 4
-    scene cafedamanha with Dissolve(1) 
+    # scene cafedamanha with Dissolve(1) 
+    scene barhelena with fade
     #cena dela com a helena feliz na sua frente
     h"Fazia bastante tempo que não comemos aqui não é?"
     d"é verdade... Está diferente"
     h"costumávamos tomar o capuccino daqui depois das aulas, lembra?"
     d"com certeza, era tão gostoso"
+    scene barhelenasorrindo
     #cena helena feliz alternativa
     h"bom, então já sei o que pedir para nós"
     h"o que acha de uma porção de pão de queijo para acompanhar?"
     d"parece realmente muito bom..."
+    scene barhelenapiscando
     #cena helena piscadela
     h"ok, vou pedir!"
+    scene barhelenapedindo
     #cena dela sozinha
     d"Estava com saudades de sair com Helena"
     d"Ela me faz muito bem..."
     scene dmente with fade
     pause 1
+    scene barhelenal with fade 
     #cena delas com a comida na mesa
     h"prontinho, isso parece estar muito bom!"
     d"realmente, me lembra os tempos da escola."
     h "Você lembra quando a gente se conheceu?"
     d "Infelizmente."
+    scene barhelenanervosal
     h "Nossa, vai começar..."
     d "Você derrubou café em mim."
     h "Foi sem querer!"
@@ -515,6 +536,7 @@ label start:
     d "Helena!"
     scene dmente with fade
     pause 1
+    scene barhelena with fade
     #cena delas sem comida na mesa
     d"Estava muito bom."
     h"gostinho de nostalgia..."   
