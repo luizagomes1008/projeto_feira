@@ -1463,6 +1463,29 @@ div.modal-body p {
     margin-bottom: 18px;
 }
 
+.texto-alternativas {
+    max-width: 900px;
+    margin: 30px auto 10px;
+    text-align: center;
+    color: #fefdff;
+}
+
+.texto-alternativas p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.sem-online {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #f6e5e5;
+    padding: 20px;
+}
+
+
 
 /* RODAPÉ */
 
@@ -1669,4 +1692,86 @@ div.modal-footer .btn:hover {
     margin: 0;
     color: #c995b5;
     font-size: 13px;
+}
+
+/* ==========================================
+   ATENDIMENTOS ONLINE
+========================================== */
+
+.lista-online {
+    max-width: 1200px;
+    margin: 35px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card-online {
+    background: #f6e5e5;
+    border: 2px solid #e6b2c6;
+    border-radius: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    color: #352961;
+    box-shadow: 0 10px 25px rgba(36, 27, 67, 0.20);
+    transition: 0.3s ease;
+}
+
+.card-online:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(36, 27, 67, 0.30);
+}
+
+.categoria-online {
+    display: inline-block;
+    background: #774181;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.card-online h4 {
+    font-family: Georgia, serif;
+    color: #352961;
+    font-size: 21px;
+    margin: 5px 0 12px;
+}
+
+.card-online p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.botao-online {
+    display: inline-block;
+    background: #774181;
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 22px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.25s ease;
+}
+
+.botao-online:hover {
+    background: #352961;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .lista-online {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .lista-online {
+        grid-template-columns: 1fr;
+    }
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/09/2026 às 17:25
+-- Tempo de geração: 01/10/2026 às 04:47
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -116,7 +116,12 @@ INSERT INTO `apoios` (`id`, `nome`, `categoria`, `tipo`, `descricao`, `servicos`
 (65, 'ONG Mulheres em Ação de Mauá', 'ONG', 'ONG', 'Organização que atua no enfrentamento da violência contra a mulher, acolhimento e garantia de direitos.', 'Apoio jurídico; apoio psicológico; assistência social; orientação e encaminhamento', 'Mulheres em situação de violência e vulnerabilidade', 'Consultar diretamente a organização', 'Rua Guatemala, 273 - Parque das Américas', 'Mauá - SP', '(11) 95054-9291', -23.6892000, -46.4426000, ''),
 (66, 'Viva Maria - Centro de Referência no Atendimento à Mulher', 'Assistência Social', 'Serviço público especializado', 'Centro público especializado no atendimento e acompanhamento de mulheres em situação de violência.', 'Acolhimento; apoio psicológico; assistência social; orientação jurídica; acompanhamento e encaminhamento', 'Mulheres em situação de violência', 'Segunda a sexta, das 8h às 17h', 'Rua Santa Cecília, 489 - Matriz', 'Mauá - SP', '(11) 4512-7615', -23.6680000, -46.4595000, ''),
 (67, 'Movimento Mãe Onça', 'ONG', 'ONG', 'Organização voltada ao acolhimento de mães atípicas, mulheres e famílias em situação de vulnerabilidade social.', 'Acolhimento; apoio emocional; orientação; atividades de inclusão; autocuidado; apoio a mães atípicas', 'Mães atípicas, mulheres e famílias em situação de vulnerabilidade', 'Consultar diretamente a organização', 'Avenida Ernesto Menato, 7 - Centro Alto', 'Ribeirão Pires - SP', '', -23.7320000, -46.3720000, ''),
-(68, 'Projeto Resgatando Vidas', 'ONG', 'ONG', 'Organização social voltada à promoção da dignidade humana e apoio a pessoas e famílias em situação de vulnerabilidade socioeconômica.', 'Distribuição de alimentos; ações de cidadania; bazar beneficente; apoio social', 'Mulheres, famílias e pessoas em situação de vulnerabilidade socioeconômica', 'Consultar diretamente a organização', 'Rua Capitão José Gallo, 348 - Centro', 'Ribeirão Pires - SP', '', -23.7105000, -46.4135000, '');
+(68, 'Projeto Resgatando Vidas', 'ONG', 'ONG', 'Organização social voltada à promoção da dignidade humana e apoio a pessoas e famílias em situação de vulnerabilidade socioeconômica.', 'Distribuição de alimentos; ações de cidadania; bazar beneficente; apoio social', 'Mulheres, famílias e pessoas em situação de vulnerabilidade socioeconômica', 'Consultar diretamente a organização', 'Rua Capitão José Gallo, 348 - Centro', 'Ribeirão Pires - SP', '', -23.7105000, -46.4135000, ''),
+(69, 'Consultório na Rua - Santo André', 'Saúde', 'Serviço público', 'Serviço do SUS voltado ao atendimento de pessoas em situação de vulnerabilidade.', 'Atendimento e acompanhamento em saúde.', 'Pessoas em situação de vulnerabilidade.', 'Consultar diretamente o serviço.', 'Rua Coronel Ortiz, 18 - Centro', 'Santo André - SP', '(11) 4438-1300', -23.6570000, -46.5305000, 'https://portais.santoandre.sp.gov.br/saude/saude-mental/'),
+(70, 'Vale Cegonha - Santo André', 'Saúde', 'Programa municipal', 'Programa de apoio à mobilidade de gestantes de alto risco.', 'Auxílio no transporte para consultas de pré-natal de alto risco.', 'Gestantes acompanhadas pelo serviço de alto risco.', 'Consultar diretamente o programa.', 'Rua América do Sul, 285 - Parque Novo Oratório', 'Santo André - SP', NULL, -23.6356400, -46.4991000, 'https://portais.santoandre.sp.gov.br/saude/2026/03/10/santo-andre-lanca-projeto-vale-cegonha-em-parceria-com-a-99/'),
+(71, 'AME Santo André', 'Saúde', 'Saúde Pública', 'Ambulatório Médico de Especialidades de Santo André.', 'Atendimento médico especializado.', 'Usuários encaminhados pela rede pública de saúde.', 'Consultar diretamente o serviço.', 'Av. Capitão Mário Toledo de Camargo, 3330 - Vila Luzita', 'Santo André - SP', '(11) 4454-6100', -23.6915110, -46.5077340, NULL),
+(72, 'SAE Ribeirão Pires', 'Saúde', 'Saúde Pública', 'Serviço de Atenção Especializada de Ribeirão Pires.', 'Atendimento e tratamento relacionado ao HIV.', 'Pessoas que necessitam do serviço especializado.', 'Consultar diretamente o serviço.', 'Av. Francisco Monteiro, 205 - Centro', 'Ribeirão Pires - SP', '(11) 4828-4441', -23.7126000, -46.4123000, 'https://www.ribeiraopires.sp.gov.br/portal/noticias/0/3/7701/prefeitura-de-ribeirao-pires-reforca-oferta-de-tratamento-do-virus-hiv-no-servico-de-atencao-especializada'),
+(73, 'Programa Acolher e Cuidar - Ribeirão Pires', 'Saúde', 'Programa municipal', 'Programa de capacitação e cuidado voltado aos profissionais da saúde.', 'Capacitação e apoio aos profissionais da saúde.', 'Profissionais da saúde.', 'Consultar diretamente o serviço.', 'Estrada Jornalista José Edinaldo Gemecê de Menezes, 2959 - Santa Luzia', 'Ribeirão Pires - SP', '(11) 4822-8000', -23.6964000, -46.4061000, 'https://www.ribeiraopires.sp.gov.br/portal/noticias/0/3/8059/prefeitura-de-ribeirao-pires-inicia-programa-acolher-e-cuidar-para-capacitacao-de-profissionais-da-saude/');
 
 --
 -- Índices para tabelas despejadas
@@ -136,7 +141,7 @@ ALTER TABLE `apoios`
 -- AUTO_INCREMENT de tabela `apoios`
 --
 ALTER TABLE `apoios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

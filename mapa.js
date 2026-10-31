@@ -9,15 +9,13 @@ const mapa = new maplibregl.Map({
     // Estilo do mapa
     style: 'https://tiles.openfreemap.org/styles/liberty',
 
-    // Centro inicial
+    // Centro inicial - Ribeirão Pires
     center: [-46.4133, -23.7104],
 
     // Zoom inicial
     zoom: 11
 });
 
-
-let locais = [];
 
 // ==========================================
 // CONTROLES DO MAPA
@@ -28,11 +26,31 @@ mapa.addControl(
     'top-right'
 );
 
+
 // ==========================================
-// MARCADORES
+// VARIÁVEIS
 // ==========================================
 
+let locais = [];
 let marcadores = [];
+
+
+// ==========================================
+// ÍCONES DAS CATEGORIAS
+// ==========================================
+
+const icones = {
+    "ONG": "♡",
+    "Assistência Social": "✦",
+    "Saúde": "+",
+    "Jurídico": "§",
+    "Emprego": "↗"
+};
+
+
+// ==========================================
+// CARREGAR LOCAIS DO BANCO DE DADOS
+// ==========================================
 
 async function carregarLocais() {
 
@@ -50,29 +68,11 @@ async function carregarLocais() {
 
     } catch (erro) {
 
-        console.error('Erro:', erro);
+        console.error('Erro ao carregar os locais:', erro);
 
     }
 
 }
-
-// ==========================================
-// ÍCONES DAS CATEGORIAS
-// ==========================================
-
-const icones = {
-
-    "ONG": "♡",
-
-    "Assistência Social": "✦",
-
-    "Saúde": "+",
-
-    "Jurídico": "§",
-
-    "Emprego": "↗"
-
-};
 
 
 // ==========================================
@@ -81,7 +81,116 @@ const icones = {
 
 function criarMarcador(local) {
 
-    // Criando o botão do marcador
+    let botaoAcao = '';
+
+
+    // ======================================
+    // ATENDIMENTO ONLINE
+    // ======================================
+
+    if (
+        local.tipo === 'Atendimento online' ||
+        local.tipo === 'Atuação online'
+    ) {
+
+        if (local.site) {
+
+            botaoAcao = `
+                <a
+                    class="botao-rota"
+                    href="${local.site}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Acessar site →
+                </a>
+            `;
+
+        }
+
+    }
+
+
+    // ======================================
+    // ATENDIMENTO HÍBRIDO
+    // ======================================
+
+    else if (
+        local.tipo === 'Atendimento híbrido' ||
+        local.tipo === 'Atendimento hibrido'
+    ) {
+
+        botaoAcao = `
+            <div class="botoes-popup">
+
+                ${
+                    local.site
+                    ? `
+                        <a
+                            class="botao-rota"
+                            href="${local.site}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Acessar site →
+                        </a>
+                    `
+                    : ''
+                }
+
+                ${
+                    local.latitude !== null &&
+                    local.longitude !== null
+                    ? `
+                        <a
+                            class="botao-rota"
+                            href="https://www.google.com/maps/dir/?api=1&destination=${local.latitude},${local.longitude}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Como chegar →
+                        </a>
+                    `
+                    : ''
+                }
+
+            </div>
+        `;
+
+    }
+
+
+    // ======================================
+    // ATENDIMENTO PRESENCIAL
+    // ======================================
+
+    else {
+
+        if (
+            local.latitude !== null &&
+            local.longitude !== null
+        ) {
+
+            botaoAcao = `
+                <a
+                    class="botao-rota"
+                    href="https://www.google.com/maps/dir/?api=1&destination=${local.latitude},${local.longitude}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Como chegar →
+                </a>
+            `;
+
+        }
+
+    }
+
+
+    // ======================================
+    // BOTÃO DO MARCADOR
+    // ======================================
+
     const elemento = document.createElement('button');
 
     elemento.className = 'marcador-mapa';
@@ -89,79 +198,119 @@ function criarMarcador(local) {
     elemento.type = 'button';
 
     elemento.innerHTML = `
-        <span>${icones[local.categoria] || "•"}</span>
+        <span>
+            ${icones[local.categoria] || "•"}
+        </span>
     `;
 
 
-    // ==========================================
+    // ======================================
     // POPUP
-    // ==========================================
+    // ======================================
 
     const popup = new maplibregl.Popup({
+
         offset: 20,
+
         closeButton: true,
+
         closeOnClick: true,
+
         maxWidth: '320px'
-    })
-        .setHTML(`
+
+    }).setHTML(`
 
         <div class="popup-apoio">
 
             <span class="popup-categoria">
-                ${local.categoria}
+                ${local.categoria || 'Apoio'}
             </span>
 
+
             <h3>
-                ${local.nome}
+                ${local.nome || ''}
             </h3>
 
-            <p>
-                <strong>📍 Endereço</strong><br>
-                ${local.endereco}<br>
-                ${local.cidade}
-            </p>
 
-            <p>
-                <strong>📞 Telefone</strong><br>
-                ${local.telefone}
-            </p>
+            ${
+                local.tipo
+                ? `
+                    <p>
+                        <strong>Tipo:</strong><br>
+                        ${local.tipo}
+                    </p>
+                `
+                : ''
+            }
 
-            <p>
-                <strong>♡ Serviços</strong><br>
-                ${local.servicos}
-            </p>
 
-            <a
-                class="botao-rota"
-                href="https://www.google.com/maps/dir/?api=1&destination=${local.latitude},${local.longitude}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Como chegar →
-            </a>
+            ${
+                local.endereco
+                ? `
+                    <p>
+                        <strong>📍 Endereço</strong><br>
+                        ${local.endereco}<br>
+                        ${local.cidade || ''}
+                    </p>
+                `
+                : ''
+            }
+
+
+            ${
+                local.telefone
+                ? `
+                    <p>
+                        <strong>📞 Telefone</strong><br>
+                        ${local.telefone}
+                    </p>
+                `
+                : ''
+            }
+
+
+            ${
+                local.servicos
+                ? `
+                    <p>
+                        <strong>♡ Serviços</strong><br>
+                        ${local.servicos}
+                    </p>
+                `
+                : ''
+            }
+
+
+            ${botaoAcao}
 
         </div>
 
     `);
 
 
-    // ==========================================
-    // CRIANDO O MARCADOR
-    // ==========================================
+    // ======================================
+    // COLOCAR MARCADOR NO MAPA
+    // ======================================
 
     const marcador = new maplibregl.Marker({
+
         element: elemento,
+
         anchor: 'bottom'
+
     })
         .setLngLat([
-            local.longitude,
-            local.latitude
+            Number(local.longitude),
+            Number(local.latitude)
         ])
+
         .setPopup(popup)
+
         .addTo(mapa);
 
 
     return marcador;
+
 }
 
 
@@ -173,24 +322,29 @@ function mostrarLocais(categoria = "todos") {
 
     // Remove os marcadores antigos
     marcadores.forEach(marcador => {
+
         marcador.remove();
+
     });
 
     marcadores = [];
 
 
-    // Adiciona os locais
+    // Percorre todos os locais
     locais.forEach(local => {
 
+        // Verifica a categoria
         if (
             categoria === "todos" ||
             local.categoria === categoria
         ) {
 
-            // Só cria marcador se tiver coordenadas
+            // Verifica se possui coordenadas
             if (
                 local.latitude !== null &&
-                local.longitude !== null
+                local.longitude !== null &&
+                local.latitude !== '' &&
+                local.longitude !== ''
             ) {
 
                 const marcador = criarMarcador(local);
@@ -207,7 +361,116 @@ function mostrarLocais(categoria = "todos") {
 
 
 // ==========================================
-// FILTROS
+// MOSTRAR ATENDIMENTOS ONLINE
+// ==========================================
+
+function mostrarAtendimentosOnline() {
+
+    const lista = document.getElementById('lista-online');
+
+    // Se não existir a lista, não faz nada
+    if (!lista) {
+
+        console.log('Lista de atendimentos online não encontrada.');
+
+        return;
+
+    }
+
+
+    lista.innerHTML = '';
+
+
+    // Procura serviços online ou híbridos
+    const online = locais.filter(local => {
+
+        const tipo = (local.tipo || '')
+            .trim()
+            .toLowerCase();
+
+        return (
+            tipo.includes('online') ||
+            tipo.includes('híbrido') ||
+            tipo.includes('hibrido')
+        );
+
+    });
+
+
+    console.log(
+        'Atendimentos online/híbridos:',
+        online
+    );
+
+
+    // Cria os cards
+    online.forEach(local => {
+
+        const card = document.createElement('article');
+
+        card.className = 'card-online';
+
+
+        card.innerHTML = `
+
+            <span class="categoria-online">
+                ${local.categoria || 'Apoio'}
+            </span>
+
+
+            <h4>
+                ${local.nome || 'Serviço de apoio'}
+            </h4>
+
+
+            <p>
+                ${
+                    local.descricao ||
+                    'Serviço de orientação, apoio ou capacitação disponível pela internet.'
+                }
+            </p>
+
+
+            ${
+                local.tipo
+                ? `
+                    <small>
+                        ${local.tipo}
+                    </small>
+                `
+                : ''
+            }
+
+
+            ${
+                local.site
+                ? `
+                    <br><br>
+
+                    <a
+                        class="botao-online"
+                        href="${local.site}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Acessar site →
+                    </a>
+                `
+                : ''
+            }
+
+        `;
+
+
+        lista.appendChild(card);
+
+    });
+
+}
+
+
+// ==========================================
+// FILTROS DO MAPA
 // ==========================================
 
 const botoes = document.querySelectorAll('.filtro');
@@ -217,9 +480,11 @@ botoes.forEach(botao => {
 
     botao.addEventListener('click', () => {
 
-        // Remove o ativo dos outros
+        // Remove o ativo de todos
         botoes.forEach(outro => {
+
             outro.classList.remove('ativo');
+
         });
 
 
@@ -245,11 +510,21 @@ botoes.forEach(botao => {
 
 mapa.on('load', async () => {
 
+    console.log('Mapa carregado!');
+
+
     await carregarLocais();
 
+
+    // Mostra os marcadores
     mostrarLocais();
 
+
+    // Mostra os atendimentos online
+    mostrarAtendimentosOnline();
+
 });
+
 
 // ==========================================
 // MODAIS DOS AUXÍLIOS
@@ -272,6 +547,19 @@ botoesModal.forEach(botao => {
 
         const modal = document.getElementById(idModal);
 
+
+        if (!modal) {
+
+            console.error(
+                'Modal não encontrado:',
+                idModal
+            );
+
+            return;
+
+        }
+
+
         modal.classList.add('aberta');
 
         document.body.style.overflow = 'hidden';
@@ -287,13 +575,20 @@ botoesModal.forEach(botao => {
 
 const botoesFechar = document.querySelectorAll('.fechar-modal');
 
+
 botoesFechar.forEach(botao => {
 
     botao.addEventListener('click', () => {
 
         const modal = botao.closest('.modal-apoio');
 
-        modal.classList.remove('aberta');
+
+        if (modal) {
+
+            modal.classList.remove('aberta');
+
+        }
+
 
         document.body.style.overflow = '';
 
@@ -308,7 +603,7 @@ botoesFechar.forEach(botao => {
 
 modais.forEach(modal => {
 
-    modal.addEventListener('click', (evento) => {
+    modal.addEventListener('click', evento => {
 
         if (evento.target === modal) {
 
@@ -327,15 +622,19 @@ modais.forEach(modal => {
 // FECHAR COM ESC
 // ==========================================
 
-document.addEventListener('keydown', (evento) => {
+document.addEventListener('keydown', evento => {
 
     if (evento.key === 'Escape') {
 
         modais.forEach(modal => {
+
             modal.classList.remove('aberta');
+
         });
 
+
         document.body.style.overflow = '';
+
     }
 
 });
