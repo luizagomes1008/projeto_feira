@@ -2,17 +2,20 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-image barhelenasorrindo = Transform("images/barHsorrindo.jpg")
-image barhelena = Transform("images/barHpadrao.jpg")
+image barhelenasorrindo = Transform("images/barHsorrindo.jpg", fit = "cover")
+image barhelena = Transform("images/barHpadrao.jpg", fit = "cover")
 image barhelenanervosa = Transform("images/barHrindo.jpg")
-image barhelenapiscando = Transform("images/barHpiscando.jpg")
-image barhelenapedindo = Transform("images/barHpedido.jpg")
-image barhelenasorrindol = Transform("images/barlanchesHsorrindo.jpg")
-image barhelenal = Transform("images/barlanchesHpadrao.jpg")
-image barhelenanervosal = Transform("images/barlanchesHrindo.jpg")
-image barhelenapiscandol = Transform("images/barlanchesHpiscando.jpg")
+image barhelenapiscando = Transform("images/barHpiscando.jpg",  fit = "cover")
+image barhelenapedindo = Transform("images/barHpedido.jpg", fit = "cover")
+image barhelenasorrindol = Transform("images/barlanchesHsorrindo.jpg",  fit = "cover")
+image barhelenal = Transform("images/barlanchesHpadrao.jpg", fit = "cover")
+image barhelenanervosal = Transform("images/barlanchesHrindo.jpg", fit = "cover")
+image barhelenapiscandol = Transform("images/barlanchesHpiscando.jpg", fit = "cover")
 
-
+image farmaciacurr = Transform("images/farmacia.png", fit = "cover")
+image lojaroupa = Transform("images/lojaroupa.png", fit = "cover")
+image lojacell = Transform("images/lojacell.png", fit = "cover")
+image mercado = Transform("images/supermercado.png", fit = "cover")
 image cafedamanha = Transform("images/salam.png", fit = "cover")
 image salam = Transform("images/salam.png", fit = "cover")
 image banheirouniforme = Transform("images/banheirodianaemprego.png", fit = "cover")
@@ -189,6 +192,12 @@ image h halternativau ="images/Personagens/HalternativaUniforme.png"
 image h holhofechadou ="images/Personagens/HolhofechadoUniforme.png"
 image h hreceiou ="images/Personagens/HreceioUnifome.png"
 image h hrindou ="images/Personagens/HrindoUniforme.png"
+transform h_saindo:
+    xalign 0.5
+    yalign 1.0
+    zoom 1.7
+    linear 1.5:
+        xalign -1.5
 
 define d = Character("Diana")
 image dpadrao = "/images/Dpadrao.jpeg" 
@@ -534,6 +543,7 @@ label start:
     d "Você derrubou café em mim."
     h "Foi sem querer!"
     d "Você falou que eu que estava no caminho."
+    scene barhelenasorrindo
     h "E estava mesmo."
     d "Helena!"
     scene dmente with fade
@@ -572,7 +582,7 @@ label start:
     h "aquela ali não sua filha Dona Andreia?"
     show a apadrao
     a"Ah meu Deus, ela vai cair se continuar assim"
-    show a airritada
+    show a apreocupada
     a"com licença meninas..."
     show a afeliz at a_saindo_esquerda
     pause 1
@@ -631,23 +641,127 @@ label start:
             h"Eu sei de alguns lugares ótimos"
             d"obrigada por me ajudar"
             pause 3
+            scene dmente with Dissolve(1)
+            scene farmaciacurr with fade
+            pause 1.5
+            scene dmente with fade
+            scene lojaroupa with fade
+            pause 1.5
+            scene dmente with fade
+            scene mercado with fade
+            pause 1.5
+            scene dmente with fade
+            scene lojacell with fade
+            pause 1.5
+            scene dmente with fade
+            scene onibusnoite with Dissolve(1)
+            h "O dia foi cheio hoje hein!"
+            d "realmente, estou morrendo de sono"
+            pause 1 
+            scene dmente with Dissolve(1)
+            scene kitnetn with Dissolve (1)
+            show h hpadrao at h_chegando
+            pause 1
+            d "obrigada por me ajudar hoje Helena, de verdade"
+            show h hrindo at h_centro
+            h"você sabe que pode sempre contar comigo nao é Diana?"
+            d"com seu apoio tudo fica mais leve"
+            show h halternatica at h_centro
+            h "nesse ritmo você vai encontrar uma vaga rapidinho!"
+            d"que assim seja!"
+            show h hrindo at h_centro
+            h"boa noite Diana, dorme bem"
+            d"boa noite miga, obrigada mais uma vez"
+            show h hpadraobocaaberta at h_saindo
+            pause 1
+            scene dmente with Dissolve(1)
+            scene dmente 
+            pause 1
+            scene dmente with Dissolve(1)
+            scene quarton with fade
+            pause 1
+            d"amanhã as coisas vão melhorar, sinto isso"
+            scene dmente with Dissolve(1)
+            pause 1
         
      
         "Prefiro descansar um pouco":
             d "Acho que preciso de um tempo para colocar a cabeça no lugar."
             h "E tudo bem."
-            d "Eu só queria esquecer tudo por algumas hours."
+            d "Eu só queria esquecer tudo por algum tempo."
+            show h holhofechado
             h "Então hoje você vai descansar. Amanhã a gente pensa no resto."
+            d"obrigada por me apoiar Helena"
+            show h hpadraobocaaberta
+            h"você pode sempre contar comigo!"
+            show h hrindo
+            h"que tal passarmos a tarde maratonando nossa série favorita?"
+            d "isso me parece ótimo"
+            pause 1
+            scene dmente with Dissolve(1)
+            scene dmente
+            pause 2
+            scene dmente with Dissolve(1)
+            scene salan with Dissolve(1)
+            show h hpadraobocaaberta at h_centro with fade
+            h"já está tarde, é melhor eu ir"
+            d"ta bom amiga, se cuida"
+            h"amanhã pensaremos melhor!"
+            d"obrigada por passar esse tempo comigo"
+            show h hrindo
+            h"eu que agradeço miga!"
+            show h hpadraobocaaberta
+            h"bom, já vou indo, boa noite Diana!"
+            d"Boa noite helena! Dorme bem"
+            show h hpadrao at h_saindo
+            scene dmente with Dissolve(1)
+            scene quarton with Dissolve(1)
+            pause 1
+            d"amanhã as coisas vão melhorar, sinto isso"
+            scene dmente with Dissolve(1)
+            scene dmente with Dissolve(1)
+            pause 1
+
+
 
         "Não sei o que quero fazer":
             d "Sinceramente? Eu não faço ideia."
             h "Você não precisa ter todas as respostas agora."
             d "Tenho medo de escolher errado."
+            show h hpadraobocaaberta 
             h "Às vezes, não escolher nada por enquanto também é uma escolha."
             d "Você sempre sabe o que falar, né?"
+            show h halternatica
             h "Nem sempre. Só finjo que sei."
             d "Boba."
             h "Sua boba."
+            show h hrindo
+            h"que tal passarmos a tarde maratonando nossa série favorita?"
+            d "isso me parece ótimo"
+            pause 1
+            scene dmente with Dissolve(1)
+            scene dmente
+            pause 2
+            scene dmente with Dissolve(1)
+            scene salan with Dissolve(1)
+            show h hpadraobocaaberta at h_centro with fade
+            h"já está tarde, é melhor eu ir"
+            d"ta bom amiga, se cuida"
+            h"amanhã pensaremos melhor!"
+            d"obrigada por passar esse tempo comigo"
+            show h hrindo
+            h"eu que agradeço miga!"
+            show h hpadraobocaaberta
+            h"bom, já vou indo, boa noite Diana!"
+            d"Boa noite helena! Dorme bem"
+            show h hpadrao at h_saindo
+            scene dmente with Dissolve(1)
+            scene quarton with Dissolve(1)
+            pause 1
+            d"amanhã as coisas vão melhorar, sinto isso"
+            scene dmente with Dissolve(1)
+            scene dmente with Dissolve(1)
+            pause 1
 
 
 
