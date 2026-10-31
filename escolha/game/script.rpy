@@ -315,12 +315,8 @@ label start:
     a"Devo estar te atrasando né?! Não me dei conta..."
     d"Relaxa andreia, estou no horário, mas é melhor indo"
     show a afeliz
-<<<<<<< HEAD
-    a"Bom trabalho querida, se cuida!"
-=======
     a"bom trabalho querida, se cuida!"
     stop music fadeout 2.0
->>>>>>> origin/MariCSilva-fotos-novas
     scene dmente with fade
     pause 2
     scene onibusmanha with  Dissolve(1) 
@@ -331,52 +327,29 @@ label start:
     scene lanchonete1 with Dissolve(1)
     play music tema_principal fadein 1.0
     pause 1
-<<<<<<< HEAD
     d"Cheguei"
-    show h hirritada at h_chegando
-    h "Diana!  por que não responde as mensagens que te mando?!"
+    show h hirritadau at h_chegando
+    h "Diana! Por que não responde as mensagens que te mando?!"
     d"Bom dia pra você também Helena"
-    show h holhofechado 
+    show h holhofechadou
     h"Hm, bom dia"
     d"Para de ser chata amiga!"
-    show h hirritada
-    pause 1
-    show h hrindo
-    h"Chata é você!"
-    pause 1
-    show h hreceio
-    h"Enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
-    d"Eu sei, ele me mandou mensagem hoje de manhã..."
-    d"Talvez eu consiga o meu tão sonhado aumento"
-    show h halternatica
-    h"É verdade! Vamos nos manter positivas!"
-    show h hpadraobocaaberta
-    h"É melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
-    d"É mesmo, você tem razão, vou para a área de serviço..."
-=======
-    d"cheguei"
-    show h hirritadau at h_chegando
-    h "diana!  por que não responde as mensagens que te mando?!"
-    d"bom dia pra você também Helena"
-    show h holhofechadou 
-    h"hm, bom dia"
-    d"para de ser chata amiga!"
     show h hirritadau
     pause 1
     show h hrindou
-    h"chata é você!"
+    h"Chata é você!"
     pause 1
     show h hreceiou
-    h"enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
-    d"eu sei, ele me mandou mensagem hoje de manhã..."
-    d"talvez eu consiga o meu tão sonhado aumento"
+    h"Enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
+    d"Eu sei, ele me mandou mensagem hoje de manhã..."
+    d"Talvez eu consiga o meu tão sonhado aumento"
     show h halternativau
-    h"é verdade! Vamos nos manter positivas!"
+    h"É verdade! Vamos nos manter positivas!"
     show h hrindou
-    h"é melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
-    d"é mesmo, você tem razão, vou para a área de serviço..."
+    h"É melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
+    d"É mesmo, você tem razão, vou para a área de serviço..."
     
->>>>>>> origin/MariCSilva-fotos-novas
+    
     scene dmente with fade
     pause 1
     scene banheirolanchonete with fade
