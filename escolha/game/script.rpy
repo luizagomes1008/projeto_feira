@@ -2,6 +2,17 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+image barhelenasorrindo = Transform("images/barHsorrindo.jpg")
+image barhelena = Transform("images/barHpadrao.jpg")
+image barhelenanervosa = Transform("images/barHrindo.jpg")
+image barhelenapiscando = Transform("images/barHpiscando.jpg")
+image barhelenapedindo = Transform("images/barHpedido.jpg")
+image barhelenasorrindol = Transform("images/barlanchesHsorrindo.jpg")
+image barhelenal = Transform("images/barlanchesHpadrao.jpg")
+image barhelenanervosal = Transform("images/barlanchesHrindo.jpg")
+image barhelenapiscandol = Transform("images/barlanchesHpiscando.jpg")
+
+
 image cafedamanha = Transform("images/salam.png", fit = "cover")
 image salam = Transform("images/salam.png", fit = "cover")
 image banheirouniforme = Transform("images/banheirodianaemprego.png", fit = "cover")
@@ -20,6 +31,10 @@ image lanchonete = Transform("images/lanchonete.png", fit ="cover")
 image lanchonete2 = Transform("images/lanchonete2.png", fit ="cover")
 image lanchonete3 = Transform("images/lanchonete3.png", fit ="cover")
 image lanchonete4 = Transform("images/lanchonete4.png", fit ="cover")
+
+define audio.tema_principal = "musicas/musicareflexiva.mp3"
+define audio.musica_animada = "musicas/lofi.mp3"
+define audio.musica_triste = "musicas/musicatriste.mp3"
 
 
 image onibusnoite:
@@ -169,6 +184,11 @@ image h hrindo = "/images/personagens/hrindo.png"
 image h  hirritada = "/images/personagens/hirritada.png" 
 image h holhofechado = "/images/personagens/holhofechado.png" 
 image h halternatica ="images/personagens/halternativa.png"
+image h hirritadau ="images/Personagens/HirritadaUniforme.png"
+image h halternativau ="images/Personagens/HalternativaUniforme.png"
+image h holhofechadou ="images/Personagens/HolhofechadoUniforme.png"
+image h hreceiou ="images/Personagens/HreceioUnifome.png"
+image h hrindou ="images/Personagens/HrindoUniforme.png"
 
 define d = Character("Diana")
 image dpadrao = "/images/Dpadrao.jpeg" 
@@ -231,6 +251,8 @@ label start:
 
     pause 2.0
     d "Meu nome é Diana. Tenho 26 anos."
+
+    play music tema_principal fadein 2.0
    
 
     d "Tenho uma vida como qualquer outra pessoa teria"
@@ -267,10 +289,13 @@ label start:
     scene banheirouniforme with Dissolve(1)
     d"preciso lavar esse uniforme o quanto antes"
     d"estou pronta"
+    stop music fadeout 2.0
     pause 2
     #saindo de casa
    # scene dmente with fade
     #pause 1.5
+    
+    play music musica_animada fadein 2.0
     scene kitnet with  fade
     pause 1
     a "Diana!"
@@ -290,7 +315,12 @@ label start:
     a"Devo estar te atrasando né?! Não me dei conta..."
     d"Relaxa andreia, estou no horário, mas é melhor indo"
     show a afeliz
+<<<<<<< HEAD
     a"Bom trabalho querida, se cuida!"
+=======
+    a"bom trabalho querida, se cuida!"
+    stop music fadeout 2.0
+>>>>>>> origin/MariCSilva-fotos-novas
     scene dmente with fade
     pause 2
     scene onibusmanha with  Dissolve(1) 
@@ -299,7 +329,9 @@ label start:
     pause 2
 #no trabalho
     scene lanchonete1 with Dissolve(1)
+    play music tema_principal fadein 1.0
     pause 1
+<<<<<<< HEAD
     d"Cheguei"
     show h hirritada at h_chegando
     h "Diana!  por que não responde as mensagens que te mando?!"
@@ -321,6 +353,30 @@ label start:
     show h hpadraobocaaberta
     h"É melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
     d"É mesmo, você tem razão, vou para a área de serviço..."
+=======
+    d"cheguei"
+    show h hirritadau at h_chegando
+    h "diana!  por que não responde as mensagens que te mando?!"
+    d"bom dia pra você também Helena"
+    show h holhofechadou 
+    h"hm, bom dia"
+    d"para de ser chata amiga!"
+    show h hirritadau
+    pause 1
+    show h hrindou
+    h"chata é você!"
+    pause 1
+    show h hreceiou
+    h"enfim, o patrão mandou você ficar depois do curso, quer conversar contigo..."
+    d"eu sei, ele me mandou mensagem hoje de manhã..."
+    d"talvez eu consiga o meu tão sonhado aumento"
+    show h halternativau
+    h"é verdade! Vamos nos manter positivas!"
+    show h hrindou
+    h"é melhor eu ir atender o caixa, logo logo isso aqui vai encher de gente"
+    d"é mesmo, você tem razão, vou para a área de serviço..."
+    
+>>>>>>> origin/MariCSilva-fotos-novas
     scene dmente with fade
     pause 1
     scene banheirolanchonete with fade
@@ -341,6 +397,7 @@ label start:
     pause 2
     scene dmente with fade
     pause 1
+    stop music fadeout 1.0
     scene lanchoneten
     d"terminei meu turno, estou tão cansada..."
     g"diana!"
@@ -350,6 +407,7 @@ label start:
     show g golhofechado 
     g"sim... bom..."
     pause 1.5
+    play music musica_triste fadein 1.0
     g "Diana, movimento caiu. Estamos cortando gastos..."
     show g golhoaberto
     d"como assim?..."
@@ -396,6 +454,7 @@ label start:
     scene quarton
     d"Amanhã eu penso melhor no que fazer, preciso descansar..."
     pause 1
+    stop music fadeout 2.0
     scene dmente with Dissolve(1) 
 
 
@@ -408,6 +467,7 @@ label start:
     d"*bocejo*"
     d"Quem está me ligando a essa hora da manhã?!"
     show celhelena at celular_menor
+    play music musica_triste fadein 1.0
     d"Helena... "
     h "Bom dia, amiga."
     d "Bom dia..."
@@ -436,7 +496,7 @@ label start:
     d"eu..."
     pause 1
     menu:
-        "Quero. Eu preciso desabafar. (+2 confiança)":
+        "Quero. Eu preciso desabafar.":
             $confianca += 2
             d "Eu tô com medo, Helena."
             show h hpadraobocaaberta
@@ -444,15 +504,17 @@ label start:
             h "Você não precisa resolver tudo hoje."
             h"um passo de cada vez, lembra?"
 
-        "Não quero falar disso agora. (-2 confiança)":
+        "Não quero falar disso agora. ":
             d "Eu só quero esquecer isso por enquanto."
             h "Tudo bem..."
             $confianca -= 2
 
-        "Não é tão grave assim. (neutro)":
+        "Não é tão grave assim.":
             d "Eu vou dar um jeito."
             h "Eu sei que vai. Mas você não precisa fingir que tá tudo bem comigo."
     show h hrindo 
+    stop music fadeout 1.0
+    play music musica_animada fadein 1.0
     h"Você vai se recuperar rápido Diana, sei disso"
     d"Obrigada amiga, eu espero..."
     h"vem, vamos tomar café juntas na padaria do seu Zé!"
@@ -467,28 +529,34 @@ label start:
     pause 2
     scene onibusmanha with  Dissolve(1) 
     pause 4
-    scene cafedamanha with Dissolve(1) 
+    # scene cafedamanha with Dissolve(1) 
+    scene barhelena with fade
     #cena dela com a helena feliz na sua frente
     h"Fazia bastante tempo que não comemos aqui não é?"
     d"é verdade... Está diferente"
     h"costumávamos tomar o capuccino daqui depois das aulas, lembra?"
     d"com certeza, era tão gostoso"
+    scene barhelenasorrindo
     #cena helena feliz alternativa
     h"bom, então já sei o que pedir para nós"
     h"o que acha de uma porção de pão de queijo para acompanhar?"
     d"parece realmente muito bom..."
+    scene barhelenapiscando
     #cena helena piscadela
     h"ok, vou pedir!"
+    scene barhelenapedindo
     #cena dela sozinha
     d"Estava com saudades de sair com Helena"
     d"Ela me faz muito bem..."
     scene dmente with fade
     pause 1
+    scene barhelenal with fade 
     #cena delas com a comida na mesa
     h"prontinho, isso parece estar muito bom!"
     d"realmente, me lembra os tempos da escola."
     h "Você lembra quando a gente se conheceu?"
     d "Infelizmente."
+    scene barhelenanervosal
     h "Nossa, vai começar..."
     d "Você derrubou café em mim."
     h "Foi sem querer!"
@@ -497,6 +565,7 @@ label start:
     d "Helena!"
     scene dmente with fade
     pause 1
+    scene barhelena with fade
     #cena delas sem comida na mesa
     d"Estava muito bom."
     h"gostinho de nostalgia..."   
