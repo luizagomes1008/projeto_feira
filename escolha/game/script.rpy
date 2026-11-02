@@ -725,6 +725,7 @@ label start:
 
 
         "Não sei o que quero fazer":
+            $ confianca -= 1
             d "Sinceramente? Eu não faço ideia."
             h "Você não precisa ter todas as respostas agora."
             d "Tenho medo de escolher errado."
@@ -796,22 +797,117 @@ label start:
     else:
         d "Posso atualizar o meu currículo e tentar umas vagas de emprego CLT."
     d "Acho que a Helena conhece alguns lugares para eu fazer um bico..."
-    d "Também tem... {p} Naahhh..."
-    d "..."
-    d "Tá. Querendo ou não é uma opção..."
-    d "Se eu não me engano, minha vizinha me contou sobre o trabalho sexual, poderia ver com ela para conseguir a renda extra que preciso."
+    
+    if confianca < 1:
+        d "Também tem... {p} Naahhh..."
+        d "..."
+        d "Tá. Querendo ou não é uma opção..."
+        d "Se eu não me engano, minha vizinha me contou sobre o trabalho sexual, poderia ver com ela para conseguir a renda extra que preciso."
     menu:
         d "Opito por qual desses caminhos?"
 
         
         "entregar currículos" if empregoDia2 == False:
+                $ confianca += 1
                 d "Vou atualizar meu currículo e entregar em algumas empresas."
-                $confianca += 1
-        "Procurar um bico":
-            d "Vou convorsar com a Helena"
+                d "Vou perguntar para a Helena sobre lugares para  mandar meu currículo"
+                d "hoje mesmo"
+                show celhelena at celular_menor
+                d "Helena, você sabe aonde eu posso levar meu currículo?"
+                h "Ah sim! vou te passar os endereços"
+                d "Obrigada, Helena, De verdade."
+                h "Conte comigo sempre amiga!"
+                hide celhelena
+                scene dmente with Dissolve(1) 
+                pause 1
+                d "Já atualizei meu currículo... Não é dos melhores mas preciso de emprego logo"
+                scene onibusmanha with Dissolve(1) 
+                pause 1
+                d "Não posso gastar muito mas tive que pagar 12$ do onibus"
+                d "Mas estoou confiante! Passando em 5 lugares tenho mais chances"
+                $dinheiro -= 12
+                $confianca += 2
+                pause 3
+                scene dmente with Dissolve(1)
+                scene farmaciacurr with fade
+                pause 1.5
+                scene dmente with fade
+                scene lojaroupa with fade
+                pause 1.5
+                scene dmente with fade
+                scene mercado with fade
+                pause 1.5
+                scene dmente with fade
+                scene lojacell with fade
+                pause 1.5
+                scene dmente with fade
+                scene onibusnoite with Dissolve(1)
+                d "Consegui ir em varios lugares."
+                d "Mas agora estou morrendo de sono"
+                pause 1 
+                scene dmente with Dissolve(1)
+                scene kitnetn with Dissolve (1)
+                pause 1
+                show celhelena at celular_menor
+                d "Obrigada por me ajudar hoje Helena, não sabia nem por onde começar"
+                h"Você sabe que pode sempre contar comigo nao é Diana?"
+                d"Você sempre me ajuda e tudo fica mais fácil"
+                h "Nesse ritmo você vai encontrar uma vaga rapidinho!"
+                d "Espero que sim!"
+                h"boa noite Diana, dorme bem"
+                d"boa noite miga, obrigada mais uma vez"
+                hide celhelena
+                pause 1
+                scene dmente with Dissolve(1)
+                scene dmente 
+                pause 1
+                scene dmente with Dissolve(1)
+                scene quarton with fade
+                pause 1
+                d"amanhã as coisas vão melhorar, sinto isso"
+                scene dmente with Dissolve(1)
+                pause 1
 
-        "Se prostituir":
-            d "Vou conversar com a vizinha."
+
+        "Procurar um bico":
+            d "Bom, acho que por agora é melhor fazer algo simples e rápido..."
+            d "Vou convorsar com a Helena"
+            d "Talvez ela saiba de alguém que precise de ajuda com algo, como fazer uma faxina"
+            show celhelena at celular_menor
+            h "Eu conheço uma faxineira, talvez você possa de oferecer para ajudar ela e receber parte do dinheiro"
+            h "Oque você acha?"
+            d "É melhor que nada... preciso de dinheiro rápido"
+            hide celhelena
+            scene onibusmanha with Dissolve(1) 
+            pause 1
+            scene dmente with Dissolve(1)
+            d "Passei o dia todo ajudando a faxineira..."
+            $dinheiro += 50
+            $confianca -= 1
+            scene quarton with fade
+            pause 1
+            d "Fiquei muito cansada, não sei se trabalhar com isso é pra mim..."
+            d "Pelo menos consegui 50 reais"
+            d "por agora tenho [dinheiro] reais"
+            d "Amanhã vejo oque faço..."
+            scene dmente with Dissolve(1)
+            pause 1
+
+        "Pedir ajuda para a vizinha" if confianca < 1:
+            d "Vou devia ver com a vizinha..."
+            d "Talvez ela saiba de algum programa publico para me ajudar"
+            d "Eu estou desesperada e preciso logo desse dinheiro, mesmo não me dando muito bem com ela"
+            scene dmente with Dissolve(1)
+            pause 1
+            scene kitnet with Dissolve(1)
+            show a apreocupada a_entrando_direita
+            a "Diana? precisa de algo? você parece aflita."
+            d "Andreia... Eu tô precisando de dinheiro... E rápido, eu não sei oque fazer e preciso de novas ideias"
+
+            #Andreia vai ser quem apresenta os cursinhos e ongs para a diana
+
+
+        
 
 
 # No 3 é obrigatório
