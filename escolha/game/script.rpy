@@ -34,6 +34,10 @@ image lanchonete = Transform("images/lanchonete.png", fit ="cover")
 image lanchonete2 = Transform("images/lanchonete2.png", fit ="cover")
 image lanchonete3 = Transform("images/lanchonete3.png", fit ="cover")
 image lanchonete4 = Transform("images/lanchonete4.png", fit ="cover")
+image kitnetporta = Transform("images/kitnetporta.png", fit = "cover")
+image cras = Transform("images/cras.png", fit = "cover")
+image bolo = Transform("images/bolos.png", fit = "cover")
+
 
 define audio.tema_principal = "musicas/musicareflexiva.mp3"
 define audio.musica_animada = "musicas/lofi.mp3"
@@ -165,7 +169,6 @@ transform a_entrando_direita:
     zoom 1.9
     xalign 1.2
     yalign 1.0
-
     linear 0.8:
         xalign 0.8
 # Andreia sai da direita, atravessando para a esquerda
@@ -216,6 +219,17 @@ image a airritada = "/images/personagens/airritada.png"
 
 define e = Character("Elias", color="#ff9933", what_italic=True)
 image e epadrao = "images/personagens/epadrao.png"
+image e ealternativo = "/images/personagens/ealternativo.png"
+image e ediscusao = "/images/personagens/ediscucao.png"
+image e efalando = "/images/personagens/efalando.png"
+image e eviradadeolho = "/images/personagens/eviradadeolho.png"
+transform e_saindo:
+    xalign 0.5
+    yalign 1.0
+    zoom 1.5
+    linear 1.5:
+        xalign 0.5
+    
 
 
 define g = Character("Gerente Julio", color="#e6df27")
@@ -235,10 +249,10 @@ transform g_saindo:
     zoom 1.5
     linear 1.5:
         xalign -1.2
-default dinheiro = 80
+default dinheiro = 100
 default rede = 0
 default confianca = 0
-
+default conversadiana = False
 default empregoDia2 = False
 
 
@@ -401,7 +415,7 @@ label start:
     pause 0.5
 #no caixa
     scene caixa with fade
-    d "R$80. Só isso... E o aluguel dia 5... "
+    d "R$100. Só isso... E o aluguel dia 5... Preciso pagar a outra metade "
     d "Eita, já é hoje!"
     pause 1
     d"Eu vou dar um jeito... Já está tarde, melhor voltar para casa..."
@@ -740,10 +754,8 @@ label start:
             h"que tal passarmos a tarde maratonando nossa série favorita?"
             d "isso me parece ótimo"
             pause 1
-            scene dmente with Dissolve(1)
-            scene dmente
+            scene dmente with Dissolve(1) #aqui por algum motivo o cenario se repete :/
             pause 2
-            scene dmente with Dissolve(1)
             scene salan with Dissolve(1)
             show h hpadraobocaaberta at h_centro with fade
             h"já está tarde, é melhor eu ir"
@@ -763,18 +775,6 @@ label start:
             scene dmente with Dissolve(1)
             scene dmente with Dissolve(1)
             pause 1
-
-
-
-
-
-#surge elias
-    e "Ô Diana! Dia 5! R$650 do aluguel."
-    d "Elias, fui mandada embora hoje. Me dá até dia 15? Por favor?"
-    e "Dia 15 então. Mas vai pra R$700 com juros. Dia 15 eu volto."
-
-    scene dmente with Dissolve(1) 
-
 
 
 #Dia 3
@@ -797,12 +797,28 @@ label start:
     else:
         d "Posso atualizar o meu currículo e tentar umas vagas de emprego CLT."
     d "Acho que a Helena conhece alguns lugares para eu fazer um bico..."
-    
+    #surge elias
+    e "Ô Diana! "
+    d"ah não, o aluguel..."
+    scene kitnetporta with fade
+    show e epadrao at h_centro
+    pause 1
+    d "Elias, fui mandada embora hoje. Me dá até dia 15? Por favor?"
+    show e ediscusao
+    e "Já se passaram dois dias Diana, nao tolelarei mais."
+    show e epadrao
+    d"por favor seu Elias, me dê ao menos 5 dias"
+    show e ealternativo
+    e"3 dias Diana, nada mais!"
+    show e epadrao at h_saindo
+    d"ah não..."
+    scene salam with fade
+    pause 1
     if confianca < 1:
-        d "Também tem... {p} Naahhh..."
-        d "..."
-        d "Tá. Querendo ou não é uma opção..."
-        d "Se eu não me engano, minha vizinha me contou sobre o trabalho sexual, poderia ver com ela para conseguir a renda extra que preciso."
+        d "Eu nem sei se consigo pedir ajuda para alguém..."
+        d "Mas talvez seja melhor tentar do que ficar parada."
+    else:
+        d "Preciso pensar nas possibilidades que ainda tenho."
     menu:
         d "Opito por qual desses caminhos?"
 
@@ -878,6 +894,9 @@ label start:
             h "Oque você acha?"
             d "É melhor que nada... preciso de dinheiro rápido"
             hide celhelena
+            pause 1
+            scene banheirouniforme with fade
+            d "de pouco em pouco vou me erguer"
             scene onibusmanha with Dissolve(1) 
             pause 1
             scene dmente with Dissolve(1)
@@ -893,36 +912,223 @@ label start:
             scene dmente with Dissolve(1)
             pause 1
 
-        "Pedir ajuda para a vizinha" if confianca < 1:
-            d "Vou devia ver com a vizinha..."
-            d "Talvez ela saiba de algum programa publico para me ajudar"
-            d "Eu estou desesperada e preciso logo desse dinheiro, mesmo não me dando muito bem com ela"
+
+        "Conversar com Andreia":
+            $ conversadiana = True
+            d "Talvez eu devesse conversar com a Andreia..."
+            d "Ela conhece bastante gente por aqui."
+            d "Não custa tentar, né?"
+
             scene dmente with Dissolve(1)
             pause 1
+
             scene kitnet with Dissolve(1)
-            show a apreocupada a_entrando_direita
-            a "Diana? precisa de algo? você parece aflita."
-            d "Andreia... Eu tô precisando de dinheiro... E rápido, eu não sei oque fazer e preciso de novas ideias"
+            show a apreocupada at a_entrando_direita
 
-            #Andreia vai ser quem apresenta os cursinhos e ongs para a diana
+            a "Diana? Precisa de alguma coisa? Você parece preocupada."
 
+            d "Andreia... eu tô precisando de dinheiro."
+            d "Fui mandada embora e não sei muito bem por onde começar."
+            show a aalternativa
+            a "Ah, minha filha... sinto muito."
+            show a apadrao
+            a "Mas olha, talvez eu consiga te ajudar com algumas coisas."
 
-        
+            d "Sério? Como?"
 
+            a "Você já ouviu falar dos cursos gratuitos que oferecem por aqui?"
+            a "Tem algumas iniciativas para mulheres que estão procurando emprego."
 
-# No 3 é obrigatório
-# Vou tentar por ele falando com a amiga e a H fala de bico e levar mais currículos
-# Aí faz a Diana lembrando da vizinha e q talvez prostituicao seja uma opção
+            d "Não sabia disso..."
+            show a afeliz
+            a "Também conheço umas mulheres que fazem doces para vender."
+            a "Às vezes aparece bastante encomenda. Poderia ser uma renda extra."
+
+            d "Eu não tinha pensado nisso..."
+
+            a " tem o CRAS também. Lá você pode se informar sobre os programas de assistência e outras oportunidades."
+
+            d "Parece que existem mais possibilidades do que eu imaginava."
+            show a apadrao
+            a "Claro que existem, Diana. Você não precisa enfrentar tudo sozinha."
+
+            d "Obrigada, Andreia. De verdade."
+            hide a
+            scene dmente with Dissolve(1)
+            pause 1
+
+            d "Depois de conversar com Andreia, comecei a pensar em tudo que ela me contou."
+            d "Talvez eu não estivesse tão sem opções quanto imaginava."
+
+            scene onibusmanha with Dissolve(1)
+            pause 2
+
+            scene kitnetn with Dissolve(1)
+            pause 1
+
+            d "O restante do dia passou enquanto eu tentava organizar minhas ideias."
+            d "Anotei os endereços dos cursos e os contatos que Andreia me passou."
+            scene black with fade
+            pause 1.5
+            scene quarton with fade
+            d "Já estava ficando tarde. Amanhã seria um novo dia."
+            scene dmente with Dissolve (1)
+            pause 1
+
+# DIA 4
+
+    pause 2.5
+    scene quarto_fundo with Dissolve(1)
+    pause 1
+
+    d "Mais um dia..."
+
+    scene banheirouniforme with fade
+    pause 1
+
+    scene salam with fade
+    pause 1
+
+    d "Preciso pensar no que fazer hoje."
+    d "Não posso continuar dependendo apenas dos poucos reais que tenho."
+    show celhelena at celular_menor
+    h "Bom dia, amiga! Como você está?"
+    d "Bom dia, Helena. Estou tentando pensar no que fazer hoje."
+    h "Olha, lembrei de uma coisa que pode te ajudar."
+    h "Você já ouviu falar do CRAS? Acho que Andreia já mecionou, lá você pode conseguir informações sobre programas de assistência e oportunidades."
+    h "Também existem cursos profissionalizantes gratuitos por aqui."
+    d "Nossa, eu nem sabia que tinha tudo isso, pode me ajudar bastante."
+    h "Pois é! Acho que vale a pena dar uma olhada."
+    d "Obrigada por lembrar de mim, Helena."
+    hide celhelena
+    if conversadiana == True:
+        d "Além disso, Andreia tinha comentado sobre algumas mulheres que trabalham com produção de doces."
+        d "Talvez eu consiga uma oportunidade com elas."
+    else:
+        d "Preciso encontrar alguma maneira de conseguir uma renda extra."
+        d "Talvez seja uma boa ideia organizar meu currículo e procurar outras oportunidades."
+
     menu:
-        "Trabalho {i}sério{/i}":
-            d "Vou procurar um emprego formal, é mais estabilidade."
+        d "O que devo fazer hoje?"
+        "Buscar ajuda do CRAS e conhecer cursos profissionalizantes":
+            d "Acho que começar buscando informações pode ser uma boa ideia."
+            d "Vou tentar descobrir quais programas e cursos estão disponíveis."
+            scene dmente with Dissolve(1)
+            pause 1
 
-        "Bico":
-            d "Talvez eu devesse procurar um bico."
+            scene onibusmanha with Dissolve(1)
+            pause 2
 
-        "Prostituição":
-            d "Talvez eu devesse procurar um trabalho sexual."
-    # escolhas parte da manhã
+            d "Espero encontrar alguma oportunidade por lá."
+            scene cras with fade 
+            pause 1.5
+            scene dmente with Dissolve(1)
+            pause 1
+
+            d "Consegui algumas informações sobre os programas de assistência."
+            d "Também descobri algumas possibilidades de cursos gratuitos."
+
+            $ rede += 2
+            $ confianca += 1
+
+            scene onibusnoite with Dissolve(1)
+            pause 2
+
+            scene quarton with fade
+            d "Pelo menos hoje consegui descobrir que existem pessoas e lugares dispostos a ajudar."
+            d "Talvez eu esteja começando a encontrar um caminho."
+
+        "Ajudar Andreia na produção de doces" if conversadiana == True:
+            d "Andreia comentou sobre algumas confeiteiras que precisam de ajuda."
+            d "Pode ser uma boa oportunidade para conseguir uma renda."
+
+            scene dmente with Dissolve(1)
+            pause 1
+
+            scene onibusmanha with Dissolve(1)
+            pause 2
+
+            d "Tomara que dê tudo certo."
+
+            scene dmente with Dissolve(1)
+            pause 1
+            scene bolo with fade
+            pause 1.5
+            scene onibusnoite with Dissolve(1)
+            d "As mulheres foram muito receptivas comigo."
+            d "Passei boa parte do dia ajudando na preparação dos doces."
+            d "Foi cansativo, mas gostei de trabalhar em equipe."
+            pause 1.5
+            scene kitnetn with Dissolve(1)
+
+            $ rede += 1
+            $ confianca += 1
+            $ dinheiro += 150
+
+            scene quarton with fade
+            d "Foi um dia produtivo."
+            d"as amigas da Andreia me anteciparam 150 reais, estou muito feliz"
+            d"tenho [dinheiro] reais"
+            d "Quem sabe isso não se transforma em uma oportunidade maior?"
+
+        "Organizar meu currículo e procurar novas vagas":
+            d "Acho que preciso continuar tentando encontrar um emprego."
+            d "Vou conversar com Helena e pedir algumas indicações."
+
+            show celhelena at celular_menor
+
+            d "Helena, você conhece algum lugar que esteja contratando?"
+            h "Posso procurar algumas oportunidades e te mandar."
+            h "Não desiste, amiga. Uma hora vai aparecer alguma coisa."
+            d "Espero que sim."
+
+            hide celhelena
+
+            scene dmente with Dissolve(1)
+            pause 1
+
+            d "Passei boa parte do dia pesquisando vagas e atualizando meu currículo."
+            d "Ainda não consegui nada, mas pelo menos estou tentando."
+
+            scene onibusnoite with Dissolve(1)
+            pause 2
+
+            scene quarton with fade
+            d "Amanhã vou continuar procurando."
+
+        "Tentar conciliar a produção de doces e os cursos" if conversadiana == True and confianca > 2:
+            d "Talvez eu não precise escolher apenas uma possibilidade."
+            d "Posso ajudar na produção de doces e também procurar me qualificar."
+            scene dmente with Dissolve(1)
+            pause 1
+            scene onibusmanha with Dissolve(1)
+            pause 2
+            d "Vou começar ajudando com os doces."
+            scene dmente with Dissolve(1)
+            pause 1
+            scene bolo with fade
+            pause 1
+            d "Depois, vou aproveitar para buscar informações sobre os cursos disponíveis."
+            pause 1.5
+            scene onibusmanha with Dissolve(1)
+            pause 2
+            scene cras with fade
+            pause 1.5
+            scene onibusnoite with Dissolve(1)
+            d "Foi bastante coisa para um único dia..."
+            d "Mas sinto que estou começando a construir novas possibilidades."
+            pause 1.5
+            scene dmente with Dissolve(1)
+            scene kitnet with fade
+            pause 1
+            $ rede += 2
+            $ confianca += 2
+            scene quarton with fade
+            d "Estou cansada, mas feliz por não ter desistido."
+
+   
+
+    # isso daqui a gente tinha colocado no comecinho do jogo, mas acho que nao faz tanto sentido mais
     menu:
         "Levar currículos no centro (-R$12 busão, +2 confiança)":
             $dinheiro -= 12
@@ -955,7 +1161,7 @@ label start:
     # capítulo 3
     a "Diana, amanhã vamos fazer 30 bolos de pote pra escola. Cada uma faz 10 e divide. Vem? Minha filha Lili vai amar ter você lá."
 
-    h "Amiga! Consegui me inscrever no curso de Atendimento do SENAC Delas. Sabe que pra mim, mulher trans, é difícil arrumar trampo formal, mas esse curso tem parceria de emprego. Tem bolsa de R$300. Bora juntas? A gente se ajuda na prova."
+    h "Amiga! Consegui me inscrever no curso de Atendimento do SENAC Delas, esse curso tem parceria de emprego. Tem bolsa de R$300. Bora juntas? A gente se ajuda na prova."
 
     menu:
         "Aceitar convite da Andreia - Empreender em coletivo":
@@ -976,32 +1182,6 @@ label start:
 
     jump fim
 
-
-#variações, cap 4
-
-label andreia:
-    a "Diana, cliente quer 50 bolos pra sábado, mas não temos batedeira grande."
-    menu:
-        "Aceitar convite da Andreia - Empreender em coletivo":
-            d "Vou sim! Vai ser bom pra mim e pra Lili."
-            #$confianca += 1
-            #$rede += 1
-            jump andreia
-
-        "Aceitar convite da Helena - Curso com bolsa":
-            d "Vou sim! Vai ser bom pra mim e pra Helena."
-            #$confianca += 1
-            #$rede += 1
-            jump helena
-
-        "Recusar os convites":
-            d "Não vou. Preciso me organizar primeiro."
-            #$confianca -= 1
-
-    jump fim
-
-
-
 label helena:
     h "Diana, tô nervosa. Se eu não passar, vão dizer que é porque sou trans. Mas se eu passar, mostro que a gente pode ocupar esses lugares."
 
@@ -1013,7 +1193,7 @@ label helena:
             d "Tudo bem, Helena. Vou te ajudar."
 
         "As duas pedem pra professora fazer prova oral juntas":
-            d "Ainda bem que essa prof é boasinha."
+            d "Ainda bem que essa prof é boazinha."
 
     jump fim
 
