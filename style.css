@@ -53,6 +53,11 @@ p.card-text{
    
 }
 
+.grafico{
+    height: 50%;
+    width: 50%;
+}
+
 
 
 @keyframes entrada {
