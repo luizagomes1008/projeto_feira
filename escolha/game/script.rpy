@@ -778,9 +778,6 @@ label start:
 
 
 #Dia 3
-
-
-
     pause 2.5 #celular despertando
     scene quarto_fundo with Dissolve(1) 
     pause 1
@@ -839,9 +836,7 @@ label start:
                 d "Já atualizei meu currículo... Não é dos melhores mas preciso de emprego logo"
                 scene onibusmanha with Dissolve(1) 
                 pause 1
-                d "Não posso gastar muito mas tive que pagar 12$ do onibus"
                 d "Mas estoou confiante! Passando em 5 lugares tenho mais chances"
-                $dinheiro -= 12
                 $confianca += 2
                 pause 3
                 scene dmente with Dissolve(1)
@@ -918,32 +913,24 @@ label start:
             d "Talvez eu devesse conversar com a Andreia..."
             d "Ela conhece bastante gente por aqui."
             d "Não custa tentar, né?"
-
             scene dmente with Dissolve(1)
             pause 1
-
             scene kitnet with Dissolve(1)
             show a apreocupada at a_entrando_direita
-
             a "Diana? Precisa de alguma coisa? Você parece preocupada."
-
             d "Andreia... eu tô precisando de dinheiro."
             d "Fui mandada embora e não sei muito bem por onde começar."
             show a aalternativa
             a "Ah, minha filha... sinto muito."
             show a apadrao
             a "Mas olha, talvez eu consiga te ajudar com algumas coisas."
-
             d "Sério? Como?"
-
             a "Você já ouviu falar dos cursos gratuitos que oferecem por aqui?"
             a "Tem algumas iniciativas para mulheres que estão procurando emprego."
-
             d "Não sabia disso..."
             show a afeliz
             a "Também conheço umas mulheres que fazem doces para vender."
             a "Às vezes aparece bastante encomenda. Poderia ser uma renda extra."
-
             d "Eu não tinha pensado nisso..."
 
             a " tem o CRAS também. Lá você pode se informar sobre os programas de assistência e outras oportunidades."
