@@ -203,7 +203,7 @@ transform h_saindo:
         xalign -1.5
 
 define d = Character("Diana")
-image dpadrao = "/images/Dpadrao.jpeg" 
+image dpadrao = "/images/Dpadrao.png" 
 
 define a = Character("Andreia", color="#66ccff")
 transform andreia_chegando:
@@ -254,6 +254,11 @@ default rede = 0
 default confianca = 0
 default conversadiana = False
 default empregoDia2 = False
+default aluguelPago = False
+default andreiaAjudaAluguel = False
+default cursoSENAC = False
+default vagaEncontrada = False
+default trabalhoColetivo = False
 
 
 # The game starts here.
@@ -786,7 +791,7 @@ label start:
     scene cozinha
     scene salam
     d "Tá... vamos ver as contas"
-    d "Tenho [dinheiro] e preciso pagar R$700 do aluguel e comprar mais comida..."
+    d "Tenho [dinheiro] e preciso pagar R$350 do aluguel e comprar mais comida..."
     d "Não vai ser o suficiente... \n Dia 15 já já está aí... "
     d "Tenho que procurar uma forma de ganhar dinheiro... {p} Mas qual?"
     if empregoDia2 == True:
@@ -896,12 +901,12 @@ label start:
             pause 1
             scene dmente with Dissolve(1)
             d "Passei o dia todo ajudando a faxineira..."
-            $dinheiro += 50
+            $dinheiro += 80
             $confianca -= 1
             scene quarton with fade
             pause 1
             d "Fiquei muito cansada, não sei se trabalhar com isso é pra mim..."
-            d "Pelo menos consegui 50 reais"
+            d "Pelo menos consegui 80 reais"
             d "por agora tenho [dinheiro] reais"
             d "Amanhã vejo oque faço..."
             scene dmente with Dissolve(1)
@@ -1106,98 +1111,710 @@ label start:
             d "Mas sinto que estou começando a construir novas possibilidades."
             pause 1.5
             scene dmente with Dissolve(1)
-            scene kitnet with fade
+            scene kitnetn with fade
             pause 1
             $ rede += 2
             $ confianca += 2
             scene quarton with fade
             d "Estou cansada, mas feliz por não ter desistido."
 
-   
+# ============================================================
+# DIA 5 - NOVAS POSSIBILIDADES
+# ============================================================
 
-    # isso daqui a gente tinha colocado no comecinho do jogo, mas acho que nao faz tanto sentido mais
+label dia5:
+
+    play music tema_principal fadein 2.0
+
+    scene dmente with Dissolve(1.5)
+
+    pause 2.0
+
+    d "O despertador tocou cedo naquela manhã."
+    d "Por alguns segundos, esqueci que não precisava mais ir trabalhar."
+
+    pause 1.0
+
+    d "É estranho... Passei tanto tempo reclamando da rotina."
+    d "Agora, sinto falta até dela."
+
+    scene banheiro with fade
+
+    d "Preciso parar de pensar no que perdi."
+    d "Ainda tenho algumas possibilidades."
+
+    scene mesaquarto with Dissolve(1.0)
+
+    pause 1.0
+
+    d "Vamos ver..."
+
+    # --------------------------------------------------------
+    # CELULAR - HELENA
+    # --------------------------------------------------------
+
+    show celhelena at celular_menor
+
+    h "Diana, bom dia!"
+    h "Você lembra que te falei do curso do SENAC Delas?"
+
+    d "Lembro. Você conseguiu mais informações?"
+
+    h "Consegui! As inscrições estão abertas."
+    h "E existe uma bolsa de apoio de R$300 para algumas participantes."
+
+    d "R$300? Isso ajudaria bastante..."
+
+    h "Além disso, o curso tem parceria com empresas."
+    h "Não é garantia de emprego, mas pode abrir algumas portas."
+
+    d "Eu tenho medo de começar algo e não conseguir terminar."
+
+    h "Você não precisa decidir tudo de uma vez."
+    h "Só queria que soubesse que essa oportunidade existe."
+
+    hide celhelena
+
+    pause 1.0
+
+    d "Um curso... um trabalho... ou continuar tentando conseguir dinheiro rápido."
+
+    d "Eu preciso escolher com cuidado."
+
     menu:
-        "Levar currículos no centro (-R$12 busão, +2 confiança)":
-            $dinheiro -= 12
-            $confianca += 2
-            d "Gastei do busão, mas entreguei 5 currículos."
 
-        "Fazer faxina pelo zap (+R$50, -1 confiança)":
-            $dinheiro += 50
-            $confianca -= 1
-            d "Fiz faxina o dia todo. R$50, mas tô acabada."
+        "O que Diana decide fazer hoje?"
 
-        "Ir no CRAS se informar (+2 rede, +1 confiança)":
-            $rede += 2
-            $confianca += 1
-            d "Tem curso do SENAC Delas com bolsa e tem a associação de mães da Andreia."
+        "Participar da produção de doces com Andreia":
 
-    # parte da tarde
-    d "Como se eu tivesse dinheiro pra isso... Mas se eu me atrasar, o Elias vai me cobrar mais ainda..."
+            d "Acho que consigo trabalhar com as mulheres da associação."
+            d "Pelo menos já conheço um pouco desse ambiente."
 
-    menu:
-        "Pagar mesmo que parcialmente":
-            d "Vou pagar o que eu conseguir agora."
+            scene onibusmanha with Dissolve(1.0)
 
-        "Pedir ajuda pra Andreia parcelar":
-            a "Deixa que eu falo com ele, filha. Você me paga depois me ajudando com a Lili."
+            pause 2.0
 
-        "Descansar e organizar as ideias":
-            d "Preciso respirar e pensar no que vou fazer."
+            scene bolo with fade
 
-    # capítulo 3
-    a "Diana, amanhã vamos fazer 30 bolos de pote pra escola. Cada uma faz 10 e divide. Vem? Minha filha Lili vai amar ter você lá."
+            pause 1.0
 
-    h "Amiga! Consegui me inscrever no curso de Atendimento do SENAC Delas, esse curso tem parceria de emprego. Tem bolsa de R$300. Bora juntas? A gente se ajuda na prova."
+            d "Hoje precisamos preparar as encomendas para a escola."
 
-    menu:
-        "Aceitar convite da Andreia - Empreender em coletivo":
-            d "Vou sim! Vai ser bom pra mim e pra Lili."
-            # $confianca += 1
-            # $rede += 1
-            jump andreia
+            "Diana se juntou às outras mulheres."
+            "Enquanto trabalhavam, conversavam sobre suas vidas, dificuldades e planos."
 
-        "Aceitar convite da Helena - Curso com bolsa":
-            d "Vou sim! Vai ser bom pra mim e pra Helena."
-            # $confianca += 1
-            # $rede += 1
-            jump helena
+            d "É curioso..."
+            d "Cada uma de nós tem uma história diferente."
 
-        "Recusar os convites":
-            d "Não vou. Preciso me organizar primeiro."
-            # $confianca -= 1
+            d "Mas parece que, quando estamos juntas, as coisas ficam um pouco menos difíceis."
 
-    jump fim
+            pause 1.5
 
-label helena:
-    h "Diana, tô nervosa. Se eu não passar, vão dizer que é porque sou trans. Mas se eu passar, mostro que a gente pode ocupar esses lugares."
+            scene kitnetn with Dissolve(1.0)
 
-    menu:
-        "Estudar juntas na casa da Andreia":
-            a "Lili faz o dever dela, vocês estudam. Eu faço café."
+            $ dinheiro += 100
+            $ rede += 2
+            $ confianca += 1
+            $ trabalhoColetivo = True
 
-        "Helena fica doente de ansiedade, Diana vai sozinha e depois ensina ela":
-            d "Tudo bem, Helena. Vou te ajudar."
+            d "Recebi R$100 pelo trabalho de hoje."
+            d "Não é muito, mas foi conquistado com meu próprio esforço."
 
-        "As duas pedem pra professora fazer prova oral juntas":
-            d "Ainda bem que essa prof é boazinha."
+            d "E, pela primeira vez em alguns dias, não me senti tão perdida."
+
+        "Inscrever-se no curso do SENAC Delas":
+
+            d "Talvez seja hora de tentar algo diferente."
+            d "Não quero apenas sobreviver. Quero ter outras oportunidades."
+
+            scene onibusmanha with Dissolve(1.0)
+
+            pause 2.0
+
+            scene cras with fade
+
+            pause 1.0
+
+            "Diana foi buscar informações sobre a inscrição e os programas de apoio."
+
+            "Após receber as orientações, Diana conseguiu realizar sua inscrição."
+
+            scene dmente with Dissolve(1.0)
+            scene onibusmanha with fade
+
+            d "Pronto. Agora é esperar pelas próximas etapas."
+
+            show celhelena at celular_menor
+
+            h "E aí? Conseguiu?"
+
+            d "Consegui me inscrever!"
+
+            h "Eu sabia que você ia tentar."
+
+            d "Ainda estou nervosa."
+
+            h "Nós podemos estudar juntas quando as aulas começarem."
+
+            d "Obrigada, Helena."
+
+            hide celhelena
+
+            $ cursoSENAC = True
+            $ rede += 2
+            $ confianca += 2
+
+            scene salam with fade
+
+            d "Hoje não consegui dinheiro..."
+            d "Mas talvez tenha conseguido algo que valha ainda mais no futuro."
+
+        "Continuar procurando emprego":
+
+            d "Eu preciso de uma renda fixa."
+            d "Não posso depender apenas de trabalhos temporários."
+
+            scene onibusmanha with Dissolve(1.0)
+
+            pause 2.0
+
+            scene farmaciacurr with fade
+
+            pause 1.0
+
+            d "Mais um currículo entregue."
+
+            scene dmente with fade
+
+            scene lojaroupa with fade
+
+            pause 1.0
+
+            d "Espero que alguém entre em contato."
+
+            scene dmente with fade
+
+            scene mercado with fade
+
+            pause 1.0
+
+            d "É cansativo procurar emprego sem saber se alguém vai responder."
+
+            scene dmente with fade
+
+            scene lojacell with fade
+
+            pause 1.0
+
+            d "Mas não posso desistir."
+
+            scene onibusnoite with Dissolve(1.0)
+
+            pause 2.0
+
+            scene kitnetn with fade
+
+            d "Passei o dia inteiro procurando vagas."
+
+            pause 1.0
+
+            "Ao chegar em casa, Diana recebeu uma mensagem."
+
+            show celmensagem at celular_maior
+
+            pause 1.0
+
+            d "Uma entrevista..."
+
+            d "Não é um emprego ainda, mas é uma oportunidade."
+
+            hide celmensagem
+
+            $ vagaEncontrada = True
+            $ confianca += 2
+
+            d "Amanhã preciso me preparar."
+
+
+    scene mesaquarto with fade
+
+    pause 1.0
+
+    d "Antes de pensar no amanhã, preciso resolver o aluguel."
+
+    d "R$350..."
+
+    d "Quanto dinheiro eu tenho agora?"
+
+    d "Tenho R$[dinheiro]."
+
+    pause 1.0
+
+    if dinheiro >= 350:
+
+        d "Eu finalmente tenho o suficiente."
+
+        menu:
+
+            "O que Diana faz?"
+
+            "Pagar o aluguel":
+
+                d "Não quero adiar isso mais uma vez."
+
+                $ dinheiro -= 350
+                $ aluguelPago = True
+
+                scene kitnetporta with fade
+
+                show e epadrao at h_centro
+
+                e "Diana?"
+
+                d "Seu Elias. Eu consegui o dinheiro do aluguel."
+
+                show e eviradadeolho
+
+                e "Certo. Pelo menos resolveu essa pendência."
+
+                d "Obrigada por ter me dado mais alguns dias."
+
+                show e epadrao at h_saindo
+
+                pause 1.0
+
+                hide e
+
+                scene salam with fade
+
+                d "Pronto."
+
+                d "Uma preocupação a menos."
+                scene dmente with Dissolve(1)
+                scene mesaquarto with fade
+                d"já nao preciso me preocupar pelo resto do mês com o aluguel"
+                d"mas isso também não significa que tenho que ficar parada, vou procurar vagas de emprego pela internet"
+                d"pelo resto do dia!"
+
+                $ confianca += 2
+
+            "Guardar o dinheiro para outras necessidades":
+
+                d "Eu preciso pensar na comida e nas outras contas também."
+
+                d "Talvez eu consiga pagar depois."
+
+                $ aluguelPago = False
+
+                d "Mas isso significa que ainda tenho uma dívida."
+                scene dmente with Dissolve(1)
+                scene mesaquarto with fade
+                d"bom, tenho dinheiro para o resto do mês, mas preciso pensar no aluguel"
+                d"vou procurar vagas de emprego pela internet"
+                d"pelo resto do dia!"
+
+    else:
+
+        d "Ainda não consegui juntar o suficiente."
+
+        $ valorFaltante = 350 - dinheiro
+
+        d "Faltam R$[valorFaltante]."
+
+        pause 1.0
+
+        d "Eu poderia tentar pedir ajuda..."
+
+        scene kitnet with fade
+
+        show a apreocupada at a_entrando_direita
+
+        a "Diana? Você parece preocupada."
+
+        d "Andreia, eu ainda não consegui pagar o aluguel."
+
+        show a aalternativa
+
+        a "Quanto está faltando?"
+
+        d "R$[valorFaltante]."
+
+        show a apreocupada
+
+        a "Eu posso te ajudar com o que falta."
+
+        d "Mas Andreia, você já tem tantas coisas para cuidar..."
+
+        show a apadrao
+
+        a "Diana, eu não estou oferecendo porque acho que você não consegue."
+
+        a "Estou oferecendo porque sei que essa situação é difícil."
+
+        a "E porque, quando a gente pode ajudar alguém, não precisa esperar essa pessoa chegar ao limite."
+
+        menu:
+
+            "Diana aceita a ajuda de Andreia?"
+
+            "Aceitar":
+
+                d "Eu aceito. Obrigada, Andreia."
+
+                show a afeliz
+
+                a "Não precisa agradecer tanto."
+
+                d "Eu vou me organizar para não ficar nessa situação novamente."
+
+                a "Eu sei que vai."
+
+                $ dinheiro += valorFaltante
+                $ dinheiro -= 350
+                $ aluguelPago = True
+                $ andreiaAjudaAluguel = True
+                $ rede += 2
+                $ confianca += 1
+
+                d "Consegui pagar o aluguel."
+
+                d "Não foi sozinha... mas consegui."
+                scene dmente with Dissolve(1)
+                scene mesaquarto with fade
+                d"já nao preciso me preocupar pelo resto do mês com o aluguel"
+                d"mas isso também não significa que tenho que ficar parada, vou procurar vagas de emprego pela internet"
+                d"pelo resto do dia!"
+
+            "Recusar":
+
+                d "Eu agradeço muito, mas quero tentar conseguir o restante."
+
+                show a apreocupada
+
+                a "Tudo bem, Diana."
+
+                a "Só não quero que você pense que precisa enfrentar tudo sozinha."
+
+                $ aluguelPago = False
+                $ confianca += 1
+                scene dmente with Dissolve(1)
+                scene mesaquarto with fade
+                d"ainda tenho a dívida do aluguel, mas nao vou me aborrecer facilmente"
+                d"vou procurar vagas de emprego pela internet"
+                d"pelo resto do dia!"
+            
+
+        hide a
+
+    scene quarton with fade
+
+    pause 1.0
+
+    d "O dia foi longo."
+
+    if aluguelPago == True:
+
+        d "Pelo menos o aluguel está resolvido."
+
+    else:
+
+        d "Ainda tenho uma pendência para resolver."
+
+    if cursoSENAC == True:
+
+        d "Também consegui me inscrever no curso."
+        d "Talvez essa seja uma oportunidade de mudar minha vida."
+
+    if vagaEncontrada == True:
+
+        d "A entrevista de emprego será amanhã."
+        d "Preciso me preparar."
+
+    if trabalhoColetivo == True:
+
+        d "Gostei de trabalhar com as mulheres da associação."
+        d "Talvez eu possa continuar ajudando."
+
+    pause 1.5
+
+    d "Não sei exatamente como será o futuro."
+
+    d "Mas hoje consegui dar mais um passo."
+
+    stop music fadeout 2.0
+
+    scene dmente with Dissolve(1.0)
+
+    pause 2.0
+
+    jump dia6
+
+
+label dia6:
+
+    play music tema_principal fadein 2.0
+
+    scene quarto_fundo with Dissolve(1.5)
+
+    pause 1.0
+
+    d "Sexto dia."
+
+    d "Parece que faz muito mais tempo desde que fui demitida."
+
+    d "Tanta coisa aconteceu em tão pouco tempo."
+
+    scene banheiro with fade
+
+    pause 1.0
+
+    d "Eu não sei se tudo vai dar certo."
+
+    d "Mas acho que finalmente entendi uma coisa."
+
+    d "Recomeçar não significa voltar ao ponto de partida."
+
+    d "Significa continuar, mesmo depois de tudo mudar."
+
+    scene salam with fade
+
+    if vagaEncontrada == True:
+
+        d "Hoje é o dia da entrevista."
+
+        pause 1.0
+        scene banheirodianaemprego #aqui colocar o bg dela normal no espelho
+        scene onibusmanha with Dissolve(1.0)
+
+        pause 2.0
+
+        scene farmaciacurr with fade
+
+        pause 1.0
+
+        d "Eu consegui chegar."
+
+        d "Estou nervosa, mas vou tentar."
+        scene dmente with fade
+
+        "A entrevista foi breve."
+        "Diana respondeu às perguntas e explicou sua experiência na lanchonete."
+
+        pause 1.0
+        scene onibusmanha with Dissolve(1)
+
+        d "Agora só preciso esperar."
+
+        $ confianca += 1
+
+    elif cursoSENAC == True:
+
+        d "Hoje preciso organizar os documentos para o curso."
+
+        pause 1.0
+
+        scene onibusmanha with Dissolve(1.0)
+
+        pause 2.0
+
+        scene cras with fade
+
+        pause 1.0
+
+        d "Consegui confirmar as informações da inscrição."
+
+        d "Ainda tenho muito o que aprender."
+
+        d "Mas estou disposta a tentar."
+
+        $ confianca += 1
+
+    elif trabalhoColetivo == True:
+
+        d "Andreia comentou que a associação recebeu novas encomendas."
+
+        d "Talvez eu possa ajudar novamente."
+
+        scene onibusmanha with Dissolve(1.0)
+
+        pause 2.0
+
+        scene bolo with fade
+
+        pause 1.0
+
+        d "As mulheres já estão trabalhando."
+
+        d "É bom ver que esse projeto está crescendo."
+
+        "Diana ajudou a organizar as encomendas e a produção."
+
+        $ dinheiro += 80
+        $ rede += 1
+        $ confianca += 1
+        scene onibusnoite with Dissolve (1)
+        pause 2.5
+        scene kitnetn with fade
+        pause 1
+
+        d "Consegui mais R$80."
+
+        d "Aos poucos, estou construindo alguma estabilidade."
+
+    scene cozinha with fade
+    d"vou preparar algo para comer"
+    "toc toc"
+    h"diana sou eu, abre aqui"
+    scene kitnetporta
+    show h hpadrao at h_centro with dissolve
+    d"oi amiga, que surpresa"
+    show h hrindo
+    h"trouxe lanche! Vamos para a cozinha"
+    d"vamos!"
+    show h h_saindo
+    pause 1
+    scene cozinha with fade
+    show h hpadrao at h_centro with Dissolve
+
+    h "Diana, como foi seu dia?"
+
+    d "Foi bom. Acho que estou começando a encontrar um caminho."
+    show h halternatica
+
+    h "Fico feliz em ouvir isso."
+
+    d "Eu ainda tenho medo de não conseguir."
+    show h hpadraobocaaberta
+    h "Acho que todo mundo sente isso em algum momento."
+
+    h "Mas você não precisa ter tudo resolvido agora."
+
+    d "Obrigada, Helena."
+    show h halternatica
+    h "E quando eu começar o curso, você vai estudar comigo, hein?"
+
+    d "Se eu conseguir entrar, com certeza."
+    show h hrindo
+
+    h "Você consegue."
+    hide h with fade
+
+    scene dmente with Dissolve(1)
+
+    pause 2
+
+
+    scene kitnet with fade
+
+    pause 1.0
+
+    d "Quando tudo aconteceu, eu achei que tinha perdido tudo."
+    scene lanchonete with fade
+    d "Meu emprego."
+    scene kitnetporta with fade
+    d "Minha segurança."
+    scene banheirodianaemprego with fade
+    d "Minha rotina."
+    scene dmente with fade
+    pause 1.0
+
+    d "Mas também encontrei pessoas que me ajudaram."
+    show h halternatica at h_vai_esquerda with dissolve
+    show a afeliz at a_entrando_direita with dissolve
+    d "Helena, Andreia..."
+    d "E todas aquelas mulheres que me mostraram que eu não precisava enfrentar tudo sozinha."
+    hide a 
+    hide h
+
+    pause 1.5
+
+    d "Ainda tenho muito pela frente."
+    
+    d "Talvez eu consiga um novo emprego."
+    d "Talvez eu termine um curso."
+    d "Talvez eu encontre uma forma de viver do meu próprio trabalho."
+    show d dpadrao at h_centro with dissolve
+    pause 1.5
+
+    d "Eu não sei."
+
+    d "Mas, pela primeira vez, não sinto que meu futuro está completamente fechado."
+    hide d
+
+    scene dmente with Dissolve(2.0)
+
+    pause 2.0
 
     jump fim
 
 label fim:
-    if dinheiro >= 700 and confianca >= 3 and rede >= 3:
-        d "Consegui pagar o aluguel, fiz os bolos e passei na prova. Agora posso respirar."
-    elif dinheiro < 700 and confianca >= 3 and rede >= 3:
-        d "Não consegui pagar o aluguel, nem fazer os bolos e nem passar na prova. Mas vou continuar tentando."
-    elif dinheiro >= 700 and confianca < 3 and rede >= 3:
-        d "Consegui pagar o aluguel, mas não fiz os bolos e nem passei na prova. Mas vou continuar tentando."
-    elif dinheiro >= 700 and confianca >= 3 and rede < 3:
-        d "Consegui pagar o aluguel e fazer os bolos, mas não passei na prova. Mas vou continuar tentando."
+
+    scene dmente with fade
+
+    pause 1.0
+
+    if aluguelPago == True and confianca >= 3 and rede >= 3:
+
+        d "Consegui pagar o aluguel e construir uma rede de apoio."
+
+        d "Ainda não tenho todas as respostas."
+
+        d "Mas agora sei que posso recomeçar."
+
+        "FINAL: UM NOVO COMEÇO"
+
+    elif aluguelPago == True:
+
+        d "Consegui pagar o aluguel."
+
+        d "Ainda preciso encontrar estabilidade e novas oportunidades."
+
+        d "Mas pelo menos consegui resolver uma das minhas maiores preocupações."
+
+        "FINAL: UM PASSO DE CADA VEZ"
+
+    elif cursoSENAC == True and rede >= 3:
+
+        d "Ainda não consegui resolver todas as minhas dificuldades."
+
+        d "Mas consegui me inscrever em um curso e encontrei pessoas dispostas a me apoiar."
+
+        d "Talvez essa seja a oportunidade que eu precisava."
+
+        "FINAL: NOVAS OPORTUNIDADES"
+
+    elif trabalhoColetivo == True and rede >= 3:
+
+        d "Ainda tenho dificuldades financeiras."
+
+        d "Mas encontrei uma forma de trabalhar e construir algo junto de outras mulheres."
+
+        d "Talvez juntas possamos ir mais longe."
+
+        "FINAL: FORÇA COLETIVA"
+
     else:
-        d "Não consegui nada. Mas vou continuar tentando."
 
-    #"Nenhuma mulher nasce vulnerável. A vulnerabilidade é falta de oportunidade. Quando existe rede, curso e respeito, a história muda. Conheça projetos reais de Ribeirão Pires que inspiraram essa história."   n entendi se é alguém q fala ou se tem como n ser
-    
+        d "Ainda não consegui resolver tudo."
 
-    # This ends the game.
+        d "O aluguel continua sendo uma preocupação."
+
+        d "Mas não quero desistir."
+
+        d "Amanhã será mais um dia para tentar."
+
+        "FINAL: CONTINUAR TENTANDO"
+
+    pause 2.0
+
+    scene black with fade
+
+    pause 1.5
+    #aqui a gente coloca um fundo especial, uma foto delas, sla
+    "Nenhuma mulher nasce vulnerável."
+    "A vulnerabilidade também é resultado da falta de oportunidades."
+    "Quando existe apoio, acesso e respeito, novas histórias podem começar."
+
+    pause 2.0
+
     return
