@@ -115,9 +115,8 @@ p.card-text{
 /*.......*/
 /* =========================
    RESPONSIVIDADE DOS CARDS, OBS: TA TENSO MANO, O BOOTSTRAP DEIXAVA QUEBRAR, DEIXAVA UM GAP ENORME, ENTAO DEI IMPORTANCIA AOS ROW, SE FOR NECESARIO PODEM MUDAR MENINAS */
-/*
 
-.cards-container {
+.entenda-problema{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -133,7 +132,7 @@ p.card-text{
     display: block;
 }
 
-.area-textos {
+.area-texto {
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -142,7 +141,24 @@ p.card-text{
 .card-body {
     width: 100%;
 }
-*/
+
+@media (max-width: 768px) {
+
+    .entenda-problema{
+        grid-template-columns: 1fr;
+        width: 92%;
+        gap: 20px;
+    }
+
+    .tabela-dados {
+        width: 100%;
+    }
+
+    .area-texto {
+        width: 100%;
+    }
+
+}
 
 .row {
     display: grid;
@@ -153,7 +169,6 @@ p.card-text{
 
     align-items: start;
 }
-
 
 /* Cards laterais */
 
