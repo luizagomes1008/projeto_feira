@@ -42,6 +42,9 @@ image bolo = Transform("images/bolos.png", fit = "cover")
 define audio.tema_principal = "musicas/musicareflexiva.mp3"
 define audio.musica_animada = "musicas/lofi.mp3"
 define audio.musica_triste = "musicas/musicatriste.mp3"
+define audio.telefone = "musicas/telefone.mp3"
+define audio.despertador = "musicas/despertador.mp3"
+define audio.notificacao = "musicas/notificacao.mp3"
 
 
 image onibusnoite:
@@ -291,6 +294,7 @@ label start:
     d "Mesmo que não seja muito..."
     pause 3.0
     d "Sinto que a qualquer momento o alarme vai-" #ai aqui o despertador iterrompe ela, e ela acorda, precisa adicionar o audio
+    play sound "musicas\despertador.mp3"
     scene quarto_fundo with Dissolve(1.5) #with fade
     pause 2.0
     d"Que dor de cabeça"
@@ -298,6 +302,7 @@ label start:
     pause 1.0
     d"Da ultima vez que isso aconteceu não foi bom..."
     pause 2.0 # aqui adiciona um barulho de notificação
+    play sound "musicas\notificacao.mp3"
     d"Quem será?..."
     scene mesaquarto 
     
@@ -463,6 +468,7 @@ label start:
 
 
     pause 2.5 #celular despertando
+    play sound "musicas\telefone.mp3"
     scene quarto_fundo with Dissolve(1) 
     pause 1
     d"*bocejo*"
@@ -639,6 +645,8 @@ label start:
     show h hreceio
     d "Ou posso tentar resolver alguma coisa."
     h "O que você está pensando?"
+    stop music
+    play music tema_principal
     menu:
         "Quero começar a procurar um emprego":
             $empregoDia2 = True
@@ -702,6 +710,7 @@ label start:
             d"amanhã as coisas vão melhorar, sinto isso"
             scene dmente with Dissolve(1)
             pause 1
+            stop music
         
      
         "Prefiro descansar um pouco":
@@ -740,10 +749,13 @@ label start:
             scene dmente with Dissolve(1)
             scene dmente with Dissolve(1)
             pause 1
+            stop music
 
 
 
         "Não sei o que quero fazer":
+            stop music 
+            play music musica_triste
             $ confianca -= 1
             d "Sinceramente? Eu não faço ideia."
             h "Você não precisa ter todas as respostas agora."
@@ -751,6 +763,8 @@ label start:
             show h hpadraobocaaberta 
             h "Às vezes, não escolher nada por enquanto também é uma escolha."
             d "Você sempre sabe o que falar, né?"
+            stop music
+            play music musica_animada
             show h halternatica
             h "Nem sempre. Só finjo que sei."
             d "Boba."
@@ -780,13 +794,16 @@ label start:
             scene dmente with Dissolve(1)
             scene dmente with Dissolve(1)
             pause 1
+            stop music
 
 
 #Dia 3
     pause 2.5 #celular despertando
+    play sound "musicas\despertador.mp3"
     scene quarto_fundo with Dissolve(1) 
     pause 1
     d"*bocejo*"
+    play music tema_principal
     scene banheiro
     scene cozinha
     scene salam
@@ -802,6 +819,8 @@ label start:
     #surge elias
     e "Ô Diana! "
     d"ah não, o aluguel..."
+    stop music
+    play music musica_triste
     scene kitnetporta with fade
     show e epadrao at h_centro
     pause 1
@@ -814,6 +833,7 @@ label start:
     e"3 dias Diana, nada mais!"
     show e epadrao at h_saindo
     d"ah não..."
+    stop music fadeout 2
     scene salam with fade
     pause 1
     if confianca < 1:
@@ -828,6 +848,7 @@ label start:
         "entregar currículos" if empregoDia2 == False:
                 $ confianca += 1
                 d "Vou atualizar meu currículo e entregar em algumas empresas."
+                play music tema_principal
                 d "Vou perguntar para a Helena sobre lugares para  mandar meu currículo"
                 d "hoje mesmo"
                 show celhelena at celular_menor
@@ -883,10 +904,12 @@ label start:
                 d"amanhã as coisas vão melhorar, sinto isso"
                 scene dmente with Dissolve(1)
                 pause 1
+                stop music
 
 
         "Procurar um bico":
             d "Bom, acho que por agora é melhor fazer algo simples e rápido..."
+            play music tema_principal
             d "Vou convorsar com a Helena"
             d "Talvez ela saiba de alguém que precise de ajuda com algo, como fazer uma faxina"
             show celhelena at celular_menor
@@ -911,6 +934,7 @@ label start:
             d "Amanhã vejo oque faço..."
             scene dmente with Dissolve(1)
             pause 1
+            stop music
 
 
         "Conversar com Andreia":
@@ -928,6 +952,7 @@ label start:
             show a aalternativa
             a "Ah, minha filha... sinto muito."
             show a apadrao
+            play music musica_animada
             a "Mas olha, talvez eu consiga te ajudar com algumas coisas."
             d "Sério? Como?"
             a "Você já ouviu falar dos cursos gratuitos que oferecem por aqui?"
@@ -966,14 +991,17 @@ label start:
             d "Já estava ficando tarde. Amanhã seria um novo dia."
             scene dmente with Dissolve (1)
             pause 1
+            stop music
 
 # DIA 4
 
     pause 2.5
     scene quarto_fundo with Dissolve(1)
     pause 1
+    play sound "musicas\despertador.mp3"
 
     d "Mais um dia..."
+    play music tema_principal
 
     scene banheirouniforme with fade
     pause 1
@@ -983,6 +1011,7 @@ label start:
 
     d "Preciso pensar no que fazer hoje."
     d "Não posso continuar dependendo apenas dos poucos reais que tenho."
+    play sound "musicas\telefone.mp3"
     show celhelena at celular_menor
     h "Bom dia, amiga! Como você está?"
     d "Bom dia, Helena. Estou tentando pensar no que fazer hoje."
@@ -1016,6 +1045,8 @@ label start:
             pause 1.5
             scene dmente with Dissolve(1)
             pause 1
+            stop music fadeout 1
+            play music musica_animada
 
             d "Consegui algumas informações sobre os programas de assistência."
             d "Também descobri algumas possibilidades de cursos gratuitos."
@@ -1029,6 +1060,7 @@ label start:
             scene quarton with fade
             d "Pelo menos hoje consegui descobrir que existem pessoas e lugares dispostos a ajudar."
             d "Talvez eu esteja começando a encontrar um caminho."
+            stop music
 
         "Ajudar Andreia na produção de doces" if conversadiana == True:
             d "Andreia comentou sobre algumas confeiteiras que precisam de ajuda."
@@ -1046,6 +1078,8 @@ label start:
             pause 1
             scene bolo with fade
             pause 1.5
+            stop music fadeout 1 
+            play music musica_animada
             scene onibusnoite with Dissolve(1)
             d "As mulheres foram muito receptivas comigo."
             d "Passei boa parte do dia ajudando na preparação dos doces."
@@ -1062,6 +1096,7 @@ label start:
             d"as amigas da Andreia me anteciparam 150 reais, estou muito feliz"
             d"tenho [dinheiro] reais"
             d "Quem sabe isso não se transforma em uma oportunidade maior?"
+            stop music
 
         "Organizar meu currículo e procurar novas vagas":
             d "Acho que preciso continuar tentando encontrar um emprego."
@@ -1087,6 +1122,7 @@ label start:
 
             scene quarton with fade
             d "Amanhã vou continuar procurando."
+            stop music
 
         "Tentar conciliar a produção de doces e os cursos" if conversadiana == True and confianca > 2:
             d "Talvez eu não precise escolher apenas uma possibilidade."
@@ -1107,6 +1143,8 @@ label start:
             scene cras with fade
             pause 1.5
             scene onibusnoite with Dissolve(1)
+            stop music fadeout 1
+            play music musica_animada
             d "Foi bastante coisa para um único dia..."
             d "Mas sinto que estou começando a construir novas possibilidades."
             pause 1.5
@@ -1117,6 +1155,7 @@ label start:
             $ confianca += 2
             scene quarton with fade
             d "Estou cansada, mas feliz por não ter desistido."
+            stop music
 
 # ============================================================
 # DIA 5 - NOVAS POSSIBILIDADES
@@ -1129,6 +1168,7 @@ label dia5:
     scene dmente with Dissolve(1.5)
 
     pause 2.0
+    play sound "musicas\despertador.mp3"
 
     d "O despertador tocou cedo naquela manhã."
     d "Por alguns segundos, esqueci que não precisava mais ir trabalhar."
@@ -1148,6 +1188,8 @@ label dia5:
     pause 1.0
 
     d "Vamos ver..."
+
+    play sound "musicas\telefone.mp3"
 
     # --------------------------------------------------------
     # CELULAR - HELENA
@@ -1191,6 +1233,8 @@ label dia5:
             d "Pelo menos já conheço um pouco desse ambiente."
 
             scene onibusmanha with Dissolve(1.0)
+            stop music fadeout 1 
+            play music tema_principal
 
             pause 2.0
 
@@ -1228,6 +1272,8 @@ label dia5:
             d "Não quero apenas sobreviver. Quero ter outras oportunidades."
 
             scene onibusmanha with Dissolve(1.0)
+            stop music fadeout 1
+            play music tema_principal
 
             pause 2.0
 
@@ -1276,6 +1322,9 @@ label dia5:
 
             scene onibusmanha with Dissolve(1.0)
 
+            stop music fadeout 1
+            play music tema_principal
+
             pause 2.0
 
             scene farmaciacurr with fade
@@ -1320,6 +1369,8 @@ label dia5:
 
             "Ao chegar em casa, Diana recebeu uma mensagem."
 
+            play sound "musicas\notificacao.mp3"
+
             show celmensagem at celular_maior
 
             pause 1.0
@@ -1351,6 +1402,9 @@ label dia5:
     pause 1.0
 
     if dinheiro >= 350:
+
+        stop music
+        play music musica_animada
 
         d "Eu finalmente tenho o suficiente."
 
@@ -1399,6 +1453,9 @@ label dia5:
                 $ confianca += 2
 
             "Guardar o dinheiro para outras necessidades":
+                
+                stop music
+                play music tema_principal
 
                 d "Eu preciso pensar na comida e nas outras contas também."
 
@@ -1416,6 +1473,9 @@ label dia5:
     else:
 
         d "Ainda não consegui juntar o suficiente."
+        stop music
+        play music musica_triste
+
 
         $ valorFaltante = 350 - dinheiro
 
@@ -1459,6 +1519,9 @@ label dia5:
 
             "Aceitar":
 
+                stop music
+                play music musica_animada
+
                 d "Eu aceito. Obrigada, Andreia."
 
                 show a afeliz
@@ -1486,6 +1549,9 @@ label dia5:
                 d"pelo resto do dia!"
 
             "Recusar":
+
+                stop music
+                play music tema_principal
 
                 d "Eu agradeço muito, mas quero tentar conseguir o restante."
 
@@ -1535,6 +1601,7 @@ label dia5:
         d "Gostei de trabalhar com as mulheres da associação."
         d "Talvez eu possa continuar ajudando."
 
+    pause 2.0
     pause 1.5
 
     d "Não sei exatamente como será o futuro."
@@ -1545,7 +1612,7 @@ label dia5:
 
     scene dmente with Dissolve(1.0)
 
-    pause 2.0
+    
 
     jump dia6
 
@@ -1555,6 +1622,7 @@ label dia6:
     play music tema_principal fadein 2.0
 
     scene quarto_fundo with Dissolve(1.5)
+    play sound "musicas\despertador.mp3"
 
     pause 1.0
 
@@ -1675,6 +1743,8 @@ label dia6:
     pause 1
     scene cozinha with fade
     show h hpadrao at h_centro with Dissolve
+    stop music 
+    play music musica_animada
 
     h "Diana, como foi seu dia?"
 
@@ -1706,6 +1776,7 @@ label dia6:
 
     scene kitnet with fade
 
+    stop music fadeout 1
     pause 1.0
 
     d "Quando tudo aconteceu, eu achei que tinha perdido tudo."
@@ -1718,6 +1789,7 @@ label dia6:
     scene dmente with fade
     pause 1.0
 
+    play music tema_principal
     d "Mas também encontrei pessoas que me ajudaram."
     show h halternatica at h_vai_esquerda with dissolve
     show a afeliz at a_entrando_direita with dissolve
@@ -1751,6 +1823,8 @@ label fim:
 
     scene dmente with fade
 
+    stop music 
+    play music tema_principal
     pause 1.0
 
     if aluguelPago == True and confianca >= 3 and rede >= 3:
@@ -1808,6 +1882,7 @@ label fim:
     pause 2.0
 
     scene black with fade
+    stop music fadeout 2
 
     pause 1.5
     #aqui a gente coloca um fundo especial, uma foto delas, sla
