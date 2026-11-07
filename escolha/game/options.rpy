@@ -55,7 +55,7 @@ define config.has_voice = True
 ## voz, descomente a linha abaixo e use-a para definir um som de amostra a ser
 ## reproduzido.
 
-# define config.sample_sound = "sample-sound.ogg"
+define config.sample_sound = "sample-sound.ogg"
 # define config.sample_voice = "sample-voice.ogg"
 
 
@@ -64,7 +64,7 @@ define config.has_voice = True
 ## continuará sendo reproduzido no jogo até que seja interrompido ou outro
 ## arquivo seja reproduzido.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = "main-menu-theme.ogg"
 
 
 ## Transições ##################################################################

@@ -18,6 +18,7 @@ image lojacell = Transform("images/lojacell.png", fit = "cover")
 image mercado = Transform("images/supermercado.png", fit = "cover")
 image cafedamanha = Transform("images/salam.png", fit = "cover")
 image salam = Transform("images/salam.png", fit = "cover")
+image banheirodiana = Transform("banheirodiana.png", fit = "cover")
 image banheirouniforme = Transform("images/banheirodianaemprego.png", fit = "cover")
 image geladeira = Transform("images/geladeira.png", fit = "cover")
 image quarton = Transform("images/quarton.png", fit ="cover")
@@ -29,7 +30,7 @@ image dmente = Transform("images/dmente.png", fit ="cover")
 image banheirolanchonete = Transform("images/banehirolanchonete.jpeg", fit ="cover")
 image kitnet = Transform("images/kitnet.jpeg", fit ="cover")
 image lanchoneten = Transform("images/lanchoneten.png", fit ="cover")
-image lanchonete1 = Transform("images/lanchonete1.jpeg", fit ="cover")
+image lanchonete1 = Transform("images/lanchonete1.png", fit ="cover")
 image lanchonete = Transform("images/lanchonete.png", fit ="cover")
 image lanchonete2 = Transform("images/lanchonete2.png", fit ="cover")
 image lanchonete3 = Transform("images/lanchonete3.png", fit ="cover")
@@ -42,9 +43,9 @@ image bolo = Transform("images/bolos.png", fit = "cover")
 define audio.tema_principal = "musicas/musicareflexiva.mp3"
 define audio.musica_animada = "musicas/lofi.mp3"
 define audio.musica_triste = "musicas/musicatriste.mp3"
-define audio.telefone = "musicas/telefone.mp3"
-define audio.despertador = "musicas/despertador.mp3"
-define audio.notificacao = "musicas/notificacao.mp3"
+define audio.telefone = "musicas/telefone.ogg"
+define audio.despertador = "musicas/despertador.ogg"
+define audio.notificacao = "musicas/notificacao.ogg"
 
 
 image onibusnoite:
@@ -120,7 +121,7 @@ image onibusmanha:
     repeat
 
 image quarto_fundo = Transform(
-    "images/quarto.jpeg",
+    "images/quarto.png",
     xysize=(config.screen_width, config.screen_height)
 )
 image mesaquarto = Transform(
@@ -128,16 +129,16 @@ image mesaquarto = Transform(
     xysize=(config.screen_width, config.screen_height)
 )
 image banheiro = Transform(
-    "images/banheiro.jpeg",
+    "images/banheiro.png",
     xysize=(config.screen_width, config.screen_height)
 )
 image celmensagem = "images/celularmensagem.png"
 transform celular_maior:
-    zoom 1.5
+    zoom 2
     xalign 0.5
     yalign 0.5
 transform celular_menor:
-    zoom 0.5
+    zoom 1
     xalign 0.5
     yalign 0.5
 image celbloq ="/images/celularbloq.png"
@@ -206,7 +207,7 @@ transform h_saindo:
         xalign -1.5
 
 define d = Character("Diana")
-image dpadrao = "/images/Dpadrao.png" 
+image d dpadrao = "images/personagens/Dpadrao.png" 
 
 define a = Character("Andreia", color="#66ccff")
 transform andreia_chegando:
@@ -266,7 +267,11 @@ default trabalhoColetivo = False
 
 # The game starts here.
 
+
 label start:    
+
+
+    
     #scene star
     scene dmente
 
@@ -279,7 +284,6 @@ label start:
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
-
     pause 2.0
     d "Meu nome é Diana. Tenho 26 anos."
 
@@ -294,24 +298,25 @@ label start:
     d "Mesmo que não seja muito..."
     pause 3.0
     d "Sinto que a qualquer momento o alarme vai-" #ai aqui o despertador iterrompe ela, e ela acorda, precisa adicionar o audio
-    play sound "musicas\despertador.mp3"
+    play sound audio.despertador
+    pause 3.5 
+    stop sound
     scene quarto_fundo with Dissolve(1.5) #with fade
     pause 2.0
     d"Que dor de cabeça"
     d"Preciso me arrumar para o trabalho, ou se não vou me atrasar"
     pause 1.0
     d"Da ultima vez que isso aconteceu não foi bom..."
-    pause 2.0 # aqui adiciona um barulho de notificação
-    play sound "musicas\notificacao.mp3"
+    pause 1.0 # aqui adiciona um barulho de notificação
+    play sound audio.notificacao
+    pause 1.0
     d"Quem será?..."
     scene mesaquarto 
     
-    d"Quem será agora?" #no celular vai ter uma mensagem do patrão dizendo que precisa conversar com ela
+    pause 1.5 #no celular vai ter uma mensagem do patrão dizendo que precisa conversar com ela
   #  d"hm... cobrança do alugel, não posso me atrasar com isso..."
    # d "Nem venceu ainda e já tá me cobrando!
-    show celbloq at celular_maior
-    pause 1.0
-    show celmensagem at celular_maior
+    show celmensagem at celular_menor
     pause 1.0
     d"Espero que tudo esteja bem..."
     pause 0.5
@@ -468,12 +473,13 @@ label start:
 
 
     pause 2.5 #celular despertando
-    play sound "musicas\telefone.mp3"
+    play sound audio.telefone
     scene quarto_fundo with Dissolve(1) 
     pause 1
     d"*bocejo*"
     d"Quem está me ligando a essa hora da manhã?!"
-    show celhelena at celular_menor
+    show celhelena at celular_maior
+    stop sound
     play music musica_triste fadein 1.0
     d"Helena... "
     h "Bom dia, amiga."
@@ -490,7 +496,7 @@ label start:
     hide celhelena
     pause 1 
     d"melhor ir logo"
-    scene banheiro with fade #aqui é ela se vendo no espelho do banheiro
+    scene banheirodiana with fade #aqui é ela se vendo no espelho do banheiro
     d"..."
     pause 2 
     scene salam with fade
@@ -755,7 +761,7 @@ label start:
 
         "Não sei o que quero fazer":
             stop music 
-            play music musica_triste
+            play music musica_triste fadein 2.0
             $ confianca -= 1
             d "Sinceramente? Eu não faço ideia."
             h "Você não precisa ter todas as respostas agora."
@@ -764,7 +770,7 @@ label start:
             h "Às vezes, não escolher nada por enquanto também é uma escolha."
             d "Você sempre sabe o que falar, né?"
             stop music
-            play music musica_animada
+            play music musica_animada fadein 2.0
             show h halternatica
             h "Nem sempre. Só finjo que sei."
             d "Boba."
@@ -799,16 +805,17 @@ label start:
 
 #Dia 3
     pause 2.5 #celular despertando
-    play sound "musicas\despertador.mp3"
+    play sound audio.despertador
     scene quarto_fundo with Dissolve(1) 
-    pause 1
+    pause 2.5
+    stop sound
     d"*bocejo*"
-    play music tema_principal
-    scene banheiro
+    play music tema_principal fadein 2.0
+    scene banheirodiana
     scene cozinha
     scene salam
     d "Tá... vamos ver as contas"
-    d "Tenho [dinheiro] e preciso pagar R$350 do aluguel e comprar mais comida..."
+    d "Tenho [dinheiro] e preciso pagar R$250 do aluguel e comprar mais comida..."
     d "Não vai ser o suficiente... \n Dia 15 já já está aí... "
     d "Tenho que procurar uma forma de ganhar dinheiro... {p} Mas qual?"
     if empregoDia2 == True:
@@ -820,9 +827,9 @@ label start:
     e "Ô Diana! "
     d"ah não, o aluguel..."
     stop music
-    play music musica_triste
+    play music musica_triste fadein 2.0
     scene kitnetporta with fade
-    show e epadrao at h_centro
+    show e epadrao at h_centro with fade
     pause 1
     d "Elias, fui mandada embora hoje. Me dá até dia 15? Por favor?"
     show e ediscusao
@@ -848,10 +855,10 @@ label start:
         "entregar currículos" if empregoDia2 == False:
                 $ confianca += 1
                 d "Vou atualizar meu currículo e entregar em algumas empresas."
-                play music tema_principal
+                play music tema_principal fadein 2.0
                 d "Vou perguntar para a Helena sobre lugares para  mandar meu currículo"
                 d "hoje mesmo"
-                show celhelena at celular_menor
+                show celhelena at celular_maior
                 d "Helena, você sabe aonde eu posso levar meu currículo?"
                 h "Ah sim! vou te passar os endereços"
                 d "Obrigada, Helena, De verdade."
@@ -885,7 +892,7 @@ label start:
                 scene dmente with Dissolve(1)
                 scene kitnetn with Dissolve (1)
                 pause 1
-                show celhelena at celular_menor
+                show celhelena at celular_maior
                 d "Obrigada por me ajudar hoje Helena, não sabia nem por onde começar"
                 h"Você sabe que pode sempre contar comigo nao é Diana?"
                 d"Você sempre me ajuda e tudo fica mais fácil"
@@ -909,16 +916,16 @@ label start:
 
         "Procurar um bico":
             d "Bom, acho que por agora é melhor fazer algo simples e rápido..."
-            play music tema_principal
+            play music tema_principal fadein 2.0
             d "Vou convorsar com a Helena"
             d "Talvez ela saiba de alguém que precise de ajuda com algo, como fazer uma faxina"
-            show celhelena at celular_menor
+            show celhelena at celular_maior
             h "Eu conheço uma faxineira, talvez você possa de oferecer para ajudar ela e receber parte do dinheiro"
             h "Oque você acha?"
             d "É melhor que nada... preciso de dinheiro rápido"
             hide celhelena
             pause 1
-            scene banheirouniforme with fade
+            scene banheirodiana with fade
             d "de pouco em pouco vou me erguer"
             scene onibusmanha with Dissolve(1) 
             pause 1
@@ -952,7 +959,7 @@ label start:
             show a aalternativa
             a "Ah, minha filha... sinto muito."
             show a apadrao
-            play music musica_animada
+            play music musica_animada fadein 2.0
             a "Mas olha, talvez eu consiga te ajudar com algumas coisas."
             d "Sério? Como?"
             a "Você já ouviu falar dos cursos gratuitos que oferecem por aqui?"
@@ -997,13 +1004,13 @@ label start:
 
     pause 2.5
     scene quarto_fundo with Dissolve(1)
-    pause 1
-    play sound "musicas\despertador.mp3"
-
+    play sound audio.despertador
+    pause 2
     d "Mais um dia..."
-    play music tema_principal
+    stop sound
+    play music tema_principal fadein 2.0
 
-    scene banheirouniforme with fade
+    scene banheirodiana with fade
     pause 1
 
     scene salam with fade
@@ -1011,8 +1018,10 @@ label start:
 
     d "Preciso pensar no que fazer hoje."
     d "Não posso continuar dependendo apenas dos poucos reais que tenho."
-    play sound "musicas\telefone.mp3"
-    show celhelena at celular_menor
+    play sound audio.telefone
+    pause 2
+    show celhelena at celular_maior
+    stop sound
     h "Bom dia, amiga! Como você está?"
     d "Bom dia, Helena. Estou tentando pensar no que fazer hoje."
     h "Olha, lembrei de uma coisa que pode te ajudar."
@@ -1046,7 +1055,7 @@ label start:
             scene dmente with Dissolve(1)
             pause 1
             stop music fadeout 1
-            play music musica_animada
+            play music musica_animada fadein 2.0
 
             d "Consegui algumas informações sobre os programas de assistência."
             d "Também descobri algumas possibilidades de cursos gratuitos."
@@ -1079,7 +1088,7 @@ label start:
             scene bolo with fade
             pause 1.5
             stop music fadeout 1 
-            play music musica_animada
+            play music musica_animada fadein 2.0
             scene onibusnoite with Dissolve(1)
             d "As mulheres foram muito receptivas comigo."
             d "Passei boa parte do dia ajudando na preparação dos doces."
@@ -1102,7 +1111,7 @@ label start:
             d "Acho que preciso continuar tentando encontrar um emprego."
             d "Vou conversar com Helena e pedir algumas indicações."
 
-            show celhelena at celular_menor
+            show celhelena at celular_maior
 
             d "Helena, você conhece algum lugar que esteja contratando?"
             h "Posso procurar algumas oportunidades e te mandar."
@@ -1144,7 +1153,7 @@ label start:
             pause 1.5
             scene onibusnoite with Dissolve(1)
             stop music fadeout 1
-            play music musica_animada
+            play music musica_animada fadein 2.0
             d "Foi bastante coisa para um único dia..."
             d "Mas sinto que estou começando a construir novas possibilidades."
             pause 1.5
@@ -1157,9 +1166,7 @@ label start:
             d "Estou cansada, mas feliz por não ter desistido."
             stop music
 
-# ============================================================
-# DIA 5 - NOVAS POSSIBILIDADES
-# ============================================================
+
 
 label dia5:
 
@@ -1168,8 +1175,9 @@ label dia5:
     scene dmente with Dissolve(1.5)
 
     pause 2.0
-    play sound "musicas\despertador.mp3"
-
+    play sound audio.despertador
+    pause 2.5
+    stop sound
     d "O despertador tocou cedo naquela manhã."
     d "Por alguns segundos, esqueci que não precisava mais ir trabalhar."
 
@@ -1178,7 +1186,7 @@ label dia5:
     d "É estranho... Passei tanto tempo reclamando da rotina."
     d "Agora, sinto falta até dela."
 
-    scene banheiro with fade
+    scene banheirodiana with fade
 
     d "Preciso parar de pensar no que perdi."
     d "Ainda tenho algumas possibilidades."
@@ -1189,13 +1197,10 @@ label dia5:
 
     d "Vamos ver..."
 
-    play sound "musicas\telefone.mp3"
-
-    # --------------------------------------------------------
-    # CELULAR - HELENA
-    # --------------------------------------------------------
-
-    show celhelena at celular_menor
+    play sound audio.telefone
+    pause 2
+    show celhelena at celular_maior
+    stop sound
 
     h "Diana, bom dia!"
     h "Você lembra que te falei do curso do SENAC Delas?"
@@ -1234,7 +1239,7 @@ label dia5:
 
             scene onibusmanha with Dissolve(1.0)
             stop music fadeout 1 
-            play music tema_principal
+            play music tema_principal fadein 2.0
 
             pause 2.0
 
@@ -1273,7 +1278,7 @@ label dia5:
 
             scene onibusmanha with Dissolve(1.0)
             stop music fadeout 1
-            play music tema_principal
+            play music tema_principal fadein 2.0
 
             pause 2.0
 
@@ -1290,7 +1295,7 @@ label dia5:
 
             d "Pronto. Agora é esperar pelas próximas etapas."
 
-            show celhelena at celular_menor
+            show celhelena at celular_maior
 
             h "E aí? Conseguiu?"
 
@@ -1323,7 +1328,7 @@ label dia5:
             scene onibusmanha with Dissolve(1.0)
 
             stop music fadeout 1
-            play music tema_principal
+            play music tema_principal fadein 2.0
 
             pause 2.0
 
@@ -1369,7 +1374,7 @@ label dia5:
 
             "Ao chegar em casa, Diana recebeu uma mensagem."
 
-            play sound "musicas\notificacao.mp3"
+            play sound audio.notificacao
 
             show celmensagem at celular_maior
 
@@ -1393,7 +1398,7 @@ label dia5:
 
     d "Antes de pensar no amanhã, preciso resolver o aluguel."
 
-    d "R$350..."
+    d "R$250..."
 
     d "Quanto dinheiro eu tenho agora?"
 
@@ -1401,10 +1406,10 @@ label dia5:
 
     pause 1.0
 
-    if dinheiro >= 350:
+    if dinheiro >= 250:
 
         stop music
-        play music musica_animada
+        play music musica_animada fadein 2.0
 
         d "Eu finalmente tenho o suficiente."
 
@@ -1416,7 +1421,7 @@ label dia5:
 
                 d "Não quero adiar isso mais uma vez."
 
-                $ dinheiro -= 350
+                $ dinheiro -= 250
                 $ aluguelPago = True
 
                 scene kitnetporta with fade
@@ -1455,7 +1460,7 @@ label dia5:
             "Guardar o dinheiro para outras necessidades":
                 
                 stop music
-                play music tema_principal
+                play music tema_principal fadein 2.0
 
                 d "Eu preciso pensar na comida e nas outras contas também."
 
@@ -1474,10 +1479,10 @@ label dia5:
 
         d "Ainda não consegui juntar o suficiente."
         stop music
-        play music musica_triste
+        play music musica_triste fadein 2.0
 
 
-        $ valorFaltante = 350 - dinheiro
+        $ valorFaltante = 250 - dinheiro
 
         d "Faltam R$[valorFaltante]."
 
@@ -1520,7 +1525,7 @@ label dia5:
             "Aceitar":
 
                 stop music
-                play music musica_animada
+                play music musica_animada fadein 2.0
 
                 d "Eu aceito. Obrigada, Andreia."
 
@@ -1533,7 +1538,7 @@ label dia5:
                 a "Eu sei que vai."
 
                 $ dinheiro += valorFaltante
-                $ dinheiro -= 350
+                $ dinheiro -= 250
                 $ aluguelPago = True
                 $ andreiaAjudaAluguel = True
                 $ rede += 2
@@ -1551,7 +1556,7 @@ label dia5:
             "Recusar":
 
                 stop music
-                play music tema_principal
+                play music tema_principal fadein 2.0
 
                 d "Eu agradeço muito, mas quero tentar conseguir o restante."
 
@@ -1622,9 +1627,10 @@ label dia6:
     play music tema_principal fadein 2.0
 
     scene quarto_fundo with Dissolve(1.5)
-    play sound "musicas\despertador.mp3"
+    play sound audio.despertador
 
-    pause 1.0
+    pause 2.0
+    stop sound
 
     d "Sexto dia."
 
@@ -1632,7 +1638,7 @@ label dia6:
 
     d "Tanta coisa aconteceu em tão pouco tempo."
 
-    scene banheiro with fade
+    scene banheirodiana with fade
 
     pause 1.0
 
@@ -1651,7 +1657,7 @@ label dia6:
         d "Hoje é o dia da entrevista."
 
         pause 1.0
-        scene banheirodianaemprego #aqui colocar o bg dela normal no espelho
+        scene banheirodiana #aqui colocar o bg dela normal no espelho
         scene onibusmanha with Dissolve(1.0)
 
         pause 2.0
@@ -1739,12 +1745,12 @@ label dia6:
     show h hrindo
     h"trouxe lanche! Vamos para a cozinha"
     d"vamos!"
-    show h h_saindo
+    show h at h_saindo
     pause 1
     scene cozinha with fade
-    show h hpadrao at h_centro with Dissolve
+    show h hpadrao at h_centro with Dissolve(1)
     stop music 
-    play music musica_animada
+    play music musica_animada fadein 2.0
 
     h "Diana, como foi seu dia?"
 
@@ -1784,12 +1790,12 @@ label dia6:
     d "Meu emprego."
     scene kitnetporta with fade
     d "Minha segurança."
-    scene banheirodianaemprego with fade
+    scene banheirouniforme with fade
     d "Minha rotina."
     scene dmente with fade
     pause 1.0
 
-    play music tema_principal
+    play music tema_principal fadein 2.0
     d "Mas também encontrei pessoas que me ajudaram."
     show h halternatica at h_vai_esquerda with dissolve
     show a afeliz at a_entrando_direita with dissolve
@@ -1824,7 +1830,7 @@ label fim:
     scene dmente with fade
 
     stop music 
-    play music tema_principal
+    play music tema_principal fadein 2.0
     pause 1.0
 
     if aluguelPago == True and confianca >= 3 and rede >= 3:
